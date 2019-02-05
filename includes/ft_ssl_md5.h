@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/01/26 18:30:54 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/05 14:35:26 by delay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,23 @@
 # define	OP_TAB_LEN		64
 # define	BLOCK_TAB_LEN	16
 
+# define	ARG_S			0
+# define	ARG_R			1
+# define	ARG_P			2
+# define	ARG_Q			3
+
 typedef struct		s_block
 {
-	int				tab[BLOCK_TAB_LEN];
+	uint32_t		*tab;
+	struct s_block	*next;
 }					t_block;
+
+typedef struct		s_hash
+{
+	char			*name;
+	uint32_t		args;
+	char			*data;
+}					t_hash;
 
 typedef	struct		s_md5
 {
