@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/05 14:35:26 by delay            ###   ########.fr       */
+/*   Updated: 2019/02/07 19:37:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,29 @@
 # define	OP_TAB_LEN		64
 # define	BLOCK_TAB_LEN	16
 
-# define	ARG_S			0
-# define	ARG_R			1
-# define	ARG_P			2
-# define	ARG_Q			3
+# define	ARG_S			1
+# define	ARG_R			2
+# define	ARG_P			3
+# define	ARG_Q			4
+
+# define	MD5				1
+# define	SHA256			2
+
+# define	NO_CMD			1
+# define	INVALID_CMD		2
+
+typedef struct		s_opt
+{
+	int				opt;
+	char			*data;
+	struct s_opt	*next;
+}					t_opt;
+
+typedef	struct		s_parse
+{
+	int				hash_type;
+	t_opt			**lst_opt;
+}					t_parse;
 
 typedef struct		s_block
 {
@@ -50,5 +69,7 @@ typedef	struct		s_md5
 int		parsing(int ac, char **av);
 void	print_usage(const int usage_int, const char *command);
 void	md5(char *s);
+
+void	exit_error(const char *msg);
 
 #endif

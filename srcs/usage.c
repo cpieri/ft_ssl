@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:06:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/01/24 18:13:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/07 19:33:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,11 @@ void		print_usage(const int usage_int, const char *command)
 		ft_putendl_fd("usage: ft_ssl command [command opts] [command args]", 2);
 	if (usage_int == 2 && command != NULL)
 		invalid_command(command);
-	exit(-1);
+	exit(FAILURE);
+}
+
+void		exit_error(const char *msg)
+{
+	ft_putendl_fd(msg, 2);
+	exit(FAILURE);
 }
