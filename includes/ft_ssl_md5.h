@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/08 11:48:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/08 12:29:46 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef	struct		s_md5
 
 
 int		parsing(int ac, char **av);
+int		get_data(const int fd, char **data);
 void	print_usage(const int usage_int, const char *command);
 void	md5(char *s);
 

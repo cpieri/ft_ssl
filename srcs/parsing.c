@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/08 11:47:33 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/08 13:26:38 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,28 @@ int		check_command(const char *cmd)
 	return (FAILURE);
 }
 
-int		read_stdin(void)
+int		parse_opts(const int ac, char **av, t_parse *parsing)
 {
-	char	data[1];
-	char	*line;
-
-	while (get_next_line(0, &line))
-	{
-		//printf("data: %s", data);
-		printf("data: %s", line);
-		//data = ft_strdup(line);
-		free(line);
-	}
-	printf("data end: %s", line);
-	return (0);//(data);
-}
-
-int		parse_opts(int ac, char **av, t_parse *parsing)
-{
-	t_opt		*opt;
-
-	(void)parsing;
-	if (!(opt = (t_opt*)ft_memalloc(sizeof(t_opt) * 1)))
-		exit_error("Error: Funct parse_opts: Memalloc failed");
-	else if (ac < 3 || ft_strcmp(av[2], "-p") == 0)
-		read_stdin();
 	return (SUCCESS);
 }
+
+/*int		parse_opts(const int ac, char **av, t_parse *parsing)
+  {
+  t_opt		*opt;
+  char		*data;
+
+  data = NULL;
+  if (!(opt = (t_opt*)ft_memalloc(sizeof(t_opt) * 1)))
+  exit_error("Error: Funct parse_opts: Memalloc failed");
+  opt->next = NULL;
+  if (ac < 3 || ft_strcmp(av[2], "-p") == 0)
+  get_data(0, &data);
+  opt->data = ft_strdup(data);
+  ft_strdel(&data);
+  printf("data: %s", opt->data);
+  printf("hash_type: %d", parsing->hash_type);
+  return (SUCCESS);
+  }*/
 
 int		parsing(int ac, char **av)
 {

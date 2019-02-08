@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/02/07 19:27:49 by cpieri           ###   ########.fr        #
+#    Updated: 2019/02/08 12:42:16 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	ft_ssl
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 -flto -g -fsanitize=address -fno-omit-frame-pointer
+CFLAGS	=	-Wall -Wextra -Werror -O3 #-flto -g -fsanitize=address -fno-omit-frame-pointer
 
 CPPFLAGS=	-Iincludes
 
@@ -32,6 +32,7 @@ DEPS =		Makefile				\
 SRC_NAME= 	main.c		\
 			usage.c		\
 			parsing.c	\
+			get_data.c	\
 			md5.c
 
 
