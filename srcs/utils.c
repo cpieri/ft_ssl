@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_data.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/08 17:54:43 by cpieri           ###   ########.fr       */
+/*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
+/*   Updated: 2019/02/08 17:53:21 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl_md5.h"
 
-char	*get_data(const int fd)
+t_opt	*new_opt(int flag, char *data)
 {
-	char			buffer[BUFF_SIZE + 1];
-	static char		*data = NULL;
-	char			*tmp;
-	int				nb_read;
+	t_opt	*new;
 
-	while ((nb_read = read(fd, buffer, BUFF_SIZE)))
+	if (!(new = (t_opt*)malloc(sizeof(t_opt))))
+		return (NULL);
+	if (!data)
 	{
-		if (data == NULL)
-			data = ft_strdup(buffer);
-		else
-		{
-			tmp = data;
-			data = ft_strjoin(tmp, buffer);
-			ft_strdel(&tmp);
-		}
+		new->data = NULL;
+		new->flag = 0;
 	}
-	return (data);
+	else
+	{
+		new->data = ft_strdup(data);
+		new->flag = flag;
+	}
+	new->next = NULL;
+	return (new);
 }

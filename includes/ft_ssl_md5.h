@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/08 12:29:46 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/08 17:55:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 typedef struct		s_opt
 {
-	int				opt;
+	int				flag;
 	char			*data;
 	struct s_opt	*next;
 }					t_opt;
@@ -41,7 +41,7 @@ typedef struct		s_opt
 typedef	struct		s_parse
 {
 	int				hash_type;
-	t_opt			**lst_opt;
+	t_opt			**lst_opts;
 }					t_parse;
 
 typedef struct		s_block
@@ -67,9 +67,10 @@ typedef	struct		s_md5
 
 
 int		parsing(int ac, char **av);
-int		get_data(const int fd, char **data);
+char	*get_data(const int fd);
 void	print_usage(const int usage_int, const char *command);
 void	md5(char *s);
+t_opt	*new_opt(int flag, char *data);
 
 void	exit_error(const char *msg);
 
