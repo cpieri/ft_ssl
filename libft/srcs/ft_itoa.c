@@ -3,38 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 14:39:58 by tmilon            #+#    #+#             */
-/*   Updated: 2017/12/01 08:05:32 by tmilon           ###   ########.fr       */
+/*   Created: 2017/11/15 15:39:14 by cpieri            #+#    #+#             */
+/*   Updated: 2017/11/16 09:58:56 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char		*ft_itoa(int n)
+static char		*itoa_cpy(int n, long nb, size_t len)
 {
-	char	*ret;
-	int		i;
-	int		neg;
+	char	*s;
 
-	neg = (n < 0 ? 1 : 0);
-	i = ftb_intlen(n);
-	if ((ret = malloc(sizeof(char) * (i + 1))) == 0)
+	if (!(s = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	ret[i--] = '\0';
 	if (n < 0)
+		s[0] = '-';
+	s[len] = '\0';
+	--len;
+	while (nb > 9)
 	{
-		if (n == -2147483648)
-			ret[i--] = '8';
-		n = (n == -2147483648 ? 214748364 : -n);
+		s[len] = nb % 10 + 48;
+		nb = nb / 10;
+		--len;
 	}
-	while (i >= 0)
+	s[len] = nb % 10 + 48;
+	return (s);
+}
+
+char			*ft_itoa(int n)
+{
+	char	*s;
+	long	nb;
+	long	tmp;
+	size_t	len;
+
+	nb = n;
+	tmp = n;
+	len = 0;
+	if (n < 0)
+		++len;
+	if (nb < 0)
 	{
-		ret[i--] = (n % 10) + 48;
-		n /= 10;
+		nb = nb * -1;
+		tmp = nb;
 	}
-	if (neg == 1)
-		ret[0] = '-';
-	return (ret);
+	while (tmp /= 10)
+		++len;
+	++len;
+	s = itoa_cpy(n, nb, len);
+	return (s);
 }

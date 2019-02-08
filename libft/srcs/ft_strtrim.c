@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 14:44:42 by tmilon            #+#    #+#             */
-/*   Updated: 2017/11/30 21:02:21 by tmilon           ###   ########.fr       */
+/*   Created: 2017/11/14 15:08:53 by cpieri            #+#    #+#             */
+/*   Updated: 2017/11/16 14:51:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,21 @@
 
 char	*ft_strtrim(char const *s)
 {
-	int		i;
-	int		be;
-	int		end;
-	char	*ret;
+	char	*trimmer;
+	size_t	i;
+	size_t	j;
 
 	if (!s)
 		return (NULL);
-	if (ft_strcmp(s, "") == 0)
-		return (ft_strdup(""));
-	be = 0;
-	while (s[be] == ' ' || s[be] == '\t' || s[be] == '\n')
-		be++;
-	end = ft_strlen(s) - 1;
-	while (end > 0 && (s[end] == ' ' || s[end] == '\t' || s[end] == '\n'))
-		end--;
-	if (end == 0)
-		return (be == (int)ft_strlen(s) ? ft_strdup("") : ft_strdup((char *)s));
-	if ((ret = malloc(sizeof(char) * (end - be + 2))) == 0)
+	i = (ft_strlen(s) - 1);
+	j = 0;
+	while (i >= 1 && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+		i--;
+	while ((s[j] == ' ' || s[j] == '\n' || s[j] == '\t') && s[j])
+		j++;
+	if (i < j)
+		i = j;
+	if (!(trimmer = ft_strsub(s, j, i - j + 1)))
 		return (NULL);
-	ret[end - be + 1] = '\0';
-	i = 0;
-	while (be <= end)
-		ret[i++] = s[be++];
-	return (ret);
+	return (trimmer);
 }

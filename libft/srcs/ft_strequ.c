@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 22:59:13 by tmilon            #+#    #+#             */
-/*   Updated: 2017/11/29 19:24:16 by tmilon           ###   ########.fr       */
+/*   Created: 2017/11/13 17:20:29 by cpieri            #+#    #+#             */
+/*   Updated: 2018/01/12 10:08:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strequ(char const *s1, char const *s2)
+int		ft_strequ(char const *s1, char const *s2)
 {
+	int		i;
+
+	i = 0;
 	if (!s1 || !s2)
-		return (0);
-	while (*s1 != '\0')
+		return (-1);
+	while (s1[i] || s2[i])
 	{
-		if (*s1 != *s2)
+		i++;
+		if (s1[i] != s2[i])
 			return (0);
-		s1++;
-		s2++;
 	}
-	if (*s2 != '\0')
-		return (0);
 	return (1);
 }

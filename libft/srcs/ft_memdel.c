@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 22:08:33 by tmilon            #+#    #+#             */
-/*   Updated: 2017/11/28 21:13:11 by tmilon           ###   ########.fr       */
+/*   Created: 2017/11/13 14:49:05 by cpieri            #+#    #+#             */
+/*   Updated: 2017/11/13 16:27:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
 void	ft_memdel(void **ap)
 {
-	if (ap && *ap)
-	{
-		free(*ap);
-		*ap = NULL;
-	}
+	char **tmp;
+
+	if (!ap)
+		return ;
+	tmp = (char**)ap;
+	free(*tmp);
+	if (*tmp != NULL)
+		*tmp = NULL;
 }

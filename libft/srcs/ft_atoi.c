@@ -3,40 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 18:59:31 by tmilon            #+#    #+#             */
-/*   Updated: 2017/11/29 17:22:29 by tmilon           ###   ########.fr       */
+/*   Created: 2017/11/10 16:19:16 by cpieri            #+#    #+#             */
+/*   Updated: 2017/11/10 16:48:57 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
-	unsigned int	n;
-	int				loopamount;
-	int				neg;
+	int		nb;
+	int		i;
+	int		neg;
 
-	n = 0;
-	loopamount = 0;
-	while (ftb_isspace(*str) == 1 && *str != '\0' && *str != '-' &&
-				*str != '\e')
-		str++;
-	str += (*str == '+' && ft_isdigit(*(str + 1)) == 1 ? 1 : 0);
-	if (*str == '-')
-		neg = *(str++);
-	else
-		neg = 10;
-	while (ft_isdigit(*str) != 0)
+	neg = 1;
+	nb = 0;
+	i = 0;
+	while (ft_isspace(str[i]) && str[i])
+		i++;
+	if (str[i] == '-')
 	{
-		if (n * 10 < n && loopamount < 2)
-			loopamount += (neg != 10 ? 2 : 1);
-		else if (n * 10 < n)
-			return (neg != 10 ? 0 : -1);
-		n *= 10;
-		n += (*str - 48);
-		str++;
+		neg = -1;
+		i++;
 	}
-	return (neg != 10 ? -n : n);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		nb = nb * 10;
+		nb = nb + str[i] - '0';
+		i++;
+	}
+	return (nb * neg);
 }

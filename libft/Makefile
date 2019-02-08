@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/01/25 15:50:36 by cpieri           ###   ########.fr        #
+#    Updated: 2019/02/08 11:40:48 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ DEPS =		Makefile					\
 
 SRCS = 		ft_atoi.c					\
  			ft_bzero.c					\
+			ft_ishexa_color.c			\
+			ft_isspace.c				\
   			ft_isalnum.c				\
 	 		ft_isalpha.c				\
 	  		ft_isascii.c				\
@@ -45,7 +47,6 @@ SRCS = 		ft_atoi.c					\
 			ft_memdel.c					\
 			ft_memmove.c				\
 			ft_memset.c					\
-			ft_print_bits.c				\
 			ft_putchar.c 				\
 			ft_putchar_fd.c				\
 			ft_putendl.c				\

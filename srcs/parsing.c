@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/07 20:23:42 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/08 11:47:33 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ int		check_command(const char *cmd)
 	return (FAILURE);
 }
 
-char	*read_stdin(void)
+int		read_stdin(void)
 {
-	char	*data;
+	char	data[1];
 	char	*line;
 
-	while (!(get_next_line(0, &line)))
+	while (get_next_line(0, &line))
 	{
-		data = ft_strdup(line);
+		//printf("data: %s", data);
+		printf("data: %s", line);
+		//data = ft_strdup(line);
 		free(line);
 	}
-	return (data);
+	printf("data end: %s", line);
+	return (0);//(data);
 }
 
 int		parse_opts(int ac, char **av, t_parse *parsing)

@@ -6,18 +6,17 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/01/25 16:07:10 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/08 11:40:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __LIBFT_H
 # define __LIBFT_H
 
-# define BUFF_SIZE 32
-# define FD_MAX 24
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "get_next_line.h"
 
 typedef	struct		s_list
 {
@@ -26,18 +25,10 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_cont
-{
-	long			char_to_print;
-	long			length;
-	long			rstate;
-	char			*buffer;
-	int				offset;
-}					t_cont;
-
 int					get_next_line(const int fd, char **line);
 int					*find_closest_offset(int x, int y, int tx, int ty);
 int					ftb_abs(int n);
+int					ft_isspace(int c);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strcat(char *s1, const char *s2);
@@ -112,8 +103,8 @@ void				ftb_lstlastpop(t_list **alst, void (*del)(void *, size_t));
 void				free_multiarray(char **array);
 void				debug_print_list(t_list **alst, char *name);
 void				ft_abort(char *msg);
-void				ft_print_bits(unsigned char octet);
 int					ft_sqrt(int n);
+int					ft_ishexa_color(char *s);
 int					ft_countstrtab(char **tab);
 double				ft_atof(const char *str);
 double				ftb_clamp(double toclamp, double min, double max);
