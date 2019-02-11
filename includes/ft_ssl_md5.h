@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/08 17:55:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/11 14:27:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ typedef	struct		s_md5
 }					t_md5;
 
 
-int		parsing(int ac, char **av);
+int		parsing(const int ac, char **av);
+int		open_fd(const char *file);
 char	*get_data(const int fd);
 void	print_usage(const int usage_int, const char *command);
 void	md5(char *s);
 t_opt	*new_opt(int flag, char *data);
+void    add_to_end_lst(t_opt *new, t_opt **lst);
+void	print_lst(t_opt **lst);
 
 void	exit_error(const char *msg);
 
