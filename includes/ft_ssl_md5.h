@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/11 14:27:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:45:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct		s_opt
 typedef	struct		s_parse
 {
 	int				hash_type;
-	t_opt			**lst_opts;
+	t_opt			*lst_opts;
 }					t_parse;
 
 typedef struct		s_block
@@ -66,15 +66,17 @@ typedef	struct		s_md5
 }					t_md5;
 
 
-int		parsing(const int ac, char **av);
+t_parse	*parsing(const int ac, char **av);
 int		open_fd(const char *file);
 char	*get_data(const int fd);
-void	print_usage(const int usage_int, const char *command);
-void	md5(char *s);
+void	md5(char *data);
 t_opt	*new_opt(int flag, char *data);
 void    add_to_end_lst(t_opt *new, t_opt **lst);
 void	print_lst(t_opt **lst);
+void	add_2_end_lstblocks(t_block *new, t_block **lst);
+t_block	*new_block(void);
 
 void	exit_error(const char *msg);
+void	print_usage(const int usage_int, const char *command);
 
 #endif

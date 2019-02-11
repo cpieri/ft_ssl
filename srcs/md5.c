@@ -6,52 +6,35 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/08 17:17:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:26:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl_md5.h"
 #include <stdio.h>
 
-static int		padding(t_md5 md5)
+static t_block	*create_all_blocks(const int nb, t_block *lst)
 {
-	t_block		*blocks;
-	int			i;
-	int			y;
+	int		i;
 
 	i = 0;
-	if (!(blocks = (t_block*)malloc(sizeof(t_block) * (md5.nb_blocks + 1))))
-		return (FAILURE);
-	while (i <= md5.nb_blocks)
+	while (i < nb)
 	{
-		y = 0;
-		while (y < BLOCK_TAB_LEN)
-		{
-			blocks->tab[y++] = 0;
-		}
+		add_2_end_lstblocks(new_block(), &lst);
 		i++;
 	}
-	int new_len;
-	for(new_len = md5.org_len *8 + 1; new_len%512!=448; new_len++);
-	printf("new_len = %d\n", new_len);
-	new_len /= 8;
-	printf("new_len = %d\n", new_len);
-	return (SUCCESS);
+	return (lst);
 }
 
-void			md5(char *s)
+void			md5(char *data)
 {
-	t_md5		md5;
-	const int	op_tabs[OP_TAB_LEN] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17,
-		22, 7, 12, 17, 22, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14,
-		20, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 6, 10,
-		15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21};
+	size_t		len;
+	size_t		nb_bits;
+	t_block		*blocks;
 
-	(void)op_tabs;
-	md5.org_len = ft_strlen(s);
-	md5.org_nb_bits = md5.org_len * 8;
-	md5.nb_blocks = md5.org_nb_bits / 512;
-	md5.org_str = ft_strdup(s);
-	printf("len: %zu\n", md5.org_len);
-	padding(md5);
+	blocks = NULL;
+	len = ft_strlen(data);
+	nb_bits = len * 8;
+	blocks = create_all_blocks(nb_bits / 512, blocks);
+
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing->c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <marvin@42->fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/11 15:29:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/11 17:39:05 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,20 @@ static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 	return (opts);
 }
 
-int		parsing(const int ac, char **av)
+t_parse			*parsing(const int ac, char **av)
 {
-	t_opt	*opts;
+	t_parse	*parse;
 	int		now;
 
-	opts = NULL;
 	now = 1;
+	if (!(parse = (t_parse*)malloc(sizeof(t_parse) * 1)))
+		return (NULL);
 	if (ft_strcmp("md5", av[now]) == 0)
-		opts = parse_opts(ac, av, opts, now + 1);
+		parse->lst_opts = parse_opts(ac, av, parse->lst_opts, now + 1);
 	else if (ft_strcmp("sha256", av[now]) == 0)
-		opts = parse_opts(ac, av, opts, now + 1);
+		parse->lst_opts = parse_opts(ac, av, parse->lst_opts, now + 1);
 	else
 		print_usage(2, av[1]);
-	print_lst(&opts);
-	return (SUCCESS);
+	print_lst(&parse->lst_opts);
+	return (parse);
 }
