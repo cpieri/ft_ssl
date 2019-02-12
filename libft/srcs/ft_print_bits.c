@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:48:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/01/26 13:34:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/12 13:55:36 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,15 @@ void    ft_print_bits(unsigned char octet)
 		z >>= 1;
 	}
 	write(1, " ", 1);
+}
+
+void	ft_str_bits(char *s)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(s);
+	while (i <= len)
+		ft_print_bits(s[i++]);
 }

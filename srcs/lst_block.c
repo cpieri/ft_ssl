@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/11 17:22:39 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/12 14:20:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_block	*new_block(void)
 {
 	t_block	*new;
 
-	if (!(new = (t_opt*)malloc(sizeof(t_opt))))
+	if (!(new = (t_block*)malloc(sizeof(t_block))))
 		return (NULL);
-	if (!(new->tab = (int*)ft_memmalloc(sizeof(int) * 513)))
+	if (!(new->tab = (uint32_t*)ft_memalloc(sizeof(uint32_t) * BLOCK_TAB_LEN)))
 		return (NULL);
 	new->next = NULL;
 	return (new);

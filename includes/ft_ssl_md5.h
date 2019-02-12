@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/11 17:45:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/12 12:58:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ typedef	struct		s_md5
 }					t_md5;
 
 
-t_parse	*parsing(const int ac, char **av);
+t_parse	parsing(const int ac, char **av);
 int		open_fd(const char *file);
 char	*get_data(const int fd);
+void	hashing(t_parse *parse);
 void	md5(char *data);
 t_opt	*new_opt(int flag, char *data);
 void    add_to_end_lst(t_opt *new, t_opt **lst);

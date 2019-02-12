@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/02/08 11:40:31 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/12 13:54:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,7 @@ int					ft_countstrtab(char **tab);
 double				ft_atof(const char *str);
 double				ftb_clamp(double toclamp, double min, double max);
 long				ft_atol(const char *str);
+void   				ft_print_bits(unsigned char octet);
+void				ft_str_bits(char *s);
 
 #endif

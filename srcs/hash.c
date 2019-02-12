@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 17:05:16 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/12 12:58:05 by cpieri           ###   ########.fr       */
+/*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
+/*   Updated: 2019/02/12 13:19:44 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl_md5.h"
 
-int		main(int ac, char **av)
+void	hashing(t_parse *parse)
 {
-	t_parse	parse;
+	int		hash_type;
+	t_opt	*lst;
 
-	if (ac < 2)
-		print_usage(1, NULL);
-	parse = parsing(ac, av);
-	hashing(&parse);
-	return (0);
+	hash_type = parse->hash_type;
+	lst = parse->lst_opts;
+	while (lst != NULL)
+	{
+		if (hash_type == MD5)
+			md5(lst->data);
+		else if (hash_type == SHA256)
+			continue ;
+		if (lst->next != NULL)
+			lst = lst->next;
+		else
+			break ;
+	}
 }

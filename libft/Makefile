@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/02/08 11:40:48 by cpieri           ###   ########.fr        #
+#    Updated: 2019/02/12 13:54:55 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,7 +109,8 @@ SRCS = 		ft_atoi.c					\
 			ftb_abs.c					\
 			ft_countstrtab.c			\
 			ft_atof.c					\
-			ft_atol.c
+			ft_atol.c					\
+			ft_print_bits.c
 
 OBJS	=	$(SRCS:.c=.o)
 
