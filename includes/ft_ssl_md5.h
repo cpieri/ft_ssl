@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/12 12:58:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/12 18:36:13 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,11 @@ typedef struct		s_block
 
 typedef struct		s_hash
 {
-	char			*name;
-	uint32_t		args;
-	char			*data;
+	size_t			init_len;
+	size_t			new_len;
+	size_t			nb_bits;
+	uint8_t			*str_bits;
 }					t_hash;
-
-typedef	struct		s_md5
-{
-	char*			org_str;
-	size_t			org_len;
-	size_t			org_nb_bits;
-	int				nb_blocks;
-}					t_md5;
-
 
 t_parse	parsing(const int ac, char **av);
 int		open_fd(const char *file);

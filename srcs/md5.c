@@ -6,64 +6,33 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/12 14:25:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/12 18:48:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl_md5.h"
 #include <stdio.h>
 
-static t_block	*create_all_blocks(const int nb, t_block *lst)
+static void	padding(t_hash *e, char *data)
 {
-	int		i;
-
-	i = 0;
-	ft_putnbr(nb), ft_putchar('\n');
-	while (i <= nb)
-	{
-		add_2_end_lstblocks(new_block(), &lst);
-		i++;
-	}
-	return (lst);
+	e->init_len = ft_strlen(data);
+	e->new_len = e->init_len * 8 + 1;
+	e->nb_bits = e->init_len * 8;
+	while ((e->new_len % 512) != 448)
+		e->new_len++;
+	e->new_len /= 8;
+	if (!(e->str_bits = (uint8_t*)ft_memalloc(sizeof(uint8_t) * e->new_len + 64)))
+		return ;
+	ft_memcpy(e->str_bits, data, e->init_len);
+	e->str_bits[e->init_len] |= 1 << 7;
+	ft_memcpy(e->str_bits + e->new_len, &e->nb_bits, 4);
 }
 
-void			copy_data_to_lst(char *data, t_block **lst_blocks)
+void		md5(char *data)
 {
-	int		i;
-	t_block	*lst;
+	t_hash	e;
 
-	i = 0;
-	lst = *lst_blocks;
-	while (lst)
-	{
-		while (i < BLOCK_TAB_LEN)
-		{
-			lst->tab[i] = (uint32_t)data[i]; 
-			i++;
-		}
-		if (lst->next != NULL)
-			lst = lst->next;
-		else
-			break ;
-	}
-}
-
-void			padding(char *data, size_t len, t_block **lst)
-{
-	(void)lst;
-	data[len] = data[len] | 1 << 7;
-	copy_data_to_lst(data, lst);
-}
-
-void			md5(char *data)
-{
-	size_t		len;
-	size_t		nb_bits;
-	t_block		*blocks;
-
-	blocks = NULL;
-	len = ft_strlen(data);
-	nb_bits = len * 8;
-	blocks = create_all_blocks(nb_bits / 512, blocks);
-	padding(data, len, &blocks);
+	padding(&e, data);
+	//ft_mem_bits(e.str_bits, e.new_len);
+	//printf("init_len: %zu, new_len: %zu\n",e.init_len, e.new_len);
 }
