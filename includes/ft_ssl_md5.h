@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/13 13:47:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/02/13 17:28:29 by delay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define	MD5_H2			0x98BADCFE
 # define	MD5_H3			0x10325476
 
+# define	R(n) ((n >> 24) | ((n & 0xff0000) >> 8))
+
 typedef struct		s_opt
 {
 	int				flag;
@@ -60,11 +62,17 @@ typedef struct		s_md5
 	size_t			init_len;
 	size_t			new_len;
 	size_t			nb_bits;
+	size_t			offest;
 	uint8_t			*str_bits;
 	uint32_t		a;
 	uint32_t		b;
 	uint32_t		c;
 	uint32_t		d;
+	uint32_t		h0;
+	uint32_t		h1;
+	uint32_t		h2;
+	uint32_t		h3;
+	uint32_t		*w;
 }					t_md5;
 
 t_parse		parsing(const int ac, char **av);
