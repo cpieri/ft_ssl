@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/02/12 17:30:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/04 17:04:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
+void				*ft_memdup(const void *s1, size_t len);
+void				*ft_memjoin(const void *s1, const void *s2, size_t len1,
+		size_t len2);
 void				*ftb_backwardmemcpy(void *dst, const void *src, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				ft_lstadd(t_list **alst, t_list *new);

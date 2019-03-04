@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/13 18:43:10 by delay            ###   ########.fr       */
+/*   Updated: 2019/03/04 16:24:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	padding(t_md5 *e, char *data)
 	size_t	size_malloc;
 
 	e->init_len = ft_strlen(data);
-	e->new_len = e->init_len * 8 + 1;
+	e->new_len = e->init_len;
 	e->nb_bits = e->init_len * 8;
 	while ((e->new_len % 64) != 56)
 		e->new_len++;
@@ -108,9 +108,10 @@ void		md5(char *data)
 	e.h1 = MD5_H1;
 	e.h2 = MD5_H2;
 	e.h3 = MD5_H3;
-	printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
+	//printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
 	padding(&e, data);
 	e.offest = 0;
+	//printf("%s", data);
 	while (e.offest < e.new_len)
 	{
 		e.w = (uint32_t*)(e.str_bits + e.offest);
@@ -123,10 +124,10 @@ void		md5(char *data)
 		e.h1 += e.b;
 		e.h2 += e.c;
 		e.h3 += e.d;
-		printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
+		//printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
 		e.offest += 64;
 	}
-	printf("%x\n", e.h0 & e.h1 & e.h2 & e.h3);
+	//printf("%x\n", e.h0 & e.h1 & e.h2 & e.h3);
 	p=(uint8_t *)&e.h0;
 	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
 

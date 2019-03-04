@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/02/12 13:54:55 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/04 17:21:20 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	=	libft.a
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -O3 -g -flto -fsanitize=address -fno-omit-frame-pointer
+
 
 INCS	=	libft.h
 
@@ -47,6 +48,8 @@ SRCS = 		ft_atoi.c					\
 			ft_memdel.c					\
 			ft_memmove.c				\
 			ft_memset.c					\
+			ft_memdup.c					\
+			ft_memjoin.c				\
 			ft_putchar.c 				\
 			ft_putchar_fd.c				\
 			ft_putendl.c				\
