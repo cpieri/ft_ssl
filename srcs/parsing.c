@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/13 19:11:10 by delay            ###   ########.fr       */
+/*   Updated: 2019/03/05 16:27:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 	else if (ft_strcmp("-q", av[now]) == 0 || ft_strcmp("-r", av[now]) == 0)
 		new = new_opt(ARG_Q, get_data(open_fd(av[now + 1])));
 	else if (ft_strcmp("-s", av[now]) == 0)
-		new = new_opt(ARG_S, av[now + 1]);
+		new = new_opt(ARG_S, get_string(av[now + 1]));
 	else if (ft_strcmp("-s", av[now - 1]) != 0)
 		new = new_opt(0, get_data(open_fd(av[now])));
 	add_to_end_lst(new, &opts);

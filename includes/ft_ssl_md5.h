@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/13 17:28:29 by delay            ###   ########.fr       */
+/*   Updated: 2019/03/05 16:33:38 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,17 @@
 
 # define	R(n) ((n >> 24) | ((n & 0xff0000) >> 8))
 
+typedef struct		s_data
+{
+	char			*data;
+	size_t			len_data;
+}					t_data;
+
 typedef struct		s_opt
 {
 	int				flag;
-	char			*data;
+	//char			*data;
+	t_data			*data;
 	struct s_opt	*next;
 }					t_opt;
 
@@ -77,14 +84,15 @@ typedef struct		s_md5
 
 t_parse		parsing(const int ac, char **av);
 int			open_fd(const char *file);
-char		*get_data(const int fd);
+t_data		*get_data(const int fd);
+t_data		*get_string(char *s);
 void		hashing(t_parse *parse);
-void		md5(char *data);
+void		md5(void *data, size_t len_data);
 uint32_t	func_f(uint32_t b, uint32_t c, uint32_t d);
 uint32_t	func_g(uint32_t b, uint32_t c, uint32_t d);
 uint32_t	func_h(uint32_t b, uint32_t c, uint32_t d);
 uint32_t	func_i(uint32_t b, uint32_t c, uint32_t d);
-t_opt		*new_opt(int flag, char *data);
+t_opt		*new_opt(int flag, t_data *data);
 void    	add_to_end_lst(t_opt *new, t_opt **lst);
 void		print_lst(t_opt **lst);
 void		add_2_end_lstblocks(t_block *new, t_block **lst);

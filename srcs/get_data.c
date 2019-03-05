@@ -6,13 +6,28 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/04 17:35:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 16:41:12 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <fcntl.h>
 #include "ft_ssl_md5.h"
+
+t_data	*get_string(char *s)
+{
+	t_data	*ret;
+
+	ret = NULL;
+	if (!(ret = (t_data*)malloc(sizeof(t_data))))
+	{
+		ft_memdel((void**)&ret);
+		return (NULL);
+	}
+	ret->data = s;
+	ret->len_data = ft_strlen(s);
+	return (ret);
+}
 
 int		open_fd(const char *file)
 {
@@ -24,28 +39,32 @@ int		open_fd(const char *file)
 	return (fd);
 }
 
-char	*get_data(const int fd)
+t_data	*get_data(const int fd)
 {
 	char	buffer[BUFF_SIZE + 1];
-	char	*data = NULL;
+	t_data	*ret;
 	char	*tmp;
 	int		nb_read;
-	size_t	size_tmp;
 
-	size_tmp = 0;
+	tmp = NULL;
+	if (!(ret = (t_data*)malloc(sizeof(t_data))))
+	{
+		ft_memdel((void**)&ret);
+		return (NULL);
+	}
+	ret->len_data = 0;
+	ret->data = NULL;
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)))
 	{
-		size_tmp += nb_read;
-		if (data == NULL)
-			data = ft_memdup(buffer, nb_read);
+		if (ret->data == NULL)
+			ret->data = ft_memdup(buffer, nb_read);
 		else if (nb_read > 0)
 		{
-			tmp = data;
-			data = ft_memjoin(tmp, buffer, size_tmp, nb_read);
-			ft_strdel(&tmp);
+			tmp = ret->data;
+			ret->data = ft_memjoin(tmp, buffer, ret->len_data, nb_read);
+			ft_memdel((void**)&tmp);
 		}
+		ret->len_data += nb_read;
 	}
-	//data[size_tmp] = '\0';
-	//printf("%s read:%zu\n", data, size_tmp);
-	return (data);
+	return (ret);
 }

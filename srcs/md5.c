@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/04 16:24:35 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 16:34:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static uint32_t	left_rotate(uint32_t x, uint32_t nb)
 	return ((x << nb) | (x >> (32 - nb)));
 }
 
-static void	padding(t_md5 *e, char *data)
+static void	padding(t_md5 *e, char *data, size_t len_data)
 {
 	size_t	size_malloc;
 
-	e->init_len = ft_strlen(data);
+	e->init_len = len_data;
 	e->new_len = e->init_len;
 	e->nb_bits = e->init_len * 8;
 	while ((e->new_len % 64) != 56)
@@ -99,7 +99,7 @@ static void	calc_sum(t_md5 *e)
 	}
 }
 
-void		md5(char *data)
+void		md5(void *data, size_t len_data)
 {
 	t_md5	e;
 	uint8_t	*p;
@@ -109,7 +109,7 @@ void		md5(char *data)
 	e.h2 = MD5_H2;
 	e.h3 = MD5_H3;
 	//printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
-	padding(&e, data);
+	padding(&e, data, len_data);
 	e.offest = 0;
 	//printf("%s", data);
 	while (e.offest < e.new_len)

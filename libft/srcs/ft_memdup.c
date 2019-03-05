@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 16:34:44 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/04 17:29:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 16:01:52 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memdup(const void *s1, size_t len)
 		ft_memdel((void**)&s2);
 		return (NULL);
 	}
-	while (i <= len)
+	while (i < len)
 	{
 		s2[i] = src[i];
 		i++;

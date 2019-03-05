@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/11 15:22:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 16:30:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_lst(t_opt **lst)
 	{
 		ft_putnbr(tmp->flag);
 		ft_putchar('\n');
-		ft_putendl(tmp->data);
+		ft_putendl(tmp->data->data);
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 		else
@@ -45,7 +45,7 @@ void	add_to_end_lst(t_opt *new, t_opt **lst)
 	tmp->next = new;
 }
 
-t_opt	*new_opt(int flag, char *data)
+t_opt	*new_opt(int flag, t_data *data)
 {
 	t_opt	*new;
 
@@ -58,7 +58,7 @@ t_opt	*new_opt(int flag, char *data)
 	}
 	else
 	{
-		new->data = ft_strdup(data);
+		new->data = data;
 		new->flag = flag;
 	}
 	new->next = NULL;

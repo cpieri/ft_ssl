@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 16:53:59 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/04 17:13:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 16:06:37 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	*ft_memjoin(const void *s1, const void *s2, size_t len1, size_t len2)
 	}
 	i = 0;
 	j = 0;
-	while (i <= len1)
+	while (i < len1)
 	{
 		join[i] = cpy1[i];
 		i++;
 	}
-	while (j <= len2)
+	while (j < len2)
 		join[i++] = cpy2[j++];
 	return (join);
 }
