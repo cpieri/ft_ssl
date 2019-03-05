@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:04:27 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/05 16:33:38 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 18:06:42 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ typedef struct		s_block
 	struct s_block	*next;
 }					t_block;
 
+typedef struct		s_md5_utils
+{
+	uint32_t		f;
+	uint32_t		g;
+}					t_md5_utils;
+
 typedef struct		s_md5
 {
 	size_t			init_len;
@@ -88,10 +94,10 @@ t_data		*get_data(const int fd);
 t_data		*get_string(char *s);
 void		hashing(t_parse *parse);
 void		md5(void *data, size_t len_data);
-uint32_t	func_f(uint32_t b, uint32_t c, uint32_t d);
-uint32_t	func_g(uint32_t b, uint32_t c, uint32_t d);
-uint32_t	func_h(uint32_t b, uint32_t c, uint32_t d);
-uint32_t	func_i(uint32_t b, uint32_t c, uint32_t d);
+t_md5_utils	func_f(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils	func_g(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils	func_h(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils	func_i(uint32_t b, uint32_t c, uint32_t d, int i);
 t_opt		*new_opt(int flag, t_data *data);
 void    	add_to_end_lst(t_opt *new, t_opt **lst);
 void		print_lst(t_opt **lst);

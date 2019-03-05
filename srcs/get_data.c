@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/05 16:41:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 17:44:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ t_data	*get_data(const int fd)
 		ft_memdel((void**)&ret);
 		return (NULL);
 	}
-	ret->len_data = 0;
-	ret->data = NULL;
+	*ret = (t_data){.data = NULL, .len_data = 0};
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)))
 	{
 		if (ret->data == NULL)

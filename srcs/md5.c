@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/05 16:34:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/05 18:25:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,12 @@ uint32_t	g_k[64] = {
 	4293915773, 2240044497, 1873313359, 4264355552, 2734768916, 1309151649,
 	4149444226, 3174756917, 718787259, 3951481745};
 
-uint32_t	reverse_uint32t(uint32_t nb)
-{
-	return ((nb >> 24) | ((nb & 0xff0000) >> 8));
-}
-
 static uint32_t	left_rotate(uint32_t x, uint32_t nb)
 {
 	return ((x << nb) | (x >> (32 - nb)));
 }
 
-static void	padding(t_md5 *e, char *data, size_t len_data)
+static void		padding(t_md5 *e, char *data, size_t len_data)
 {
 	size_t	size_malloc;
 
@@ -58,60 +53,44 @@ static void	padding(t_md5 *e, char *data, size_t len_data)
 	ft_memcpy(e->str_bits, data, e->init_len);
 	e->str_bits[e->init_len] |= 1 << 7;
 	ft_memcpy(e->str_bits + e->new_len, &e->nb_bits, 4);
+	e->offest = 0;
 }
 
-static void	calc_sum(t_md5 *e)
+static void		calc_sum(t_md5 *e)
 {
 	int			i;
-	uint32_t	f;
-	uint32_t	g;
+	t_md5_utils	utils;
 	uint32_t	tmp;
+	uint32_t	tmp2;
 
 	i = 0;
 	while (i < 64)
 	{
 		if (i >= 0 && i <= 15)
-		{
-			f = func_f(e->b, e->c, e->d);
-			g = i;
-		}
+			utils = func_f(e->b, e->c, e->d, i);
 		else if (i >= 16 && i <= 31)
-		{
-			f = func_g(e->b, e->c, e->d);
-			g = (5 * i + 1) % 16;
-		}
+			utils = func_g(e->b, e->c, e->d, i);
 		else if (i >= 32 && i <= 47)
-		{
-			f = func_h(e->b, e->c, e->d);
-			g = (3 * i + 5) % 16;
-		}
+			utils = func_h(e->b, e->c, e->d, i);
 		else if (i >= 48 && i <= 63)
-		{
-			f = func_i(e->b, e->c, e->d);
-			g = (7 * i) % 16;
-		}
+			utils = func_i(e->b, e->c, e->d, i);
 		tmp = e->d;
 		e->d = e->c;
 		e->c = e->b;
-		e->b = left_rotate((e->a + f + g_k[i] + e->w[g]), g_r[i]) + e->b;
+		tmp2 = left_rotate((e->a + utils.f + g_k[i] + e->w[utils.g]), g_r[i]);
+		e->b = tmp2 + e->b;
 		e->a = tmp;
 		i++;
 	}
 }
 
-void		md5(void *data, size_t len_data)
+void			md5(void *data, size_t len_data)
 {
 	t_md5	e;
 	uint8_t	*p;
 
-	e.h0 = MD5_H0;
-	e.h1 = MD5_H1;
-	e.h2 = MD5_H2;
-	e.h3 = MD5_H3;
-	//printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
+	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
 	padding(&e, data, len_data);
-	e.offest = 0;
-	//printf("%s", data);
 	while (e.offest < e.new_len)
 	{
 		e.w = (uint32_t*)(e.str_bits + e.offest);
@@ -124,21 +103,15 @@ void		md5(void *data, size_t len_data)
 		e.h1 += e.b;
 		e.h2 += e.c;
 		e.h3 += e.d;
-		//printf("%x %x %x %x\n", e.h0, e.h1, e.h2, e.h3);
 		e.offest += 64;
 	}
-	//printf("%x\n", e.h0 & e.h1 & e.h2 & e.h3);
-	p=(uint8_t *)&e.h0;
+	p = (uint8_t *)&e.h0;
 	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
-
-	p=(uint8_t *)&e.h1;
+	p = (uint8_t *)&e.h1;
 	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
-
-	p=(uint8_t *)&e.h2;
+	p = (uint8_t *)&e.h2;
 	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
-
-	p=(uint8_t *)&e.h3;
+	p = (uint8_t *)&e.h3;
 	printf("%x%x%x%x\n", p[0], p[1], p[2], p[3]);
-	//ft_mem_bits(e.str_bits, e.new_len);
-	printf("init_len: %zu, new_len: %zu\n",e.init_len, e.new_len);
+	printf("init_len: %zu, new_len: %zu\n", e.init_len, e.new_len);
 }
