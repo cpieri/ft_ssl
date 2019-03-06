@@ -6,25 +6,17 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 15:16:39 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 16:37:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-/*	if (ac < 3 || ft_strcmp("-p", av[now]) == 0)
-	new = new_opt(ARG_P, get_data(0, NULL));
-	else if (ft_strcmp("-q", av[now]) == 0 || ft_strcmp("-r", av[now]) == 0)
-	new = new_opt(ARG_Q, get_data(open_fd(av[now + 1]), av[now + 1]));
-	else if (ft_strcmp("-s", av[now]) == 0)
-	new = new_opt(ARG_S, get_string(av[now + 1]));
-	else if (ft_strcmp("-s", av[now - 1]) != 0)
-	new = new_opt(0, get_data(open_fd(av[now]), av[now]));*/
-
 static t_opt	*check_flags(char **av, int now)
 {
 	t_opt		*new;
 	t_flags		flags;
+	char		*tmp;
 	char		*av_now;
 	size_t		i;
 	size_t		len;
@@ -63,7 +55,13 @@ static t_opt	*check_flags(char **av, int now)
 			new = new_opt(flags, get_data(open_fd(av[now + 1]), av[now + 1]));
 		return (new);
 	}
-	if (ft_strchr(av[now - 1], '-') == NULL)
+	else if (ft_strchr(av[now - 1], '-') == NULL)
+	{
+		flags = (t_flags){};
+		new = new_opt(flags, get_data(open_fd(av_now), av_now));
+	}
+	else if (av[now - 1][0] == '-' && (tmp = ft_strchr(av[now - 1], 's')) != NULL
+			&& *(tmp + 1) != '\0')
 	{
 		flags = (t_flags){};
 		new = new_opt(flags, get_data(open_fd(av_now), av_now));

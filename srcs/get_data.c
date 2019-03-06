@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 14:22:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 16:31:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,30 @@ t_data	*get_string(char *s)
 	ret->file_name = NULL;
 	ret->data = s;
 	ret->len_data = ft_strlen(s);
-	//s = NULL;
+	s = NULL;
 	return (ret);
 }
 
 int		open_fd(const char *file)
 {
 	int		fd;
+	char	*tmp;
 
 	fd = open(file, O_RDONLY);
+	tmp = NULL;
 	if (fd == FAILURE)
+	{
+		if (close(fd) != 0)
+			exit_error("Close Failed: get_data.c:41:open_fd()");
 		exit_error("Open Failed: get_data.c:36:open_fd()");
+	}
+	if (read(fd, tmp, 0) == FAILURE)
+	{
+		if (close(fd) != 0)
+			exit_error("Close Failed: get_data.c:47:open_fd()");
+		ft_putstr_fd(file, 2);
+		exit_error(": Is a directory");
+	}
 	return (fd);
 }
 
