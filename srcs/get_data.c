@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 13:07:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:22:21 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ t_data	*get_string(char *s)
 	if (!(ret = (t_data*)malloc(sizeof(t_data))))
 	{
 		ft_memdel((void**)&ret);
-		return (NULL);
+		exit_error("Malloc Failed: get_data.c:21:get_string()");
 	}
 	ret->file_name = NULL;
 	ret->data = s;
 	ret->len_data = ft_strlen(s);
+	//s = NULL;
 	return (ret);
 }
 
@@ -35,7 +36,7 @@ int		open_fd(const char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == FAILURE)
-		exit_error("Open Failed");
+		exit_error("Open Failed: get_data.c:36:open_fd()");
 	return (fd);
 }
 
@@ -50,7 +51,7 @@ t_data	*get_data(const int fd, const char *fd_name)
 	if (!(ret = (t_data*)malloc(sizeof(t_data))))
 	{
 		ft_memdel((void**)&ret);
-		return (NULL);
+		exit_error("Malloc Failed: get_data.c:50:get_data()");
 	}
 	*ret = (t_data){.data = NULL, .len_data = 0, .file_name = fd_name};
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)))

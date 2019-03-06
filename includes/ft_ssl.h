@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 13:00:24 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:49:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ typedef struct		s_data
 
 typedef struct		s_flags
 {
-	int				flag_p;
-	int				flag_q;
-	int				flag_r;
-	int				flag_s;
+	int				p;
+	int				q;
+	int				r;
+	int				s;
 }					t_flags;
 
 typedef struct		s_opt
 {
-	t_flags			flags;
 	t_data			*data;
+	t_flags			flags;
 	struct s_opt	*next;
 }					t_opt;
 
@@ -71,7 +71,7 @@ int			open_fd(const char *file);
 t_data		*get_data(const int fd, const char *fd_name);
 t_data		*get_string(char *s);
 void		hashing(t_parse *parse);
-t_opt		*new_opt(int flag, t_data *data);
+t_opt		*new_opt(t_flags flags, t_data *data);
 void    	add_to_end_lst(t_opt *new, t_opt **lst);
 void		print_lst(t_opt **lst);
 void		add_2_end_lstblocks(t_block *new, t_block **lst);

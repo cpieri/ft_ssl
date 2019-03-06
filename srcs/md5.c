@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 12:49:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:21:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void			md5(void *data, size_t len_data)
 	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
 	p = (uint8_t *)&e.h3;
 	printf("%x%x%x%x\n", p[0], p[1], p[2], p[3]);
-	printf("init_len: %zu, new_len: %zu\n", e.init_len, e.new_len);
+	//printf("init_len: %zu, new_len: %zu\n", e.init_len, e.new_len);
 }
