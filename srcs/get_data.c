@@ -6,13 +6,12 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/05 17:44:22 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:07:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <fcntl.h>
-#include "ft_ssl_md5.h"
+#include "ft_ssl.h"
 
 t_data	*get_string(char *s)
 {
@@ -24,6 +23,7 @@ t_data	*get_string(char *s)
 		ft_memdel((void**)&ret);
 		return (NULL);
 	}
+	ret->file_name = NULL;
 	ret->data = s;
 	ret->len_data = ft_strlen(s);
 	return (ret);
@@ -39,7 +39,7 @@ int		open_fd(const char *file)
 	return (fd);
 }
 
-t_data	*get_data(const int fd)
+t_data	*get_data(const int fd, const char *fd_name)
 {
 	char	buffer[BUFF_SIZE + 1];
 	t_data	*ret;
@@ -52,7 +52,7 @@ t_data	*get_data(const int fd)
 		ft_memdel((void**)&ret);
 		return (NULL);
 	}
-	*ret = (t_data){.data = NULL, .len_data = 0};
+	*ret = (t_data){.data = NULL, .len_data = 0, .file_name = fd_name};
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)))
 	{
 		if (ret->data == NULL)

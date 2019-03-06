@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/04 17:20:27 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/06 12:47:10 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,17 @@ SRC_PATH=	srcs
 
 OBJ_PATH=	obj
 
-DEPS =		Makefile				\
-			includes/ft_ssl_md5.h	\
+DEPS =		Makefile			\
+			includes/ft_ssl.h	\
+			includes/md5.h		\
 			libft/libft.a
 
 SRC_NAME= 	main.c		\
 			usage.c		\
 			parsing.c	\
 			get_data.c	\
-			utils.c		\
+			lst_opt.c	\
 			hash.c		\
-			lst_block.c	\
 			md5_utils.c	\
 			md5.c
 

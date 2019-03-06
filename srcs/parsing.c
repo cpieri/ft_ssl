@@ -6,12 +6,11 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/05 16:27:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:07:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "ft_ssl_md5.h"
+#include "ft_ssl.h"
 
 static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 {
@@ -19,13 +18,13 @@ static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 
 	new = NULL;
 	if (ac < 3 || ft_strcmp("-p", av[now]) == 0)
-		new = new_opt(ARG_P, get_data(0));
+		new = new_opt(ARG_P, get_data(0, NULL));
 	else if (ft_strcmp("-q", av[now]) == 0 || ft_strcmp("-r", av[now]) == 0)
-		new = new_opt(ARG_Q, get_data(open_fd(av[now + 1])));
+		new = new_opt(ARG_Q, get_data(open_fd(av[now + 1]), av[now + 1]));
 	else if (ft_strcmp("-s", av[now]) == 0)
 		new = new_opt(ARG_S, get_string(av[now + 1]));
 	else if (ft_strcmp("-s", av[now - 1]) != 0)
-		new = new_opt(0, get_data(open_fd(av[now])));
+		new = new_opt(0, get_data(open_fd(av[now]), av[now]));
 	add_to_end_lst(new, &opts);
 	now++;
 	if (now < ac)

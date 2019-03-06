@@ -6,11 +6,11 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:05:16 by cpieri            #+#    #+#             */
-/*   Updated: 2019/02/12 12:58:05 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 12:47:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl_md5.h"
+#include "ft_ssl.h"
 
 int		main(int ac, char **av)
 {
