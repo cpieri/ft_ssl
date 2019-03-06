@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 16:37:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/06 16:46:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,10 @@ static t_opt	*check_flags(char **av, int now)
 	t_flags		flags;
 	char		*tmp;
 	char		*av_now;
-	size_t		i;
-	size_t		len;
 
 	av_now = av[now];
 	new = NULL;
-	len = ft_strlen(av_now);
-	i = 1;
-	if (av_now[0] == '-')
-	{
-		while (i < len)
-		{
-			if (av_now[i] == 's')
-			{
-				if (i < len - 1)
-					new = new_opt(flags, get_string(&av_now[i + 1]));
-				else
-					new = new_opt(flags, get_string(av[now + 1]));
-				break ;
-			}
-			else if (av_now[i] == 'p')
-			{
-				new = new_opt(flags, get_data(0, NULL));
-				break ;
-			}
-			else if (av_now[i] == 'q')
-			{
-				flags.r = 0;
-				flags.q = 1;
-			}
-			else if (av_now[i] == 'r' && flags.q == 0)
-				flags.r = 1;
-			i++;
-		}
-		if (new == NULL)
-			new = new_opt(flags, get_data(open_fd(av[now + 1]), av[now + 1]));
-		return (new);
-	}
-	else if (ft_strchr(av[now - 1], '-') == NULL)
+	if (ft_strchr(av[now - 1], '-') == NULL)
 	{
 		flags = (t_flags){};
 		new = new_opt(flags, get_data(open_fd(av_now), av_now));
@@ -69,10 +35,52 @@ static t_opt	*check_flags(char **av, int now)
 	return (new);
 }
 
+static t_opt	*check_arg(char **av, int now)
+{
+	t_opt	*new;
+	t_flags	flags;
+	char	*av_now;
+	size_t	len;
+	size_t	i;
+
+	av_now = av[now];
+	new = NULL;
+	len = ft_strlen(av_now);
+	i = 0;
+	while (++i < len)
+	{
+		if (av_now[i] == 's')
+		{
+			if (i < len - 1)
+				new = new_opt(flags, get_string(&av_now[i + 1]));
+			else
+				new = new_opt(flags, get_string(av[now + 1]));
+			break ;
+		}
+		else if (av_now[i] == 'p')
+		{
+			new = new_opt(flags, get_data(0, NULL));
+			break ;
+		}
+		else if (av_now[i] == 'q')
+		{
+			flags.r = 0;
+			flags.q = 1;
+		}
+		else if (av_now[i] == 'r' && flags.q == 0)
+			flags.r = 1;
+	}
+	if (new == NULL)
+		new = new_opt(flags, get_data(open_fd(av[now + 1]), av[now + 1]));
+	return (new);
+}
+
 static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 {
 	t_opt	*new;
 
+	if (av[now][0] == '-')
+		new = check_arg(av, now);
 	new = check_flags(av, now);
 	add_to_end_lst(new, &opts);
 	now++;
