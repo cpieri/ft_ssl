@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 16:33:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 19:25:10 by delay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_parse			parsing(const int ac, char **av)
 
 	now = 1;
 	parse.hash_type = 0;
+	parse.lst_opts = NULL;
 	if (ft_strcmp("md5", av[now]) == 0)
 		parse.hash_type = MD5;
 	else if (ft_strcmp("sha256", av[now]) == 0)
