@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/03/04 17:21:20 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/07 18:11:17 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRCS = 		ft_atoi.c					\
 			ft_putendl.c				\
 			ft_putendl_fd.c				\
 			ft_putnbr.c					\
+			ft_puthexa.c				\
 			ft_putnbr_fd.c				\
 			ft_putstr.c					\
 			ft_putstr_fd.c				\
@@ -113,7 +114,9 @@ SRCS = 		ft_atoi.c					\
 			ft_countstrtab.c			\
 			ft_atof.c					\
 			ft_atol.c					\
-			ft_print_bits.c
+			ft_strbits.c				\
+			ft_membits.c				\
+			ft_putbits.c
 
 OBJS	=	$(SRCS:.c=.o)
 

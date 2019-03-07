@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/03/04 17:04:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 18:06:49 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void				ft_putendl(char const *s);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_puthexa(int nb);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_strclr(char *s);
@@ -112,8 +113,8 @@ int					ft_countstrtab(char **tab);
 double				ft_atof(const char *str);
 double				ftb_clamp(double toclamp, double min, double max);
 long				ft_atol(const char *str);
-void   				ft_print_bits(unsigned char octet);
-void				ft_str_bits(char *s);
+void   				ft_putbits(unsigned char octet);
+void				ft_strbits(char *s);
 void				ft_mem_bits(void *s, size_t len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 14:21:06 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:43:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ static void		calc_sum(t_md5 *e)
 	}
 }
 
-void			md5(void *data, size_t len_data)
+t_hash			*md5(void *data, size_t len_data)
 {
-	t_md5	e;
-	uint8_t	*p;
+	t_md5		e;
+	t_hash		*f_hash;
 
 	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
 	padding(&e, data, len_data);
@@ -105,13 +105,6 @@ void			md5(void *data, size_t len_data)
 		e.h3 += e.d;
 		e.offest += 64;
 	}
-	p = (uint8_t *)&e.h0;
-	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
-	p = (uint8_t *)&e.h1;
-	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
-	p = (uint8_t *)&e.h2;
-	printf("%x%x%x%x", p[0], p[1], p[2], p[3]);
-	p = (uint8_t *)&e.h3;
-	printf("%x%x%x%x\n", p[0], p[1], p[2], p[3]);
-	//printf("init_len: %zu, new_len: %zu\n", e.init_len, e.new_len);
+	f_hash = set_hash(&e);
+	return (f_hash);
 }

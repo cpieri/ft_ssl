@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 16:31:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:39:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_data	*get_string(char *s)
 		ft_memdel((void**)&ret);
 		exit_error("Malloc Failed: get_data.c:21:get_string()");
 	}
-	ret->file_name = NULL;
+	ret->file_name = s;
 	ret->data = s;
 	ret->len_data = ft_strlen(s);
 	s = NULL;

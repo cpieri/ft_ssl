@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   ft_putbits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 15:36:09 by cpieri           ###   ########.fr       */
+/*   Created: 2019/03/07 18:11:59 by cpieri            #+#    #+#             */
+/*   Updated: 2019/03/07 18:12:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#include "libft.h"
 
-void	hashing(t_parse *parse)
+void	ft_putbits(unsigned char octet)
 {
-	int		hash_type;
-	t_opt	*lst;
+	int		z;
+	int		oct;
 
-	hash_type = parse->hash_type;
-	lst = parse->lst_opts;
-	while (lst != NULL)
+	oct = octet;
+	z = 128;
+	while (z > 0)
 	{
-		if (hash_type == MD5)
-		{
-			lst->data->f_hash = md5(lst->data->data, lst->data->len_data);
-			printing_hash(lst->data, "MD5", lst->flags);
-		}
-		else if (hash_type == SHA256)
-			continue ;
-		if (lst->next != NULL)
-			lst = lst->next;
+		if (oct & z)
+			ft_putchar('1');
 		else
-			break ;
+			ft_putchar('0');
+		z >>= 1;
 	}
 }

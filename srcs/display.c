@@ -6,10 +6,57 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 12:21:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 17:55:27 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl_md5.h"
+#include "ft_ssl.h"
+#include <stdio.h>
 
+static void	print_name(const char *fd_name, char *hash_type, t_flags flags)
+{
+	ft_putstr(hash_type);
+	ft_putstr(" (");
+	if (flags.s == 1)
+	{
+		ft_putchar('\"');
+		ft_putstr(fd_name);
+		ft_putchar('\"');
+	}
+	else
+		ft_putstr(fd_name);
+	ft_putstr(") = ");
+}
 
+static void	print_hash(uint8_t *p)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+		ft_puthexa(p[i++]);
+}
+
+void		printing_hash(t_data *data, char *hash_type, t_flags flags)
+{
+	size_t	i;
+	uint8_t	*p;
+
+	i = 0;
+	if (flags.r == 0 && flags.q == 0 && data->file_name != NULL)
+		print_name(data->file_name, hash_type, flags);
+	else if (data->file_name == NULL)
+		ft_putstr(data->data);
+	while (i < data->f_hash->nb_word)
+	{
+		p = (uint8_t*)&data->f_hash->h[i];
+		print_hash(p);
+		i++;
+	}
+	if (flags.r == 1)
+	{
+		ft_putchar(' ');
+		ft_putstr(data->file_name);
+	}
+	ft_putchar('\n');
+}

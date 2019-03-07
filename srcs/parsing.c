@@ -6,11 +6,12 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 13:36:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 16:33:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+#include <stdio.h>
 
 static t_opt	*check_flags(size_t len, t_flags *flags, char **av, int now)
 {
@@ -25,6 +26,7 @@ static t_opt	*check_flags(size_t len, t_flags *flags, char **av, int now)
 			break ;
 		if (av[now][i] == 's')
 		{
+			flags->s = 1;
 			if (i < (len - 1))
 				new = new_opt(*flags, get_string(&av[now][i + 1]));
 			else
@@ -33,7 +35,7 @@ static t_opt	*check_flags(size_t len, t_flags *flags, char **av, int now)
 		else if (av[now][i] == 'p')
 			new = new_opt(*flags, get_data(0, NULL));
 		else if (av[now][i] == 'q')
-			*flags = (t_flags){.r = 0, .q = 1};
+			*flags = (t_flags){0, .q = 1, 0, 0};
 		else if (av[now][i] == 'r' && flags->q == 0)
 			flags->r = 1;
 	}
@@ -49,6 +51,7 @@ static t_opt	*get_args(char **av, int now)
 
 	tmp = NULL;
 	new = NULL;
+	flags = (t_flags){0, 0, 0, 0};
 	if (av[now][0] == '-')
 	{
 		len = ft_strlen(av[now]);
@@ -60,10 +63,7 @@ static t_opt	*get_args(char **av, int now)
 	else if (ft_strchr(av[now - 1], '-') == NULL || (av[now - 1][0] == '-'
 				&& (tmp = ft_strchr(av[now - 1], 's')) != NULL
 				&& *(tmp + 1) != '\0'))
-	{
-		flags = (t_flags){.r = 0, .q = 0};
 		new = new_opt(flags, get_data(open_fd(av[now]), av[now]));
-	}
 	return (new);
 }
 
@@ -72,7 +72,7 @@ static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 	t_opt	*new;
 
 	if (ac < 3)
-		new = new_opt((t_flags){.r = 0, .q = 0}, get_data(0, NULL));
+		new = new_opt((t_flags){0, 0, 0, 0}, get_data(0, NULL));
 	else
 		new = get_args(av, now);
 	add_to_end_lst(new, &opts);

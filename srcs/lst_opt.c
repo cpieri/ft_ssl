@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 14:53:10 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:45:20 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_lst(t_opt **lst)
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 		else
-			break;
+			break ;
 	}
 }
 
@@ -54,7 +54,7 @@ t_opt	*new_opt(t_flags flags, t_data *data)
 	if (!data)
 	{
 		new->data = NULL;
-		new->flags = (t_flags){};
+		new->flags = (t_flags){0, 0, 0, 0};
 	}
 	else
 	{

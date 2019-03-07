@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/06 14:49:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/07 15:35:38 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_data
 	const char		*file_name;
 	char			*data;
 	size_t			len_data;
+	t_hash			*f_hash;
 }					t_data;
 
 typedef struct		s_flags
@@ -76,6 +77,8 @@ void    	add_to_end_lst(t_opt *new, t_opt **lst);
 void		print_lst(t_opt **lst);
 void		add_2_end_lstblocks(t_block *new, t_block **lst);
 t_block		*new_block(void);
+
+void		printing_hash(t_data *data, char *hash_type, t_flags flags);
 
 void		exit_error(const char *msg);
 void		print_usage(const int usage_int, const char *command);

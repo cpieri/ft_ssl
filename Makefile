@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/06 12:47:10 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/07 15:33:11 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ DEPS =		Makefile			\
 SRC_NAME= 	main.c		\
 			usage.c		\
 			parsing.c	\
+			display.c	\
 			get_data.c	\
 			lst_opt.c	\
 			hash.c		\
