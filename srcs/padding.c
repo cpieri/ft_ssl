@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 11:46:38 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 15:59:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/08 19:31:13 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	padding_512b(t_padding *p, char *data, size_t len_data)
 		ft_memdel((void**)p->str_bits);
 		ft_abort("Malloc Failed: padding.c:25:padding_512b()");
 	}
-	//ft_memcpy(p->str_bits, data, p->init_len);
+	ft_memcpy(p->str_bits, data, p->init_len);
 	p->str_bits[p->init_len] |= 1 << 7;
 	ft_memcpy(p->str_bits + p->init_len, &p->nb_bits, 4);
 	p->offest = 0;
