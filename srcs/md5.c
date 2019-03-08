@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 15:43:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/08 11:58:52 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-uint32_t	g_r[64] = {7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17,
-	22, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 4, 11, 16, 23,
-	4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 6, 10, 15, 21, 6, 10, 15, 21,
-	6, 10, 15, 21, 6, 10, 15, 21};
+const uint32_t	g_r[64] = {
+	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 5, 9, 14, 20,
+	5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 4, 11, 16, 23, 4, 11, 16, 23, 4,
+	11, 16, 23, 4, 11, 16, 23, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6,
+	10, 15, 21
+};
 
-uint32_t	g_k[64] = {
+const uint32_t	g_k[64] = {
 	3614090360, 3905402710, 606105819, 3250441966, 4118548399, 1200080426,
 	2821735955, 4249261313, 1770035416, 2336552879, 4294925233, 2304563134,
 	1804603682, 4254626195, 2792965006, 1236535329, 4129170786, 3225465664,
@@ -31,30 +33,8 @@ uint32_t	g_k[64] = {
 	3572445317, 76029189, 3654602809, 3873151461, 530742520, 3299628645,
 	4096336452, 1126891415, 2878612391, 4237533241, 1700485571, 2399980690,
 	4293915773, 2240044497, 1873313359, 4264355552, 2734768916, 1309151649,
-	4149444226, 3174756917, 718787259, 3951481745};
-
-static uint32_t	left_rotate(uint32_t x, uint32_t nb)
-{
-	return ((x << nb) | (x >> (32 - nb)));
-}
-
-static void		padding(t_md5 *e, char *data, size_t len_data)
-{
-	size_t	size_malloc;
-
-	e->init_len = len_data;
-	e->new_len = e->init_len;
-	e->nb_bits = e->init_len * 8;
-	while ((e->new_len % 64) != 56)
-		e->new_len++;
-	size_malloc = e->new_len + 8;
-	if (!(e->str_bits = (uint8_t*)ft_memalloc(sizeof(uint8_t) * size_malloc)))
-		return ;
-	ft_memcpy(e->str_bits, data, e->init_len);
-	e->str_bits[e->init_len] |= 1 << 7;
-	ft_memcpy(e->str_bits + e->new_len, &e->nb_bits, 4);
-	e->offest = 0;
-}
+	4149444226, 3174756917, 718787259, 3951481745
+};
 
 static void		calc_sum(t_md5 *e)
 {
@@ -90,10 +70,10 @@ t_hash			*md5(void *data, size_t len_data)
 	t_hash		*f_hash;
 
 	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
-	padding(&e, data, len_data);
-	while (e.offest < e.new_len)
+	padding_512b(&(e.p), data, len_data);
+	while (e.p.offest < e.p.new_len)
 	{
-		e.w = (uint32_t*)(e.str_bits + e.offest);
+		e.w = (uint32_t*)(e.p.str_bits + e.p.offest);
 		e.a = e.h0;
 		e.b = e.h1;
 		e.c = e.h2;
@@ -103,8 +83,8 @@ t_hash			*md5(void *data, size_t len_data)
 		e.h1 += e.b;
 		e.h2 += e.c;
 		e.h3 += e.d;
-		e.offest += 64;
+		e.p.offest += 64;
 	}
-	f_hash = set_hash(&e);
+	f_hash = set_hash2md5(&e);
 	return (f_hash);
 }

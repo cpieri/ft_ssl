@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/03/07 18:06:49 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/08 11:32:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ long				ft_atol(const char *str);
 void   				ft_putbits(unsigned char octet);
 void				ft_strbits(char *s);
 void				ft_mem_bits(void *s, size_t len);
+uint32_t			left_rotate(uint32_t x, uint32_t nb);
 
 #endif

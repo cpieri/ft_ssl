@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 13:34:11 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 15:44:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/08 11:55:36 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_md5_utils	func_i(uint32_t b, uint32_t c, uint32_t d, int i)
 	return (ret);
 }
 
-t_hash		*set_hash(t_md5 *e)
+t_hash		*set_hash2md5(t_md5 *e)
 {
 	t_hash	*ret;
 
@@ -61,6 +61,6 @@ t_hash		*set_hash(t_md5 *e)
 	ret->h[1] = e->h1;
 	ret->h[2] = e->h2;
 	ret->h[3] = e->h3;
-	ft_memdel((void**)&(e->str_bits));
+	ft_memdel((void**)&(e->p.str_bits));
 	return (ret);
 }
