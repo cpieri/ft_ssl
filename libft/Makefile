@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/03/08 11:33:14 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/08 15:35:55 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,6 +117,7 @@ SRCS = 		ft_atoi.c					\
 			ft_strbits.c				\
 			ft_membits.c				\
 			ft_left_rotate.c			\
+			ft_right_rotate.c			\
 			ft_putbits.c
 
 OBJS	=	$(SRCS:.c=.o)

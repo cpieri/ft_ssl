@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 15:36:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/08 15:52:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	hashing(t_parse *parse)
 			printing_hash(lst->data, "MD5", lst->flags);
 		}
 		else if (hash_type == SHA256)
-			continue ;
+		{
+			lst->data->f_hash = sha256(lst->data->data, lst->data->len_data);
+			printing_hash(lst->data, "SHA256", lst->flags);
+		}
 		if (lst->next != NULL)
 			lst = lst->next;
 		else

@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 11:58:52 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/08 15:06:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ const uint32_t	g_r[64] = {
 	10, 15, 21
 };
 
-const uint32_t	g_k[64] = {
+const uint32_t	g_k_md5[64] = {
 	3614090360, 3905402710, 606105819, 3250441966, 4118548399, 1200080426,
 	2821735955, 4249261313, 1770035416, 2336552879, 4294925233, 2304563134,
 	1804603682, 4254626195, 2792965006, 1236535329, 4129170786, 3225465664,
@@ -39,7 +39,7 @@ const uint32_t	g_k[64] = {
 static void		calc_sum(t_md5 *e)
 {
 	int			i;
-	t_md5_utils	utils;
+	t_md5_utils	tool;
 	uint32_t	tmp;
 	uint32_t	tmp2;
 
@@ -47,17 +47,17 @@ static void		calc_sum(t_md5 *e)
 	while (i < 64)
 	{
 		if (i >= 0 && i <= 15)
-			utils = func_f(e->b, e->c, e->d, i);
+			tool = func_f(e->b, e->c, e->d, i);
 		else if (i >= 16 && i <= 31)
-			utils = func_g(e->b, e->c, e->d, i);
+			tool = func_g(e->b, e->c, e->d, i);
 		else if (i >= 32 && i <= 47)
-			utils = func_h(e->b, e->c, e->d, i);
+			tool = func_h(e->b, e->c, e->d, i);
 		else if (i >= 48 && i <= 63)
-			utils = func_i(e->b, e->c, e->d, i);
+			tool = func_i(e->b, e->c, e->d, i);
 		tmp = e->d;
 		e->d = e->c;
 		e->c = e->b;
-		tmp2 = left_rotate((e->a + utils.f + g_k[i] + e->w[utils.g]), g_r[i]);
+		tmp2 = left_rotate((e->a + tool.f + g_k_md5[i] + e->w[tool.g]), g_r[i]);
 		e->b = tmp2 + e->b;
 		e->a = tmp;
 		i++;

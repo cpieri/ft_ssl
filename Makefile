@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/08 13:28:49 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/08 15:48:34 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,15 +32,17 @@ DEPS =		Makefile			\
 			includes/md5.h		\
 			libft/libft.a
 
-SRC_NAME= 	main.c		\
-			usage.c		\
-			parsing.c	\
-			display.c	\
-			get_data.c	\
-			lst_opt.c	\
-			hash.c		\
-			padding.c	\
-			md5_utils.c	\
+SRC_NAME= 	main.c			\
+			usage.c			\
+			parsing.c		\
+			display.c		\
+			get_data.c		\
+			lst_opt.c		\
+			hash.c			\
+			padding.c		\
+			sha256.c		\
+			sha256_utils.c	\
+			md5_utils.c		\
 			md5.c
 
 
