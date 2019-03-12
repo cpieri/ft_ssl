@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/03/08 15:35:37 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:59:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ double				ftb_clamp(double toclamp, double min, double max);
 long				ft_atol(const char *str);
 void   				ft_putbits(unsigned char octet);
 void				ft_strbits(char *s);
-void				ft_mem_bits(void *s, size_t len);
+void				ft_membits(void *s, size_t len);
 uint32_t			left_rotate(uint32_t x, uint32_t nb);
 uint32_t			right_rotate(uint32_t x, uint32_t nb);
 

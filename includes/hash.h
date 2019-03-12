@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 15:50:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:35:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@ typedef struct	s_padding
 	size_t		offest;
 	uint8_t		*str_bits;
 }				t_padding;
-
-void			padding_512b(t_padding *p, char *data, size_t len_data);
 
 #endif
