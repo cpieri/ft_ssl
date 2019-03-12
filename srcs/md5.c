@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/12 16:12:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/12 17:56:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void		padding_md5(t_padding *p, char *data, size_t len_data)
 	p->str_bits[p->init_len] |= 1 << 7;
 	ft_memcpy(p->str_bits + p->new_len, &p->nb_bits, 4);
 	p->offest = 0;
-	ft_putnbr(p->new_len); ft_putchar('\n');
 }
 
 static void		calc_sum(t_md5 *e)
