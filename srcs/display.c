@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 17:55:27 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:06:37 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ static void	print_hash(uint8_t *p)
 
 	i = 0;
 	while (i < 4)
+	{
+		if (p[i] < 16)
+			ft_putchar('0');
 		ft_puthexa(p[i++]);
+	}
 }
 
 void		printing_hash(t_data *data, char *hash_type, t_flags flags)

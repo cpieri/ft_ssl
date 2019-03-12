@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 16:41:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 17:55:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:02:57 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_puthexa(int nb)
 {
-	int		n;
-
-	if (nb >= 16)
+	if (nb > 15)
 		ft_puthexa(nb / 16);
-	n = nb % 16;
-	n += (n < 10) ? '0' : 'a' - 10;
-	ft_putchar(n);
+	nb %= 16;
+	if (nb < 10)
+		ft_putnbr(nb);
+	else
+		ft_putchar(nb + 'a' - 10);
 }
