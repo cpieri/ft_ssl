@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/08 15:48:34 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/13 10:38:01 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ SRC_NAME= 	main.c			\
 			get_data.c		\
 			lst_opt.c		\
 			hash.c			\
-			padding.c		\
 			sha256.c		\
 			sha256_utils.c	\
 			md5_utils.c		\
