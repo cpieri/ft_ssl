@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:15:42 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 15:49:51 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/13 19:20:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include "hash.h"
 
-# define H0		0x6A09E667
-# define H1		0xBB67AE85
-# define H2		0x3C6EF372
-# define H3		0xA54FF53A
-# define H4		0x510E527F
-# define H5		0x9B05688C
-# define H6		0x1F83D9AB
-# define H7		0x5BE0CD19
+# define SHA256_H0		0x6A09E667
+# define SHA256_H1		0xBB67AE85
+# define SHA256_H2		0x3C6EF372
+# define SHA256_H3		0xA54FF53A
+# define SHA256_H4		0x510E527F
+# define SHA256_H5		0x9B05688C
+# define SHA256_H6		0x1F83D9AB
+# define SHA256_H7		0x5BE0CD19
 
 typedef struct	s_sha256_utils
 {
