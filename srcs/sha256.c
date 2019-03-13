@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:46:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/13 14:57:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/13 18:25:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,23 @@ const uint32_t g_k_sha256[64] = {
 
 static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 {
+	ft_membits(data, len_data, sizeof(uint8_t));
+	ft_putchar('\n');
+	ft_putchar('\n');
 	p->init_len = len_data;
 	p->nb_bits = len_data * 8;
-	p->new_len = 0;
-	while (((len_data + 1 + p->new_len) % 64) != 56)
-		p->new_len++;
-	//printf("%zu\n", p->new_len);
+	p->new_len = (448 - (p->nb_bits + 1)) % 512;
+	p->new_len += p->nb_bits + 64 + 1;
+	p->new_len /= 8;
 	if (!(p->str_bits = (uint8_t*)ft_memalloc(sizeof(uint8_t) * p->new_len)))
 		return ;
 	ft_memcpy(p->str_bits, data, len_data);
 	p->str_bits[len_data] |= 1 << 7;
-	//ft_memcpy(p->str_bits + p->new_len, &len_data, 4);
+	ft_memcpy(p->str_bits + p->new_len - 1, &p->nb_bits, 1);
+	ft_membits(p->str_bits, p->new_len - 1, sizeof(uint8_t));
+	ft_putchar('\n');
+	ft_putchar('\n');
+	p->offest = 0;
 }
 
 /*static*/ void	calc_sha256(t_sha256 *e)
@@ -77,7 +83,6 @@ static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 	int			i;
 
 	i = 0;
-	(void)offest;
 	if (!(w = (uint32_t*)ft_memalloc(sizeof(uint32_t) * 64)))
 	{
 		ft_memdel((void**)&w);
@@ -85,16 +90,18 @@ static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 	}
 	while (i < 16)
 	{
-		w[i] = (uint32_t)(data + offest + i);
+		ft_memcpy(&w[i], data + offest + (i * 4), sizeof(uint32_t));
+		ft_membits(&w[i], 0, sizeof(uint32_t));
 		i++;
 	}
 	while (i < 64)
 	{
 		s0 = right_rotate(w[i - 15], 7) ^ right_rotate(w[i - 15], 18)
-			^ right_rotate(w[i - 15], 3);
+			^ (w[i - 15] >> 3);
 		s1 = right_rotate(w[i - 2], 17) ^ right_rotate(w[i - 2], 19)
-			^ right_rotate(w[i - 2], 10);
+			^ (w[i - 2] >> 10);
 		w[i] = w[i - 16] + s0 + w[i - 7] + s1;
+		ft_membits(&w[i], 0, sizeof(uint32_t));
 		i++;
 	}
 	return (w);
