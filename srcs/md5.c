@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/12 17:56:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/13 16:24:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,23 @@ static void		calc_sum(t_md5 *e)
 	}
 }
 
+void			putbits_32(uint32_t	n)
+{
+	uint32_t	z;
+	uint32_t	oct;
+
+	z = 128;
+	oct = n;
+	while (z > 0)
+	{
+		if (oct & z)
+			ft_putchar('1');
+		else
+			ft_putchar('0');
+		z >>= 1;
+	}
+}
+
 t_hash			*md5(void *data, size_t len_data)
 {
 	t_md5		e;
@@ -92,6 +109,8 @@ t_hash			*md5(void *data, size_t len_data)
 	while (e.p.offest < e.p.new_len)
 	{
 		e.w = (uint32_t*)(e.p.str_bits + e.p.offest);
+		ft_membits(e.p.str_bits + e.p.offest, 3, sizeof(uint8_t));
+		ft_membits(e.w, 0, sizeof(uint32_t));
 		e.a = e.h0;
 		e.b = e.h1;
 		e.c = e.h2;

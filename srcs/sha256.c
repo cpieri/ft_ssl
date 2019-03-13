@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:46:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/13 14:21:16 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/13 14:57:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 	p->new_len = 0;
 	while (((len_data + 1 + p->new_len) % 64) != 56)
 		p->new_len++;
-	if (!(p->str_bits = (uint8_t*)ft_memalloc((uint8_t) * p->new_len)))
+	//printf("%zu\n", p->new_len);
+	if (!(p->str_bits = (uint8_t*)ft_memalloc(sizeof(uint8_t) * p->new_len)))
 		return ;
 	ft_memcpy(p->str_bits, data, len_data);
 	p->str_bits[len_data] |= 1 << 7;
-	ft_memcpy(p->str_bits + p->new_len, &)
+	//ft_memcpy(p->str_bits + p->new_len, &len_data, 4);
 }
 
 /*static*/ void	calc_sha256(t_sha256 *e)
