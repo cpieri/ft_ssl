@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:46:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/12 17:11:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/13 14:21:16 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,16 @@ const uint32_t g_k_sha256[64] = {
 
 static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 {
-	size_t		size_malloc;
-
-	/*ft_membits(data, len_data);
-	  ft_putchar('\n');*/
 	p->init_len = len_data;
-	p->new_len = p->init_len;
-	while (((len_data + 1 + p->new_len + 64) % 64) != 56)
+	p->nb_bits = len_data * 8;
+	p->new_len = 0;
+	while (((len_data + 1 + p->new_len) % 64) != 56)
 		p->new_len++;
-	size_malloc = p->new_len + 8;
-	if (!(p->str_bits = (uint8_t*)ft_memalloc(sizeof(uint8_t) * size_malloc)))
+	if (!(p->str_bits = (uint8_t*)ft_memalloc((uint8_t) * p->new_len)))
 		return ;
-	ft_memcpy(p->str_bits, data, p->init_len);
-	p->str_bits[p->init_len] |= 1 << 7;
-	ft_memcpy(p->str_bits + p->new_len, &len_data, 4);
-	/*	ft_putnbr(p->new_len);
-		ft_putchar('\n');
-		ft_membits(p->str_bits, p->new_len);
-		ft_putchar('\n');*/
-	p->offest = 0;
+	ft_memcpy(p->str_bits, data, len_data);
+	p->str_bits[len_data] |= 1 << 7;
+	ft_memcpy(p->str_bits + p->new_len, &)
 }
 
 /*static*/ void	calc_sha256(t_sha256 *e)
@@ -61,7 +52,7 @@ static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 		tool.s1 = right_rotate(e->e, 6) ^ right_rotate(e->e, 11)
 			^ right_rotate (e->e, 25);
 		tool.ch = (e->e & e->f) ^ ((~e->e) & e->g);
-		tool.tmp1 = e->h + tool.s1 + tool.ch + g_k_sha256[i];
+		tool.tmp1 = e->h + tool.s1 + tool.ch + g_k_sha256[i] + e->w[i];
 		tool.s0 = right_rotate(e->a, 2) ^ right_rotate(e->a, 13)
 			^ right_rotate(e->a, 22);
 		tool.maj = (e->a & e->b) ^ (e->a & e->c) ^ (e->b & e->c);
@@ -77,6 +68,37 @@ static void		padding_sha256(t_padding *p, void *data, size_t len_data)
 	}
 }
 
+/*static*/ uint32_t	*set_w_sha256(uint8_t *data, size_t offest)
+{
+	uint32_t	*w;
+	uint32_t	s0;
+	uint32_t	s1;
+	int			i;
+
+	i = 0;
+	(void)offest;
+	if (!(w = (uint32_t*)ft_memalloc(sizeof(uint32_t) * 64)))
+	{
+		ft_memdel((void**)&w);
+		return (NULL);
+	}
+	while (i < 16)
+	{
+		w[i] = (uint32_t)(data + offest + i);
+		i++;
+	}
+	while (i < 64)
+	{
+		s0 = right_rotate(w[i - 15], 7) ^ right_rotate(w[i - 15], 18)
+			^ right_rotate(w[i - 15], 3);
+		s1 = right_rotate(w[i - 2], 17) ^ right_rotate(w[i - 2], 19)
+			^ right_rotate(w[i - 2], 10);
+		w[i] = w[i - 16] + s0 + w[i - 7] + s1;
+		i++;
+	}
+	return (w);
+}
+
 t_hash		*sha256(void *data, size_t len_data)
 {
 	t_sha256	e;
@@ -87,7 +109,7 @@ t_hash		*sha256(void *data, size_t len_data)
 	padding_sha256(&(e.p), data, len_data);
 	while (e.p.offest < e.p.new_len)
 	{
-		//set_w_sha256(&(e.w))
+		e.w = set_w_sha256(e.p.str_bits, e.p.offest);
 		e.a = e.h0;
 		e.b = e.h1;
 		e.c = e.h2;
