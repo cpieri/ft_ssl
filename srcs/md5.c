@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/13 16:24:31 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/14 11:24:18 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,6 @@ static void		calc_sum(t_md5 *e)
 		e->b = tmp2 + e->b;
 		e->a = tmp;
 		i++;
-	}
-}
-
-void			putbits_32(uint32_t	n)
-{
-	uint32_t	z;
-	uint32_t	oct;
-
-	z = 128;
-	oct = n;
-	while (z > 0)
-	{
-		if (oct & z)
-			ft_putchar('1');
-		else
-			ft_putchar('0');
-		z >>= 1;
 	}
 }
 
