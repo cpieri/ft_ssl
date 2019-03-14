@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:46:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/14 12:31:56 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/14 14:12:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ static uint32_t			*set_w_sha256(uint8_t *data, size_t offest)
 		ft_memcpy(&w[i], data + offest + (i * 4), sizeof(uint32_t));
 	while (i < 64)
 	{
-		s0 = (right_rotate(w[i - 15], 7) ^ right_rotate(w[i - 15], 18)
-				^ (w[i - 15] >> 3));
-		s1 = (right_rotate(w[i - 2], 17) ^ right_rotate(w[i - 2], 19)
-				^ (w[i - 2] >> 10));
-		w[i] = w[i - 16] + s0 + w[i - 7] + s1;
+		s0 = right_rotate(w[i - 15], 7) ^ right_rotate(w[i - 15], 18)
+			^ (w[i - 15] >> 3);
+		s1 = right_rotate(w[i - 2], 17) ^ right_rotate(w[i - 2], 19)
+			^ (w[i - 2] >> 10);
+		w[i] = s1 + w[i - 7] + s0 + w[i - 16];
 		i++;
 	}
 	return (w);
