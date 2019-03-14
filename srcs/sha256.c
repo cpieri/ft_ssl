@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:46:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/14 14:12:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/14 16:30:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ static t_sha256_utils	operates_sha256(t_sha256 *s, int i)
 
 	a = s->a;
 	e = s->e;
-	tool.s1 = (right_rotate(e, 6) ^ right_rotate(e, 11) ^ right_rotate(e, 25));
-	tool.ch = ((s->e & s->f) ^ ((s->e) & s->g));
-	tool.tmp1 = (s->h + tool.s1 + tool.ch + g_k_sha256[i] + s->w[i]);
-	tool.s0 = (right_rotate(a, 2) ^ right_rotate(a, 13) ^ right_rotate(a, 22));
-	tool.maj = ((s->a & s->b) ^ (s->a & s->c) ^ (s->b & s->c));
+	tool.s1 = right_rotate(e, 6) ^ right_rotate(e, 11) ^ right_rotate(e, 25);
+	tool.ch = (s->e & s->f) ^ ((s->e) & s->g);
+	tool.tmp1 = s->h + tool.s1 + tool.ch + g_k_sha256[i] + s->w[i];
+	tool.s0 = right_rotate(a, 2) ^ right_rotate(a, 13) ^ right_rotate(a, 22);
+	tool.maj = (s->a & s->b) ^ (s->a & s->c) ^ (s->b & s->c);
 	tool.tmp2 = tool.s0 + tool.maj;
 	return (tool);
 }
@@ -76,6 +76,9 @@ static void				calc_sha256(t_sha256 *e)
 		e->c = e->b;
 		e->b = e->a;
 		e->a = tool.tmp1 + tool.tmp2;
+		uint8_t *p = (uint8_t*)&e->a;
+		printf("%x%x%x%x  ",p[0],p[1],p[2],p[3]);
+		printf("%x\n",e->a);
 	}
 }
 
@@ -83,6 +86,7 @@ static uint32_t			*set_w_sha256(uint8_t *data, size_t offest)
 {
 	uint32_t	*w;
 	uint32_t	s0;
+	uint32_t	tmp;
 	uint32_t	s1;
 	int			i;
 
@@ -96,10 +100,10 @@ static uint32_t			*set_w_sha256(uint8_t *data, size_t offest)
 		ft_memcpy(&w[i], data + offest + (i * 4), sizeof(uint32_t));
 	while (i < 64)
 	{
-		s0 = right_rotate(w[i - 15], 7) ^ right_rotate(w[i - 15], 18)
-			^ (w[i - 15] >> 3);
-		s1 = right_rotate(w[i - 2], 17) ^ right_rotate(w[i - 2], 19)
-			^ (w[i - 2] >> 10);
+		tmp = (w[i - 15]);
+		s0 = right_rotate(tmp, 7) ^ right_rotate(tmp, 18) ^ (tmp >> 3);
+		tmp = (w[i - 2]);
+		s1 = right_rotate(tmp, 17) ^ right_rotate(tmp, 19) ^ (tmp >> 10);
 		w[i] = s1 + w[i - 7] + s0 + w[i - 16];
 		i++;
 	}
@@ -111,8 +115,9 @@ t_hash					*sha256(void *data, size_t len_data)
 	t_sha256	e;
 	t_hash		*f_hash;
 
-	e = (t_sha256){.h0 = SHA256_H0, .h2 = SHA256_H2, .h3 = SHA256_H3,
-		.h4 = SHA256_H4, .h5 = SHA256_H5, .h6 = SHA256_H6, .h7 = SHA256_H7};
+	e = (t_sha256){.h0 = SHA256_H0, .h1 = SHA256_H1, .h2 = SHA256_H2,
+		.h3 = SHA256_H3, .h4 = SHA256_H4, .h5 = SHA256_H5, .h6 = SHA256_H6,
+		.h7 = SHA256_H7};
 	padding_sha256(&(e.p), data, len_data);
 	while (e.p.offest < e.p.new_len)
 	{

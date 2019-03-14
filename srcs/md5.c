@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/14 11:24:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/14 16:09:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ t_hash			*md5(void *data, size_t len_data)
 	while (e.p.offest < e.p.new_len)
 	{
 		e.w = (uint32_t*)(e.p.str_bits + e.p.offest);
-		ft_membits(e.p.str_bits + e.p.offest, 3, sizeof(uint8_t));
-		ft_membits(e.w, 0, sizeof(uint32_t));
 		e.a = e.h0;
 		e.b = e.h1;
 		e.c = e.h2;
