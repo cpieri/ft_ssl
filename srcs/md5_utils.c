@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 13:34:11 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 11:55:36 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/15 11:57:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_hash		*set_hash2md5(t_md5 *e)
 {
 	t_hash	*ret;
 
+	ft_memdel((void**)&e->p.str_bits);
 	if (!(ret = (t_hash*)malloc(sizeof(t_hash))))
 		return (NULL);
 	if (!(ret->h = (uint32_t*)malloc(sizeof(uint32_t) * 4)))

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:40:50 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 15:50:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/15 11:54:44 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_hash	*set_hash2sha256(t_sha256 *e)
 {
 	t_hash	*ret;
 
+	ft_memdel((void**)&e->p.str_bits);
+	ft_memdel((void**)&e->w);
 	if (!(ret = (t_hash*)malloc(sizeof(t_hash))))
 	{
 		ft_memdel((void**)&ret);

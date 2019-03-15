@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 14:46:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/14 16:30:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/15 11:52:26 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_sha256_utils	operates_sha256(t_sha256 *s, int i)
 	a = s->a;
 	e = s->e;
 	tool.s1 = right_rotate(e, 6) ^ right_rotate(e, 11) ^ right_rotate(e, 25);
-	tool.ch = (s->e & s->f) ^ ((s->e) & s->g);
+	tool.ch = (s->e & s->f) ^ ((~s->e) & s->g);
 	tool.tmp1 = s->h + tool.s1 + tool.ch + g_k_sha256[i] + s->w[i];
 	tool.s0 = right_rotate(a, 2) ^ right_rotate(a, 13) ^ right_rotate(a, 22);
 	tool.maj = (s->a & s->b) ^ (s->a & s->c) ^ (s->b & s->c);
@@ -100,9 +100,9 @@ static uint32_t			*set_w_sha256(uint8_t *data, size_t offest)
 		ft_memcpy(&w[i], data + offest + (i * 4), sizeof(uint32_t));
 	while (i < 64)
 	{
-		tmp = (w[i - 15]);
+		tmp = w[i - 15];
 		s0 = right_rotate(tmp, 7) ^ right_rotate(tmp, 18) ^ (tmp >> 3);
-		tmp = (w[i - 2]);
+		tmp = w[i - 2];
 		s1 = right_rotate(tmp, 17) ^ right_rotate(tmp, 19) ^ (tmp >> 10);
 		w[i] = s1 + w[i - 7] + s0 + w[i - 16];
 		i++;

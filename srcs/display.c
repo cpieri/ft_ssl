@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/13 14:44:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/15 12:41:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void		printing_hash(t_data *data, char *hash_type, t_flags flags)
 	uint8_t	*p;
 
 	i = 0;
-	if (flags.r == 0 && flags.q == 0 && data->file_name != NULL)
-		print_name(data->file_name, hash_type, flags);
-	else if (data->file_name == NULL)
+	if (flags.r == 0 && flags.q == 0 && data->fd_name != NULL)
+		print_name(data->fd_name, hash_type, flags);
+	else if (data->fd_name == NULL)
 		ft_putstr(data->data);
 	while (i < data->f_hash->nb_word)
 	{
@@ -60,7 +60,7 @@ void		printing_hash(t_data *data, char *hash_type, t_flags flags)
 	if (flags.r == 1)
 	{
 		ft_putchar(' ');
-		ft_putstr(data->file_name);
+		ft_putstr(data->fd_name);
 	}
 	ft_putchar('\n');
 }

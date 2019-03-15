@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/08 15:52:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/15 12:39:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
 
 typedef struct		s_data
 {
-	const char		*file_name;
+	const char		*fd_name;
 	char			*data;
 	size_t			len_data;
+	int				mall;
 	t_hash			*f_hash;
 }					t_data;
 
@@ -76,5 +77,6 @@ void				printing_hash(t_data *data, char *hash_type, t_flags flags);
 
 void				exit_error(const char *msg);
 void				print_usage(const int usage_int, const char *command);
+void				clean_prog(t_parse *parse);
 
 #endif
