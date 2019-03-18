@@ -6,12 +6,11 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 17:18:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:22:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-#include <stdio.h>
 
 static t_opt	*check_flags(size_t len, t_flags *flags, char **av, int now)
 {

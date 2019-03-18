@@ -6,12 +6,11 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 16:49:02 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:21:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-#include <stdio.h>
 
 static void	print_name(const char *fd_name, char *hash_type, t_flags flags)
 {
