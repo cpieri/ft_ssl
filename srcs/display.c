@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 16:42:50 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/18 16:49:02 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		printing_hash(t_data *data, char *hash_type, t_flags flags)
 	i = 0;
 	if (flags.r == 0 && flags.q == 0 && data->fd_name != NULL)
 		print_name(data->fd_name, hash_type, flags);
-	else if (data->fd_name == NULL)
+	else if (flags.p == 1)
 		ft_putstr(data->data);
 	while (i < data->f_hash->nb_word)
 	{

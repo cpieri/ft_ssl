@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/07 19:25:10 by delay            ###   ########.fr       */
+/*   Updated: 2019/03/18 17:18:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_opt	*check_flags(size_t len, t_flags *flags, char **av, int now)
 				new = new_opt(*flags, get_string(av[now + 1]));
 		}
 		else if (av[now][i] == 'p')
-			new = new_opt(*flags, get_data(0, NULL));
+			new = new_opt((t_flags){.p = 1}, get_data(0, NULL));
 		else if (av[now][i] == 'q')
 			*flags = (t_flags){0, .q = 1, 0, 0};
 		else if (av[now][i] == 'r' && flags->q == 0)
