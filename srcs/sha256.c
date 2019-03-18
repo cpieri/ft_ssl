@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:47:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 15:48:31 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/18 16:39:36 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,14 @@ static void		calc_tmp(uint32_t *tmp1, uint32_t *tmp2, t_sha256 *t, int i)
 	uint32_t	s0;
 	uint32_t	ch;
 	uint32_t	maj;
+	uint32_t	t1;
 
-	s1 = right_rotate(t->e, 6) ^ right_rotate(t->e, 11) ^ right_rotate(t->e, 25);
+	t1 = t->e;
+	s1 = right_rotate(t1, 6) ^ right_rotate(t1, 11) ^ right_rotate(t1, 25);
 	ch = ((t->e & t->f) ^ (~(t->e) & t->g));
 	*tmp1 = t->h + s1 + ch + g_k_sha256[i] + t->w[i];
-	s0 = right_rotate(t->a, 2) ^ right_rotate(t->a, 13) ^ right_rotate(t->a, 22);
+	t1 = t->a;
+	s0 = right_rotate(t1, 2) ^ right_rotate(t1, 13) ^ right_rotate(t1, 22);
 	maj = (t->a & t->b) ^ (t->a & t->c) ^ (t->b & t->c);
 	*tmp2 = s0 + maj;
 }
@@ -108,6 +111,14 @@ static void		calc_sha256(t_sha256 *t)
 		t->b = t->a;
 		t->a = tmp1 + tmp2;
 	}
+	t->h0 += t->a;
+	t->h1 += t->b;
+	t->h2 += t->c;
+	t->h3 += t->d;
+	t->h4 += t->e;
+	t->h5 += t->f;
+	t->h6 += t->g;
+	t->h7 += t->h;
 }
 
 t_hash			*sha256(void *data, size_t len_data)
@@ -121,18 +132,16 @@ t_hash			*sha256(void *data, size_t len_data)
 	padding_sha256(&(t.p), data, len_data);
 	while (t.p.offest < t.p.new_len)
 	{
-		t.a = t.h0; t.b = t.h1; t.c = t.h2; t.d = t.h3; t.e = t.h4;
-		t.f = t.h5; t.g = t.h6; t.h = t.h7;
+		t.a = t.h0;
+		t.b = t.h1;
+		t.c = t.h2;
+		t.d = t.h3;
+		t.e = t.h4;
+		t.f = t.h5;
+		t.g = t.h6;
+		t.h = t.h7;
 		t.w = create_w(t.p.msg8, t.p.offest);
 		calc_sha256(&t);
-		t.h0 += t.a;
-		t.h1 += t.b;
-		t.h2 += t.c;
-		t.h3 += t.d;
-		t.h4 += t.e;
-		t.h5 += t.f;
-		t.h6 += t.g;
-		t.h7 += t.h;
 		t.p.offest += 64;
 	}
 	f_hash = set_hash2sha256(&t);
