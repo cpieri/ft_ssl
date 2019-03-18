@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/03/13 16:19:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/18 15:44:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ void   				ft_putbits(unsigned char octet);
 void				ft_strbits(char *s);
 uint32_t			left_rotate(uint32_t x, uint32_t nb);
 uint32_t			right_rotate(uint32_t x, uint32_t nb);
+uint32_t			swap_uint32t(uint32_t nb);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 13:34:11 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/15 11:57:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/18 13:58:18 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_hash		*set_hash2md5(t_md5 *e)
 {
 	t_hash	*ret;
 
-	ft_memdel((void**)&e->p.str_bits);
+	ft_memdel((void**)&e->p.msg8);
 	if (!(ret = (t_hash*)malloc(sizeof(t_hash))))
 		return (NULL);
 	if (!(ret->h = (uint32_t*)malloc(sizeof(uint32_t) * 4)))
@@ -62,6 +62,6 @@ t_hash		*set_hash2md5(t_md5 *e)
 	ret->h[1] = e->h1;
 	ret->h[2] = e->h2;
 	ret->h[3] = e->h3;
-	ft_memdel((void**)&(e->p.str_bits));
+	ft_memdel((void**)&(e->p.msg8));
 	return (ret);
 }

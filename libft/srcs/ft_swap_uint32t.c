@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.h                                             :+:      :+:    :+:   */
+/*   ft_swap_uint32t.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 15:49:24 by cpieri           ###   ########.fr       */
+/*   Created: 2019/03/18 15:42:06 by cpieri            #+#    #+#             */
+/*   Updated: 2019/03/18 15:45:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HASH_H
-# define HASH_H
+#include "libft.h"
 
-# include "../libft/include/libft.h"
-
-typedef struct	s_hash
+uint32_t	swap_uint32t(uint32_t nb)
 {
-	uint32_t	*h;
-	size_t		nb_word;
-}				t_hash;
-
-typedef struct	s_padding
-{
-	size_t		init_len;
-	size_t		new_len;
-	size_t		nb_bits;
-	size_t		offest;
-	uint8_t		*msg8;
-}				t_padding;
-
-#endif
+	return ((nb >> 24 & 0xff) | (nb >> 8 & 0xff00) | (nb << 8 & 0xff0000)
+			| (nb << 24 & 0xff000000));
+}
