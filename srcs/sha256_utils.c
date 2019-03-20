@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:40:50 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 15:47:05 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 19:49:41 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,11 @@ t_hash	*set_hash2sha256(t_sha256 *e)
 {
 	t_hash	*ret;
 
-	ft_memdel((void**)&e->p.msg8);
-	ft_memdel((void**)&e->w);
+	ft_memdel((void**)&(e->p.msg8));
 	if (!(ret = (t_hash*)malloc(sizeof(t_hash))))
-	{
-		ft_memdel((void**)&ret);
 		ft_abort("Malloc Failed: sha256_utils.c:19:set_hash2sha256()");
-	}
 	if (!(ret->h = (uint32_t*)ft_memalloc(sizeof(uint32_t) * 8)))
-	{
-		ft_memdel((void**)&ret->h);
 		ft_abort("Malloc Failed: sha256_utils.c:set_hash2sha256()");
-	}
 	ret->nb_word = 8;
 	ret->h[0] = swap_uint32t(e->h0);
 	ret->h[1] = swap_uint32t(e->h1);

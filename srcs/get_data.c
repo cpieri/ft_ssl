@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/15 12:41:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 13:39:29 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ t_data	*get_string(char *s)
 
 	ret = NULL;
 	if (!(ret = (t_data*)malloc(sizeof(t_data))))
-	{
-		ft_memdel((void**)&ret);
-		exit_error("Malloc Failed: get_data.c:21:get_string()");
-	}
+		exit_error();
 	ret->fd_name = s;
 	ret->data = s;
 	ret->len_data = ft_strlen(s);
@@ -40,15 +37,15 @@ int		open_fd(const char *file)
 	tmp = NULL;
 	if (fd == FAILURE)
 	{
-		ft_putstr_fd(file, 2);
-		exit_error(": No such file or directory");
+		print_error(file);
+		return (-1);
 	}
 	if (read(fd, tmp, 0) == FAILURE)
 	{
 		if (close(fd) != 0)
-			exit_error("Close Failed: get_data.c:47:open_fd()");
-		ft_putstr_fd(file, 2);
-		exit_error(": Is a directory");
+			exit_error();
+		print_error(file);
+		return (-1);
 	}
 	return (fd);
 }
@@ -61,11 +58,10 @@ t_data	*get_data(const int fd, const char *fd_name)
 	int		nb_read;
 
 	tmp = NULL;
+	if (fd == -1)
+		return (NULL);
 	if (!(ret = (t_data*)malloc(sizeof(t_data))))
-	{
-		ft_memdel((void**)&ret);
-		exit_error("Malloc Failed: get_data.c:50:get_data()");
-	}
+		exit_error();
 	*ret = (t_data){.data = NULL, .len_data = 0, .fd_name = fd_name, .mall = 1};
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)))
 	{

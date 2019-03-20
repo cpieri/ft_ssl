@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/19 18:15:06 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/20 17:37:51 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	ft_ssl
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 -g3 -flto -fsanitize=address -fno-omit-frame-pointer
+CFLAGS	=	-Wall -Wextra -Werror -O3 -g3 #-flto -fsanitize=address -fno-omit-frame-pointer
 
 CPPFLAGS=	-Iincludes
 

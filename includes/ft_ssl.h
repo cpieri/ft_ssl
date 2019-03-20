@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/15 12:39:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 14:16:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,34 @@ typedef struct		s_block
 	struct s_block	*next;
 }					t_block;
 
+/*
+ **	Functions for Parsing
+ */
 t_parse				parsing(const int ac, char **av);
 int					open_fd(const char *file);
 t_data				*get_data(const int fd, const char *fd_name);
 t_data				*get_string(char *s);
-void				hashing(t_parse *parse);
+
+/*
+ **	Functions for Lst_opt
+ */
 t_opt				*new_opt(t_flags flags, t_data *data);
 void				add_to_end_lst(t_opt *new, t_opt **lst);
 void				print_lst(t_opt **lst);
-void				add_2_end_lstblocks(t_block *new, t_block **lst);
-t_block				*new_block(void);
+void				free_opt(t_opt *opt);
 
+/*
+ **	Functions for Hashing msg and display final hash
+ */
+void				hashing(t_parse *parse);
 void				printing_hash(t_data *data, char *hash_type, t_flags flags);
 
-void				exit_error(const char *msg);
+/*
+ **	Functions for Exit, Clean, Error
+ */
+void				exit_error(void);
+void				exit_error_free(void **to_free);
+void				print_error(const char *msg_1);
 void				print_usage(const int usage_int, const char *command);
 void				clean_prog(t_parse *parse);
 

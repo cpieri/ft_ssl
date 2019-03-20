@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/19 20:15:20 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 19:52:02 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ t_parse			parsing(const int ac, char **av)
 		parse.hash_type = SHA256;
 	else
 		print_usage(2, av[1]);
-	parse.lst_opts = parse_opts(ac, av, parse.lst_opts, now + 1);
+	parse.lst_opts = parse_opts(ac, av, NULL, now + 1);
 	return (parse);
 }
