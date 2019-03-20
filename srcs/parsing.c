@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 17:22:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/19 20:15:20 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,15 @@ static t_opt	*get_args(char **av, int now)
 	{
 		len = ft_strlen(av[now]);
 		new = check_flags(len, &flags, av, now);
-		if (new == NULL)
+		if (new == NULL && av[now + 1] == NULL)
+			new = new_opt(flags, get_data(0, NULL));
+		else if (new == NULL && av[now + 1][0] != '-')
 			new = new_opt(flags, get_data(open_fd(av[now + 1]), av[now + 1]));
 		return (new);
 	}
-	else if (ft_strchr(av[now - 1], '-') == NULL || (av[now - 1][0] == '-'
-				&& (tmp = ft_strchr(av[now - 1], 's')) != NULL
-				&& *(tmp + 1) != '\0'))
+	else if (ft_strchr(av[now - 1], '-') == NULL
+			|| (av[now - 1][0] == '-' && (ft_strchr(av[now - 1], 'p') != NULL
+					|| ((tmp = ft_strchr(av[now - 1], 's')) && *(tmp + 1)))))
 		new = new_opt(flags, get_data(open_fd(av[now]), av[now]));
 	return (new);
 }
@@ -77,7 +79,7 @@ static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 	add_to_end_lst(new, &opts);
 	now++;
 	if (now < ac)
-		parse_opts(ac, av, opts, now);
+		opts = parse_opts(ac, av, opts, now);
 	return (opts);
 }
 

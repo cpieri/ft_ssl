@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 17:21:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/19 20:15:12 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	print_lst(t_opt **lst)
 	tmp = *lst;
 	while (tmp != NULL)
 	{
-		ft_putnbr(tmp->flags.q);
-		ft_putchar('\n');
 		ft_putendl(tmp->data->data);
 		if (tmp->next != NULL)
 			tmp = tmp->next;

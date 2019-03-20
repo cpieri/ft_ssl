@@ -6,16 +6,14 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 17:21:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 12:39:00 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-static void	print_name(const char *fd_name, char *hash_type, t_flags flags)
+static void	print_name(const char *fd_name, t_flags flags)
 {
-	ft_putstr(hash_type);
-	ft_putstr(" (");
 	if (flags.s == 1)
 	{
 		ft_putchar('\"');
@@ -24,42 +22,40 @@ static void	print_name(const char *fd_name, char *hash_type, t_flags flags)
 	}
 	else
 		ft_putstr(fd_name);
-	ft_putstr(") = ");
 }
 
-static void	print_hash(uint8_t *p)
+static void	print_hash(t_hash *f_hash)
 {
+	size_t	y;
+	uint8_t	*p;
 	int		i;
 
-	i = 0;
-	while (i < 4)
+	y = -1;
+	while (++y < f_hash->nb_word)
 	{
-		if (p[i] < 16)
-			ft_putchar('0');
-		ft_puthexa(p[i++]);
+		i = -1;
+		p = (uint8_t*)&f_hash->h[y];
+		while (++i < 4)
+			ft_puthexa(p[i]);
 	}
 }
 
 void		printing_hash(t_data *data, char *hash_type, t_flags flags)
 {
-	size_t	i;
-	uint8_t	*p;
-
-	i = 0;
 	if (flags.r == 0 && flags.q == 0 && data->fd_name != NULL)
-		print_name(data->fd_name, hash_type, flags);
+	{
+		ft_putstr(hash_type);
+		ft_putstr(" (");
+		print_name(data->fd_name, flags);
+		ft_putstr(") = ");
+	}
 	else if (flags.p == 1)
 		ft_putstr(data->data);
-	while (i < data->f_hash->nb_word)
-	{
-		p = (uint8_t*)&data->f_hash->h[i];
-		print_hash(p);
-		i++;
-	}
+	print_hash(data->f_hash);
 	if (flags.r == 1)
 	{
 		ft_putchar(' ');
-		ft_putstr(data->fd_name);
+		print_name(data->fd_name, flags);
 	}
 	ft_putchar('\n');
 }
