@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 14:49:05 by cpieri            #+#    #+#             */
-/*   Updated: 2017/11/13 16:27:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 20:54:52 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	ft_memdel(void **ap)
 {
-	char **tmp;
-
 	if (!ap)
 		return ;
-	tmp = (char**)ap;
-	free(*tmp);
-	if (*tmp != NULL)
-		*tmp = NULL;
+	free(*ap);
+	*ap = NULL;
 }

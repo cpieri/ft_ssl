@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:06:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 14:21:44 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 20:59:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void		print_error(const char *msg_1)
 	ft_putstr_fd(": ", 2);
 	error = strerror(errno);
 	ft_putendl_fd(error, 2);
-	ft_memdel((void**)&error);
 }
 
 void		exit_error_free(void **to_free)
@@ -56,7 +55,6 @@ void		exit_error_free(void **to_free)
 
 	error = strerror(errno);
 	ft_putendl_fd(error, 2);
-	ft_memdel((void**)&error);
 	ft_memdel(to_free);
 	exit(FAILURE);
 }
@@ -67,6 +65,5 @@ void		exit_error(void)
 
 	error = strerror(errno);
 	ft_putendl_fd(error, 2);
-	ft_memdel((void**)&error);
 	exit(FAILURE);
 }

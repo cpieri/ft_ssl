@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 19:21:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 21:01:46 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ void	add_to_end_lst(t_opt *new, t_opt **lst)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
-}
-
-void	free_opt(t_opt *opt)
-{
-	if (opt->flags.s != 0)
-		ft_memdel((void**)&(opt->data->data));
-	ft_memdel((void**)&opt);
 }
 
 t_opt	*new_opt(t_flags flags, t_data *data)

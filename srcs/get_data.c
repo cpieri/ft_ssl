@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 13:39:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/20 20:36:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_data	*get_data(const int fd, const char *fd_name)
 	if (fd == -1)
 		return (NULL);
 	if (!(ret = (t_data*)malloc(sizeof(t_data))))
-		exit_error();
+		return (NULL);
 	*ret = (t_data){.data = NULL, .len_data = 0, .fd_name = fd_name, .mall = 1};
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)))
 	{

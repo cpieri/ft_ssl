@@ -56,37 +56,30 @@ typedef	struct		s_parse
 	t_opt			*lst_opts;
 }					t_parse;
 
-typedef struct		s_block
-{
-	uint32_t		*tab;
-	struct s_block	*next;
-}					t_block;
-
 /*
- **	Functions for Parsing
- */
+**	Functions for Parsing
+*/
 t_parse				parsing(const int ac, char **av);
 int					open_fd(const char *file);
 t_data				*get_data(const int fd, const char *fd_name);
 t_data				*get_string(char *s);
 
 /*
- **	Functions for Lst_opt
- */
+**	Functions for Lst_opt
+*/
 t_opt				*new_opt(t_flags flags, t_data *data);
 void				add_to_end_lst(t_opt *new, t_opt **lst);
 void				print_lst(t_opt **lst);
-void				free_opt(t_opt *opt);
 
 /*
- **	Functions for Hashing msg and display final hash
- */
+**	Functions for Hashing msg and display final hash
+*/
 void				hashing(t_parse *parse);
 void				printing_hash(t_data *data, char *hash_type, t_flags flags);
 
 /*
- **	Functions for Exit, Clean, Error
- */
+**	Functions for Exit, Clean, Error
+*/
 void				exit_error(void);
 void				exit_error_free(void **to_free);
 void				print_error(const char *msg_1);
