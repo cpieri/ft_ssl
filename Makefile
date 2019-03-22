@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/22 15:57:08 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/22 17:59:41 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ OBJ_PATH=	obj
 
 DEPS =		Makefile			\
 			includes/ft_ssl.h	\
-			includes/sha_2.h	\
+			includes/sha256.h	\
+			includes/sha512.h	\
 			includes/hash.h		\
 			includes/md5.h		\
 			libft/libft.a

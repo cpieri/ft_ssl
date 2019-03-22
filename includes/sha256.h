@@ -6,12 +6,12 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:15:42 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/13 19:20:48 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 19:01:50 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHA_2_H
-# define SHA_2_H
+#ifndef SHA256_H
+# define SHA256_H
 
 # include "hash.h"
 
