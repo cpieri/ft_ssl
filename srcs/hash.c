@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/22 13:54:10 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:13:40 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ void	hashing(t_parse *parse)
 	{
 		lst->data->f_hash = (parse->func)(lst->data->data, lst->data->len_data);
 		printing_hash(lst->data, parse->name, lst->flags);
-		if (lst->next != NULL)
-			lst = lst->next;
-		else
-			break ;
+		lst = lst->next;
 	}
 }
