@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 14:16:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 13:54:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 
 # define NO_CMD				1
 # define INVALID_CMD		2
+
+enum		e_hash
+{
+	e_md5 = 1,
+	e_sha256,
+};
 
 typedef struct		s_data
 {
@@ -52,34 +58,37 @@ typedef struct		s_opt
 
 typedef	struct		s_parse
 {
-	int				hash_type;
+	//int				hash_type;
+	enum e_hash		hash_type;
+	t_hash			*(*func)(void *, size_t);
+	char			*name;
 	t_opt			*lst_opts;
 }					t_parse;
 
 /*
-**	Functions for Parsing
-*/
+ **	Functions for Parsing
+ */
 t_parse				parsing(const int ac, char **av);
 int					open_fd(const char *file);
 t_data				*get_data(const int fd, const char *fd_name);
 t_data				*get_string(char *s);
 
 /*
-**	Functions for Lst_opt
-*/
+ **	Functions for Lst_opt
+ */
 t_opt				*new_opt(t_flags flags, t_data *data);
 void				add_to_end_lst(t_opt *new, t_opt **lst);
 void				print_lst(t_opt **lst);
 
 /*
-**	Functions for Hashing msg and display final hash
-*/
+ **	Functions for Hashing msg and display final hash
+ */
 void				hashing(t_parse *parse);
 void				printing_hash(t_data *data, char *hash_type, t_flags flags);
 
 /*
-**	Functions for Exit, Clean, Error
-*/
+ **	Functions for Exit, Clean, Error
+ */
 void				exit_error(void);
 void				exit_error_free(void **to_free);
 void				print_error(const char *msg_1);

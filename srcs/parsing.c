@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 19:52:02 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 13:53:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,24 @@ static t_opt	*parse_opts(const int ac, char **av, t_opt *opts, int now)
 
 t_parse			parsing(const int ac, char **av)
 {
-	t_parse	parse;
-	int		now;
+	t_parse			parse;
+	int				now;
 
 	now = 1;
 	parse.hash_type = 0;
 	parse.lst_opts = NULL;
 	if (ft_strcmp("md5", av[now]) == 0)
-		parse.hash_type = MD5;
+	{
+		parse.hash_type = e_md5;
+		parse.func = md5;
+		parse.name = "MD5";
+	}
 	else if (ft_strcmp("sha256", av[now]) == 0)
-		parse.hash_type = SHA256;
+	{
+		parse.hash_type = e_sha256;
+		parse.func = sha256;
+		parse.name = "SHA256";
+	}
 	else
 		print_usage(2, av[1]);
 	parse.lst_opts = parse_opts(ac, av, NULL, now + 1);
