@@ -6,12 +6,12 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/03/18 17:23:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:27:05 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __LIBFT_H
-# define __LIBFT_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <string.h>
 # include <stdlib.h>
@@ -28,7 +28,6 @@ typedef	struct		s_list
 int					get_next_line(const int fd, char **line);
 int					*find_closest_offset(int x, int y, int tx, int ty);
 int					ftb_abs(int n);
-int					ft_isspace(int c);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strcat(char *s1, const char *s2);
@@ -55,6 +54,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
+int					ft_isspace(int c);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strequ(char const *s1, char const *s2);
@@ -64,7 +64,6 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ftb_adjustmagn(unsigned int toadjust, unsigned int goal);
 int					ftb_intlen(int n);
-int					ftb_isspace(char c);
 int					ftb_pow(int n, int pow);
 int					hex2int(char *hex);
 int					ftb_rand(unsigned int min,

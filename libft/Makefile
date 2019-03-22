@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/03/20 16:53:19 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/22 15:37:48 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME	=	libft.a
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 #-g3 -flto -fsanitize=address #-fno-omit-frame-pointer
+ERROR	=	-g3 -flto -fsanitize=address -fno-omit-frame-pointer
 
+CFLAGS	=	-Wall -Wextra -Werror $(ERROR) 
 
 INCS	=	libft.h
 
@@ -95,7 +96,6 @@ SRCS = 		ft_atoi.c					\
 			ft_lstiter.c				\
 			ft_lstmap.c					\
 			ftb_trimtodigit.c			\
-			ftb_isspace.c				\
 			ftb_intlen.c				\
 			ftb_lstpush.c				\
 			ftb_clamp.c 				\

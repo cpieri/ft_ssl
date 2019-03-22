@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/22 15:12:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:56:23 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/include/libft.h"
 
 # define SET_MD5 {.name = "MD5", .fparse = hash_opts, .func = md5}
-
 # define SET_SHA256 {.name = "SHA256", .fparse = hash_opts, .func = sha256}
 
 typedef struct	s_hash

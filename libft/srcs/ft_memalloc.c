@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 13:26:34 by cpieri            #+#    #+#             */
-/*   Updated: 2017/11/13 14:40:52 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:36:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memalloc(size_t size)
 {
 	void	*mem;
 
-	if ((mem = (void*)malloc(sizeof(*mem) * (size))) != NULL)
+	if ((mem = (void*)malloc(size)) != NULL)
 		ft_bzero(mem, size);
 	return ((void*)mem);
 }
