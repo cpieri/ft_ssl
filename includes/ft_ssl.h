@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/22 13:54:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/22 14:41:49 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ typedef struct		s_opt
 
 typedef	struct		s_parse
 {
-	//int				hash_type;
 	enum e_hash		hash_type;
 	t_hash			*(*func)(void *, size_t);
+	t_opt			*(*fparse)(const int, char **, t_opt *, int);
 	char			*name;
 	t_opt			*lst_opts;
 }					t_parse;
@@ -69,6 +69,7 @@ typedef	struct		s_parse
  **	Functions for Parsing
  */
 t_parse				parsing(const int ac, char **av);
+t_opt				*hash_opts(const int ac, char **av, t_opt *opts, int now);
 int					open_fd(const char *file);
 t_data				*get_data(const int fd, const char *fd_name);
 t_data				*get_string(char *s);

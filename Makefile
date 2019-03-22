@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/03/20 17:37:51 by cpieri           ###   ########.fr        #
+#    Updated: 2019/03/22 14:35:16 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_NAME= 	main.c			\
 			clean.c			\
 			usage.c			\
 			parsing.c		\
+			hash_parsing.c	\
 			display.c		\
 			get_data.c		\
 			lst_opt.c		\
