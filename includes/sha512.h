@@ -13,6 +13,8 @@
 #ifndef SHA512_H
 # define SHA512_H
 
+# include "hash.h"
+
 # define SHA512_H0		0x6a09e667f3bcc908
 # define SHA512_H1		0xbb67ae8584caa73b
 # define SHA512_H2		0x3c6ef372fe94f82b
