@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:06:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 20:59:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/26 15:19:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void		exit_error_free(void **to_free)
 {
 	char	*error;
 
+	ft_putstr_fd("ft_ssl: ", 2);
 	error = strerror(errno);
 	ft_putendl_fd(error, 2);
 	ft_memdel(to_free);
@@ -63,6 +64,7 @@ void		exit_error(void)
 {
 	char	*error;
 
+	ft_putstr_fd("ft_ssl: ", 2);
 	error = strerror(errno);
 	ft_putendl_fd(error, 2);
 	exit(FAILURE);

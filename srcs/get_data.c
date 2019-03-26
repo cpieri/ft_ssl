@@ -6,14 +6,14 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 12:26:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/26 15:31:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "ft_ssl.h"
 
-t_data	*get_string(char *s)
+t_data		*get_string(char *s)
 {
 	t_data	*ret;
 
@@ -28,7 +28,7 @@ t_data	*get_string(char *s)
 	return (ret);
 }
 
-int		open_fd(const char *file)
+int			open_fd(const char *file)
 {
 	int		fd;
 	char	*tmp;
@@ -64,7 +64,7 @@ static int	reopen_fd(const int current_fd, const char *file)
 	return (new_fd);
 }
 
-t_data	*get_file(const int fd, const char *fd_name)
+t_data		*get_file(const int fd, const char *fd_name)
 {
 	char				buffer[BUFF_SIZE + 1];
 	int					nb_read;
@@ -78,16 +78,19 @@ t_data	*get_file(const int fd, const char *fd_name)
 	*ret = (t_data){.data = NULL, .len_data = 0, .fd_name = fd_name, .mall = 1};
 	while ((nb_read = read(fd, buffer, BUFF_SIZE)) > 0)
 		size += nb_read;
+	if (nb_read == -1)
+		exit_error_free((void**)&ret);
 	if (!(ret->data = (char*)malloc(sizeof(char) * (size + 1)))
 			|| (fd_2 = reopen_fd(fd, fd_name)) == FAILURE)
 		return (NULL);
 	while (read(fd_2, ret->data, size) > 0)
 		ret->len_data = size;
+	if (nb_read == -1)
+		exit_error_free((void**)&ret);
 	return ((ret->data != NULL) ? ret : NULL);
 }
 
-
-t_data	*get_data(const int fd, const char *fd_name)
+t_data		*get_data(const int fd, const char *fd_name)
 {
 	char	buffer[BUFF_SIZE + 1];
 	t_data	*ret;
@@ -110,5 +113,7 @@ t_data	*get_data(const int fd, const char *fd_name)
 		}
 		ret->len_data += nb_read;
 	}
+	if (nb_read == -1)
+		exit_error_free((void**)&ret);
 	return ((ret->data != NULL) ? ret : NULL);
 }

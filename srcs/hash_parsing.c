@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 14:00:59 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 12:14:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/26 15:41:05 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_opt	*get_args(char **av, int now)
 		new = check_flags(len, &flags, av, now);
 		if (new == NULL && av[now + 1] == NULL)
 			new = new_opt(flags, get_data(0, NULL));
-		else if (new == NULL && av[now + 1][0] != '-')
+		else if (new == NULL && av[now + 1][0] != '-' && av[now][1] != 'p')
 			new = new_opt(flags, get_file(open_fd(av[now + 1]), av[now + 1]));
 		return (new);
 	}
