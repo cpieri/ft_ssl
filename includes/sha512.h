@@ -22,8 +22,6 @@
 # define SHA512_H6		0x1f83d9abfb41bd6b
 # define SHA512_H7		0x5be0cd19137e2179
 
-t_hash		*sha512(void *data, size_t len_data);
-
 typedef struct	s_sha256
 {
 	t_padding	p;
@@ -46,6 +44,6 @@ typedef struct	s_sha256
 	uint64_t	*w;
 }				t_sha256;
 
-
+t_hash			*sha512(void *data, size_t len_data);
 
 #endif
