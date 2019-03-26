@@ -6,11 +6,12 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 17:21:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/26 13:59:09 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "md5.h"
+#include <stdio.h>
 
 const uint32_t	g_r[64] = {
 	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 5, 9, 14, 20,
@@ -47,7 +48,7 @@ static void		padding_md5(t_padding *p, char *data, size_t len_data)
 		return ;
 	ft_memcpy(p->msg8, data, p->init_len);
 	p->msg8[p->init_len] |= 1 << 7;
-	ft_memcpy(p->msg8 + p->new_len, &p->nb_bits, 4);
+	ft_memcpy(p->msg8 + p->new_len, &p->nb_bits, 8);
 	p->offest = 0;
 }
 
@@ -86,7 +87,7 @@ t_hash			*md5(void *data, size_t len_data)
 
 	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
 	padding_md5(&(e.p), data, len_data);
-	while (e.p.offest < e.p.new_len)
+	while (e.p.offest < e.p.new_len + 8)
 	{
 		e.w = (uint32_t*)(e.p.msg8 + e.p.offest);
 		e.a = e.h0;
