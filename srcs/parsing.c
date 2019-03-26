@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/22 15:12:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/26 16:08:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_parse			parsing(const int ac, char **av)
 		parse = (t_parse)SET_MD5;
 	else if (ft_strcmp("sha256", av[now]) == 0)
 		parse = (t_parse)SET_SHA256;
+	else if (ft_strcmp("sha512", av[now]) == 0)
+		parse = (t_parse)SET_SHA512;
 	else
 		print_usage(2, av[1]);
 	parse.lst_opts = parse.fparse(ac, av, NULL, now + 1);

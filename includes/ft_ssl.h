@@ -16,6 +16,7 @@
 # include "../libft/include/libft.h"
 # include "./md5.h"
 # include "./sha256.h"
+# include "./sha512.h"
 
 # define FAILURE			-1
 # define SUCCESS			0

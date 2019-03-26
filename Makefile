@@ -46,6 +46,7 @@ SRC_NAME= 	main.c			\
 			hash.c			\
 			sha256.c		\
 			sha256_utils.c	\
+			sha512.c		\
 			md5_utils.c		\
 			md5.c
 
