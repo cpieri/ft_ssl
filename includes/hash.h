@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 16:09:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/29 15:01:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 # define SET_MD5 {.name = "MD5", .fparse = hash_opts, .func = md5}
 # define SET_SHA256 {.name = "SHA256", .fparse = hash_opts, .func = sha256}
-# define SET_SHA512 {.name = "SHA512", .fparse = hash_opts, .func = sha512}
 
 typedef struct	s_hash
 {
@@ -32,7 +31,6 @@ typedef struct	s_padding
 	size_t		nb_bits;
 	size_t		offest;
 	uint8_t		*msg8;
-	uint32_t	*msg32;
 }				t_padding;
 
 #endif

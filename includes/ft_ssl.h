@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ssl.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 12:14:38 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/03/29 15:00:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@
 # include "../libft/include/libft.h"
 # include "./md5.h"
 # include "./sha256.h"
-# include "./sha512.h"
 
 # define FAILURE			-1
 # define SUCCESS			0
-
-# define MD5				1
-# define SHA256				2
 
 # define NO_CMD				1
 # define INVALID_CMD		2
