@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/02 15:08:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/04 20:40:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ const uint32_t	g_k_md5[64] = {
 	4149444226, 3174756917, 718787259, 3951481745
 };
 
-static void		padding_md5(t_padding *p, char *data, size_t len_data)
+static void		padding_md5(t_padding *p, char *data, size_t len)
 {
-	size_t	size_malloc;
+	int		i;
 
-	p->init_len = len_data;
-	p->new_len = p->init_len;
-	p->nb_bits = p->init_len * 8;
-	while ((p->new_len % 64) != 56)
-		p->new_len++;
-	size_malloc = p->new_len + 8;
-	if (!(p->msg8 = (uint8_t*)ft_memalloc(sizeof(uint8_t) * size_malloc)))
-		return ;
-	ft_memcpy(p->msg8, data, p->init_len);
-	p->msg8[p->init_len] |= 1 << 7;
-	ft_memcpy(p->msg8 + p->new_len, &p->nb_bits, 8);
+	i = -1;
+	p->init_len = len;
+	p->nb_bits = len * 8;
+	p->new_len = (448 - (p->nb_bits + 1)) % 512;
+	p->new_len += p->nb_bits + 64 + 1;
+	p->new_len /= 8;
+	if (!(p->msg8 = (uint8_t*)ft_memalloc(sizeof(uint8_t) * p->new_len)))
+		ft_abort("malloc failed");
+	ft_memcpy(p->msg8, data, len);
+	p->msg8[len] |= 1 << 7;
+	ft_memcpy(p->msg8 + p->new_len - 8, &p->nb_bits, 8);
 	p->offest = 0;
 }
 
@@ -86,7 +86,7 @@ t_hash			*md5(void *data, size_t len_data)
 
 	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
 	padding_md5(&(e.p), data, len_data);
-	while (e.p.offest < e.p.new_len + 8)
+	while (e.p.offest < e.p.new_len)
 	{
 		e.w = (uint32_t*)(e.p.msg8 + e.p.offest);
 		e.a = e.h0;
