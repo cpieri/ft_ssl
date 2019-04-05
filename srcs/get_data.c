@@ -6,7 +6,7 @@
 /*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 15:31:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/05 13:58:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_data		*get_data(const int fd, const char *fd_name)
 	}
 	if (nb_read == -1)
 		exit_error_free((void**)&ret);
-	return ((ret->data != NULL) ? ret : NULL);
+	(ret->data == NULL) ? ft_memdel((void**)&(ret->data)) : NULL;
+	return (ret);
 }
