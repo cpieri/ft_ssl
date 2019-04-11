@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 12:35:25 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 12:47:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_parse			parsing(const int ac, char **av)
 		}
 		i++;
 	}
-	if (parse.cmd == NULL)
-		print_usage(2, av[1]);
+	print_usage(2, av[1]);
 	return (parse);
 }
