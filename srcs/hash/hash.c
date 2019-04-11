@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 15:35:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 11:16:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	hashing(t_parse *parse)
 {
-	int		hash_type;
 	t_opt	*lst;
 
-	hash_type = parse->hash_type;
 	lst = parse->lst_opts;
 	while (lst != NULL)
 	{

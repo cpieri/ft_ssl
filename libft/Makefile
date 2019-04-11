@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/04/05 14:04:12 by cpieri           ###   ########.fr        #
+#    Updated: 2019/04/11 11:16:46 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		=	gcc
 
 ERROR	=	-g3 -flto -fsanitize=address -fno-omit-frame-pointer
 
-CFLAGS	=	-Wall -Wextra -Werror $(ERROR) 
+override CFLAGS	+=	-Wall -Wextra -Werror
 
 INCS	=	libft.h
 

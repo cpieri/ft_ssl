@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   md5_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 13:34:11 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/18 13:58:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 11:58:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#include "hash/md5.h"
 
 t_md5_utils	func_f(uint32_t b, uint32_t c, uint32_t d, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/29 15:00:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 11:57:05 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 # define FT_SSL_H
 
 # include "../libft/include/libft.h"
-# include "./md5.h"
-# include "./sha256.h"
+# include "./hash/md5.h"
+# include "./hash/sha256.h"
 
 # define FAILURE			-1
 # define SUCCESS			0
 
 # define NO_CMD				1
 # define INVALID_CMD		2
-
-enum		e_hash
-{
-	e_md5 = 1,
-	e_sha256,
-};
 
 typedef struct		s_data
 {
@@ -55,7 +49,6 @@ typedef struct		s_opt
 
 typedef	struct		s_parse
 {
-	enum e_hash		hash_type;
 	t_hash			*(*func)(void *, size_t);
 	t_opt			*(*fparse)(const int, char **, t_opt *, int);
 	char			*name;
