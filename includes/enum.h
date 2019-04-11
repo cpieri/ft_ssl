@@ -6,11 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 14:34:08 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 16:11:35 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:48:10 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	ENUM_H
+#ifndef ENUM_H
 # define ENUM_H
 
 enum	e_algo

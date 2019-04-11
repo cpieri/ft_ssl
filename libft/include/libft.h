@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2019/03/22 15:27:05 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 19:15:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memdup(const void *s1, size_t len);
 void				*ft_memjoin(const void *s1, const void *s2, size_t len1,
 		size_t len2);
+void				ft_memput(void *s, size_t len);
 void				*ftb_backwardmemcpy(void *dst, const void *src, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				ft_lstadd(t_list **alst, t_list *new);

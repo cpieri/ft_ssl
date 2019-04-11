@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 16:34:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 18:49:29 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,24 @@ typedef struct		s_data
 	t_hash			*f_hash;
 }					t_data;
 
+typedef struct		s_check_flags
+{
+	const char		c;
+	const int		flag;
+}					t_check_flags;
+
 typedef struct		s_flags
 {
 	int				p;
 	int				q;
 	int				r;
 	int				s;
+	uint32_t		b64_flags;
 }					t_flags;
 
 typedef struct		s_opt
 {
+	const char		*fd_output;
 	t_data			*data;
 	t_flags			flags;
 	struct s_opt	*next;
@@ -47,6 +55,5 @@ typedef	struct		s_parse
 	void			(*fprint)(t_data *, const char *, t_flags);
 	t_opt			*lst_opts;
 }					t_parse;
-
 
 #endif

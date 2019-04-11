@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 15:10:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:50:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	hashing(t_parse *parse)
 	while (lst != NULL)
 	{
 		if (parse->is_ciphash == e_hash)
-			lst->data->f_hash = (t_hash*)parse->func(lst->data->data, lst->data->len_data);
+			lst->data->f_hash = (t_hash*)parse->func(lst->data->data,
+					lst->data->len_data);
 		else if (parse->is_ciphash == e_cipher)
 			parse->func(lst, 0);
 		if (parse->fprint != NULL)

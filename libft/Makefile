@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/04/11 11:16:46 by cpieri           ###   ########.fr        #
+#    Updated: 2019/04/11 19:13:41 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS = 		ft_atoi.c					\
 			ft_isdigit.c 				\
 			ft_isprint.c				\
 			ft_itoa.c					\
+			ft_memput.c					\
 			ft_memalloc.c				\
 	 		ft_memccpy.c				\
 	  		ft_memchr.c					\

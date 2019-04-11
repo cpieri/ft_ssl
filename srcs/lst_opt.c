@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   lst_opt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 15:35:59 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 19:23:33 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ void	print_lst(t_opt **lst)
 	tmp = *lst;
 	while (tmp != NULL)
 	{
-		ft_putendl(tmp->data->data);
-		if (tmp->next != NULL)
-			tmp = tmp->next;
-		else
-			break ;
+		ft_memput(tmp->data->data, tmp->data->len_data);
+		if (tmp->fd_output != NULL)
+			ft_putendl(tmp->fd_output);
+		tmp = tmp->next;
 	}
 }
 
@@ -53,5 +52,6 @@ t_opt	*new_opt(t_flags flags, t_data *data)
 	new->next = NULL;
 	new->data = data;
 	new->flags = flags;
+	new->fd_output = NULL;
 	return (new);
 }
