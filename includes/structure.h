@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 12:42:56 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:02:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_opt
 {
 	t_data			*data;
 	t_flags			flags;
+	uint32_t		uint_flags;
 	struct s_opt	*next;
 }					t_opt;
 
@@ -41,8 +42,10 @@ typedef	struct		s_parse
 {
 	const char		*cmd;
 	const char		*name;
-	t_hash			*(*func)(void *, size_t);
+	int				is_ciphash;
+	void			*(*func)(void *, size_t);
 	t_opt			*(*fparse)(const int, char **, t_opt *, int);
+	void			(*fprint)(t_data *, const char *, t_flags);
 	t_opt			*lst_opts;
 }					t_parse;
 

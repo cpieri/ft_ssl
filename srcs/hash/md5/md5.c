@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 11:57:47 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 14:12:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void		calc_sum(t_md5 *e)
 	}
 }
 
-t_hash			*md5(void *data, size_t len_data)
+void			*md5(void *data, size_t len_data)
 {
 	t_md5		e;
 	t_hash		*f_hash;

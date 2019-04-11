@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:16:22 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 10:43:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 14:11:08 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ t_md5_utils		func_g(uint32_t b, uint32_t c, uint32_t d, int i);
 t_md5_utils		func_h(uint32_t b, uint32_t c, uint32_t d, int i);
 t_md5_utils		func_i(uint32_t b, uint32_t c, uint32_t d, int i);
 t_hash			*set_hash2md5(t_md5 *e);
-t_hash			*md5(void *data, size_t len_data);
+void			*md5(void *data, size_t len_data);
 
 #endif

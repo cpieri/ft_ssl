@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 12:47:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:10:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_parse			parsing(const int ac, char **av)
 
 	now = 1;
 	i = 0;
-	parse = (t_parse){NULL, NULL, NULL, NULL, NULL};
+	parse = (t_parse){NULL, NULL, 0, NULL, NULL, NULL, NULL};
 	while (g_all_cmd[i].cmd != NULL)
 	{
 		if (ft_strcmp(g_all_cmd[i].cmd, av[now]) == 0)

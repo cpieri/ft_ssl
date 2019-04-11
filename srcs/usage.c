@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:06:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 12:42:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 14:11:59 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	invalid_command(const char *command)
 	ft_putendl_fd("", 2);
 	ft_putendl_fd("Cipher commands:", 2);
 	i = 0;
-	while (g_chipher_cmd[i] != NULL)
-		ft_putendl_fd(g_chipher_cmd[i++], 2);
+	while (g_cipher_cmd[i] != NULL)
+		ft_putendl_fd(g_cipher_cmd[i++], 2);
 }
 
 void		print_usage(const int usage_int, const char *command)

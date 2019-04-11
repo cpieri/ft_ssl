@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 15:10:23 by cpieri           ###   ########.fr       */
+/*   Created: 2019/04/11 14:34:08 by cpieri            #+#    #+#             */
+/*   Updated: 2019/04/11 15:04:18 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#ifndef	ENUM_H
+# define ENUM_H
 
-void	hashing(t_parse *parse)
+enum	e_algo
 {
-	t_opt	*lst;
+	e_hash = 1,
+	e_cipher,
+};
 
-	lst = parse->lst_opts;
-	while (lst != NULL)
-	{
-		if (parse->is_ciphash == e_hash)
-			lst->data->f_hash = (t_hash*)parse->func(lst->data->data, lst->data->len_data);
-		else if (parse->is_ciphash == e_cipher)
-			parse->func(lst, 0);
-		if (parse->fprint != NULL)
-			parse->fprint(lst->data, parse->name, lst->flags);
-		lst = lst->next;
-	}
-}
+enum	e_cipher_flags
+{
+	e_base64_encode = 1,
+};
+
+#endif

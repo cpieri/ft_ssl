@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   base64.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 15:10:23 by cpieri           ###   ########.fr       */
+/*   Created: 2019/04/11 14:03:37 by cpieri            #+#    #+#             */
+/*   Updated: 2019/04/11 14:24:57 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#ifndef	BASE64_H
+# define BASE64_H
 
-void	hashing(t_parse *parse)
+typedef struct	s_base64
 {
-	t_opt	*lst;
+	uint32_t	n;
+}				t_base64;
 
-	lst = parse->lst_opts;
-	while (lst != NULL)
-	{
-		if (parse->is_ciphash == e_hash)
-			lst->data->f_hash = (t_hash*)parse->func(lst->data->data, lst->data->len_data);
-		else if (parse->is_ciphash == e_cipher)
-			parse->func(lst, 0);
-		if (parse->fprint != NULL)
-			parse->fprint(lst->data, parse->name, lst->flags);
-		lst = lst->next;
-	}
-}
+char			*base64_encode(void *data, size_t len_data);
+void			*base64(void *data, size_t len_data);
+
+#endif

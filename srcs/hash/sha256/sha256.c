@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:47:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 11:57:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 14:12:18 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void		calc_sha256(t_sha256 *t)
 	t->h7 += t->h;
 }
 
-t_hash			*sha256(void *data, size_t len_data)
+void			*sha256(void *data, size_t len_data)
 {
 	t_hash		*f_hash;
 	t_sha256	t;

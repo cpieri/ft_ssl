@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   base64_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 15:10:23 by cpieri           ###   ########.fr       */
+/*   Created: 2019/04/11 15:11:07 by cpieri            #+#    #+#             */
+/*   Updated: 2019/04/11 15:19:00 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void	hashing(t_parse *parse)
+t_opt	*base64_opts(const int ac, char **av, t_opt *opts, int now)
 {
-	t_opt	*lst;
-
-	lst = parse->lst_opts;
-	while (lst != NULL)
-	{
-		if (parse->is_ciphash == e_hash)
-			lst->data->f_hash = (t_hash*)parse->func(lst->data->data, lst->data->len_data);
-		else if (parse->is_ciphash == e_cipher)
-			parse->func(lst, 0);
-		if (parse->fprint != NULL)
-			parse->fprint(lst->data, parse->name, lst->flags);
-		lst = lst->next;
-	}
+	(void)ac, (void)av, (void)now, (void)opts;
+	return (opts);
 }
