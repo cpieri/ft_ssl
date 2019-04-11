@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 15:17:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:34:44 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 */
 t_parse				parsing(const int ac, char **av);
 t_opt				*hash_opts(const int ac, char **av, t_opt *opts, int now);
-t_opt				*base64_opts(const int ac, char **av, t_opt *opts, int now);
 int					open_fd(const char *file);
 t_data				*get_data(const int fd, const char *fd_name);
 t_data				*get_file(const int fd, const char *fd_name);

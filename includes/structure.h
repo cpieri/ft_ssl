@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 15:02:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 16:34:57 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct		s_opt
 {
 	t_data			*data;
 	t_flags			flags;
-	uint32_t		uint_flags;
 	struct s_opt	*next;
 }					t_opt;
 

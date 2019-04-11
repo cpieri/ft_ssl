@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/04/11 15:18:15 by cpieri           ###   ########.fr        #
+#    Updated: 2019/04/11 16:35:38 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ DEPS =		Makefile				\
 			includes/enum.h			\
 			includes/functions.h	\
 			includes/structure.h	\
-			includes/des/base64.h	\
 			includes/hash/sha256.h	\
 			includes/hash/hash.h	\
 			includes/hash/md5.h		\
@@ -53,8 +52,6 @@ SRC_NAME= 	main.c						\
 			hash/sha256/sha256_utils.c	\
 			hash/md5/md5_utils.c		\
 			hash/md5/md5.c				\
-			base64/base64.c				\
-			base64/base64_parsing.c		\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
