@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.h                                             :+:      :+:    :+:   */
+/*   constant.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 12:46:06 by cpieri           ###   ########.fr       */
+/*   Created: 2019/04/11 12:15:35 by cpieri            #+#    #+#             */
+/*   Updated: 2019/04/11 12:42:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HASH_H
-# define HASH_H
+#ifndef	CONSTANT_H
+# define CONSTANT_H
 
-# include "../libft/include/libft.h"
-
-typedef struct	s_hash
+static const t_parse	g_all_cmd[] =
 {
-	uint32_t	*h;
-	size_t		nb_word;
-}				t_hash;
+	{"md5", "MD5", md5, hash_opts, NULL},
+	{"sha256", "SHA256", sha256, hash_opts, NULL},
+	{NULL, NULL, NULL, NULL, NULL},
+	{"base64", NULL, NULL, NULL, NULL},
+};
 
-typedef struct	s_padding
+static const char *		g_hash_cmd[] =
 {
-	size_t		init_len;
-	size_t		new_len;
-	size_t		nb_bits;
-	size_t		offest;
-	uint8_t		*msg8;
-}				t_padding;
+	"md5",
+	"sha256",
+	NULL
+};
+
+static const char *		g_chipher_cmd[] =
+{
+	"base64",
+	"des",
+	"des-ecb",
+	"des-cbc",
+	NULL
+};
 
 #endif

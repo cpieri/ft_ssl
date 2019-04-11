@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   usage.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:06:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 15:19:48 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 12:42:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 static void	invalid_command(const char *command)
 {
+	int		i;
+
+	i = 0;
 	ft_putstr_fd("ft_ssl: Error: ", 2);
 	ft_putstr_fd(command, 2);
 	ft_putendl_fd(" is an invalid command.", 2);
@@ -23,10 +26,13 @@ static void	invalid_command(const char *command)
 	ft_putendl_fd("Standard commands:", 2);
 	ft_putendl_fd("", 2);
 	ft_putendl_fd("Message Digest commands:", 2);
-	ft_putendl_fd("md5", 2);
-	ft_putendl_fd("sha256", 2);
+	while (g_hash_cmd[i] != NULL)
+		ft_putendl_fd(g_hash_cmd[i++], 2);
 	ft_putendl_fd("", 2);
 	ft_putendl_fd("Cipher commands:", 2);
+	i = 0;
+	while (g_chipher_cmd[i] != NULL)
+		ft_putendl_fd(g_chipher_cmd[i++], 2);
 }
 
 void		print_usage(const int usage_int, const char *command)
