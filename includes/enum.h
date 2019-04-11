@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl.h                                           :+:      :+:    :+:   */
+/*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 16:36:18 by cpieri           ###   ########.fr       */
+/*   Created: 2019/04/11 14:34:08 by cpieri            #+#    #+#             */
+/*   Updated: 2019/04/11 16:11:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_H
-# define FT_SSL_H
+#ifndef	ENUM_H
+# define ENUM_H
 
-# include "../libft/include/libft.h"
-# include "./hash/md5.h"
-# include "./hash/sha256.h"
-# include "define.h"
-# include "enum.h"
-# include "structure.h"
-# include "functions.h"
-# include "constant.h"
+enum	e_algo
+{
+	e_hash = 1,
+	e_cipher,
+};
+
+enum	e_cipher_flags
+{
+	e_base64_encode = 1,
+	e_base64_decode,
+	e_base64_inputf,
+	e_base64_outputf,
+};
 
 #endif

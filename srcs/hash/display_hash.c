@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 12:39:00 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 12:30:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	print_hash(t_hash *f_hash)
 	}
 }
 
-void		printing_hash(t_data *data, char *hash_type, t_flags flags)
+void		printing_hash(t_data *data, const char *hash_type, t_flags flags)
 {
 	if (flags.r == 0 && flags.q == 0 && data->fd_name != NULL)
 	{

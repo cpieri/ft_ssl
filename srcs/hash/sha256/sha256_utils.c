@@ -6,11 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:40:50 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/22 17:59:08 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 11:57:33 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sha256.h"
+#include "hash/sha256.h"
 
 t_hash	*set_hash2sha256(t_sha256 *e)
 {

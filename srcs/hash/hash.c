@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/26 15:35:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/11 15:10:23 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	hashing(t_parse *parse)
 {
-	int		hash_type;
 	t_opt	*lst;
 
-	hash_type = parse->hash_type;
 	lst = parse->lst_opts;
 	while (lst != NULL)
 	{
-		lst->data->f_hash = (parse->func)(lst->data->data, lst->data->len_data);
-		printing_hash(lst->data, parse->name, lst->flags);
+		if (parse->is_ciphash == e_hash)
+			lst->data->f_hash = (t_hash*)parse->func(lst->data->data, lst->data->len_data);
+		else if (parse->is_ciphash == e_cipher)
+			parse->func(lst, 0);
+		if (parse->fprint != NULL)
+			parse->fprint(lst->data, parse->name, lst->flags);
 		lst = lst->next;
 	}
 }
