@@ -6,84 +6,67 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:56:03 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 11:31:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/12 15:28:24 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include <stdio.h>
 
+t_data	*get_b64_opt(char **av, int *now, t_flags *flags, char **output)
+{
+	t_data		*data;
+	size_t		len_now;
+	size_t		i;
+
+	i = 0;
+	data = NULL;
+	len_now = ft_strlen(av[*now]);
+	while (++i < len_now)
+	{
+		if (av[*now][i] == 'e' || av[*now][i] == 'd')
+			get_b64_ed(&data, flags, NULL, av[*now][i]);
+		else if (av[*now][i] == 'i')
+			get_b64_i(&data, flags, av[(*now) + 1], now);
+		else if (av[*now][i] == 'o')
+		{
+			flags->b64_flags |= e_base64_outputf;
+			if (av[(*now) + 1] != NULL)
+				*output = av[(*now) + 1];
+			else
+				*output = NULL;
+			(*now)++;
+		}
+	}
+	return (data);
+}
+
 t_opt	*get_base64_args(const int ac, char **av, int now)
 {
-	t_opt	*new;
-	t_flags	flags;
-	t_data	*data;
-	char	*fd_output = NULL;
-	size_t	len_now;
-	size_t	i;
+	t_opt	t_o;
+	t_data	*tmp;
+	char	*fd_output;
 
-	if (ac < 3)
-	{
-		flags.b64_flags |= e_base64_encode;
-		data = get_data(0, NULL);
-	}
+	fd_output = NULL;
+	tmp = NULL;
 	while (now < ac)
 	{
-		printf("av: %s\n", av[now]);
 		if (av[now][0] == '-')
 		{
-			i = 0;
-			len_now = ft_strlen(av[now]);
-			while (++i < len_now)
+			tmp = get_b64_opt(av, &now, &(t_o.flags), &fd_output);
+			if (tmp != NULL)
 			{
-				if (av[now][i] == 'e')
-				{
-					flags.b64_flags |= e_base64_encode;
-					if (data == NULL)
-						data = get_data(0, NULL);
-				}
-				else if (av[now][i] == 'd' || av[now][i] == 'D')
-				{
-					flags.b64_flags |= e_base64_decode;
-					if (data == NULL)
-						data = get_data(0, NULL);
-				}
-				else if (av[now][i] == 'i')
-				{
-					flags.b64_flags |= e_base64_inputf;
-					if (data != NULL)
-						clean_data(&data);
-					data = get_data(open_fd(av[now + 1]), av[now + 1]);
-					now++;
-				}
-				else if (av[now][i] == 'o')
-				{
-					flags.b64_flags |= e_base64_inputf;
-					if (av[now + 1] != NULL)
-						fd_output = av[now + 1];
-					else
-						fd_output = NULL;
-					now++;
-				}
+				clean_data(&(t_o.data));
+				t_o.data = tmp;
 			}
 		}
 		else
-		{
-			flags.b64_flags |= e_base64_encode;
-			data = get_file(open_fd(av[now]), av[now]);
-			break ;
-		}
+			get_b64_ed(&(t_o.data), &(t_o.flags), av[now], 'e');
 		now++;
 	}
-	if (data == NULL)
-	{
-		flags.b64_flags |= e_base64_encode;
-		data = get_data(0, NULL);
-	}
-	new = new_opt(flags, data);
-	if (fd_output != NULL && new != NULL)
-		new->fd_output = fd_output;
-	return (new);
+	if (t_o.data == NULL)
+		get_b64_ed(&(t_o.data), &(t_o.flags), NULL, 'e');
+	return (new_opt_fd(t_o.flags, t_o.data, fd_output));
 }
 
 t_opt	*base64_opts(const int ac, char **av, t_opt *opts, int now)

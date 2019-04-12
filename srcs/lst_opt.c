@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 10:35:49 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/12 14:21:37 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,20 @@ t_opt	*new_opt(t_flags flags, t_data *data)
 	new->data = data;
 	new->flags = flags;
 	new->fd_output = NULL;
+	return (new);
+}
+
+t_opt	*new_opt_fd(t_flags flags, t_data *data, char *fd)
+{
+	t_opt	*new;
+
+	if (data == NULL)
+		return (NULL);
+	if (!(new = (t_opt*)malloc(sizeof(t_opt))))
+		return (NULL);
+	new->next = NULL;
+	new->data = data;
+	new->flags = flags;
+	new->fd_output = (fd != NULL) ? fd : NULL;
 	return (new);
 }

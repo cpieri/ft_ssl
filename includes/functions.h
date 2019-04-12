@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 10:27:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/12 14:53:00 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ int					open_fd(const char *file);
 t_data				*get_data(const int fd, const char *fd_name);
 t_data				*get_file(const int fd, const char *fd_name);
 t_data				*get_string(char *s);
+void				get_b64_ed(t_data **data, t_flags *flags, char *fd, char c);
+void				get_b64_i(t_data **data, t_flags *flags, char *fd, int *now);
+
 
 /*
 **	Functions for Lst_opt
 */
+t_opt				*new_opt_fd(t_flags flags, t_data *data, char *fd);
 t_opt				*new_opt(t_flags flags, t_data *data);
 void				add_to_end_lst(t_opt *new, t_opt **lst);
 void				print_lst(t_opt **lst);
