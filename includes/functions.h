@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 15:36:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:14:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_data	*get_file(const int fd, const char *fd_name);
 t_data	*get_string(char *s);
 void	get_b64_ed(t_data **data, t_flags *flags, char *fd, char c);
 void	get_b64_i(t_data **data, t_flags *flags, char *fd, int *now);
+
+void	*base64(void *opts, size_t len_opts);
 
 /*
 **	Functions for Lst_opt

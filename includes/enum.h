@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 14:34:08 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 15:34:41 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/12 17:45:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ enum	e_algo
 
 enum	e_cipher_flags
 {
-	e_base64_encode = 0x00000001,
-	e_base64_decode = 0x00000010,
-	e_base64_inputf = 0x00000100,
-	e_base64_outputf = 0x00001000,
+	e_base64_encode = 1,
+	e_base64_decode = 2,
+	e_base64_inputf = 3,
+	e_base64_outputf = 4,
+	// e_base64_encode = 0x00000001,
+	// e_base64_decode = 0x00000010,
+	// e_base64_inputf = 0x00000100,
+	// e_base64_outputf = 0x00001000,
 };
 
 #endif
