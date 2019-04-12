@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 17:33:45 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/12 10:27:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void				exit_error_free(void **to_free);
 void				print_error(const char *msg_1);
 void				print_usage(const int usage_int, const char *command);
 void				clean_prog(t_parse *parse);
+void				clean_data(t_data **data);
 
 #endif
