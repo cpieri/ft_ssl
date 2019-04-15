@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/04/12 17:15:44 by cpieri           ###   ########.fr        #
+#    Updated: 2019/04/15 13:47:31 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ SRC_NAME= 	main.c							\
 			hash/md5/md5_utils.c			\
 			hash/md5/md5.c					\
 			base64/base64.c					\
+			base64/base64_encode.c			\
+			base64/base64_decode.c			\
 			base64/base64_parsing.c			\
 			base64/base64_help_parsing.c	\
 

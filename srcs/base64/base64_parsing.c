@@ -6,11 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:56:03 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 15:28:24 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/15 11:24:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+#include "base64/base64.h"
 #include <stdio.h>
 
 t_data	*get_b64_opt(char **av, int *now, t_flags *flags, char **output)

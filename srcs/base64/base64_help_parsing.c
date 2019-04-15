@@ -6,11 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:39:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 14:52:42 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/15 11:24:16 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+#include "base64/base64.h"
 
 void	get_b64_ed(t_data **data, t_flags *flags, char *fd, char c)
 {
