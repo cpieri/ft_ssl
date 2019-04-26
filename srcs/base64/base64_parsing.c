@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:56:03 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/15 11:24:31 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/26 11:42:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_data	*get_b64_opt(char **av, int *now, t_flags *flags, char **output)
 	while (++i < len_now)
 	{
 		if (av[*now][i] == 'e' || av[*now][i] == 'd')
-			get_b64_ed(&data, flags, NULL, av[*now][i]);
+			get_b64_ed(&data, flags,
+			(av[*now + 1] != NULL ? av[*now + 1] : NULL), av[*now][i]);
 		else if (av[*now][i] == 'i')
 			get_b64_i(&data, flags, av[(*now) + 1], now);
 		else if (av[*now][i] == 'o')

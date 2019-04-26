@@ -1,0 +1,6 @@
+[ft_ssl] cat auteur | wc -c                                                   des  ✗ ✭ ✱
+       7
+[ft_ssl] cat Makefile | wc -c                                                 des  ✗ ✭ ✱
+    2822
+[ft_ssl] cat srcs/clean.c | wc -c                                             des  ✗ ✭ ✱
+    1591

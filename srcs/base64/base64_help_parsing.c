@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:39:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/15 11:24:16 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/26 11:58:27 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@ void	get_b64_ed(t_data **data, t_flags *flags, char *fd, char c)
 {
 	if (*data != NULL)
 		clean_data(data);
-	flags->b64_flags |= (c == 'd') ? e_base64_decode : e_base64_encode;
+	if (c == 'd')
+	{
+		flags->b64_flags |= e_base64_decode;
+		if ((flags->b64_flags & e_base64_encode) == e_base64_encode)
+			flags->b64_flags = (flags->b64_flags ^ e_base64_encode);
+	}
+	else if (c == 'e' && (flags->b64_flags & e_base64_decode) == 0)
+		flags->b64_flags |= e_base64_encode;
 	if (fd == NULL)
 		*data = get_data(0, NULL);
 	else

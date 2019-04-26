@@ -6,32 +6,77 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/22 09:53:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/26 17:26:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "base64/base64.h"
 #include <stdio.h>
 
-static size_t	b64_len_decode(uint8_t *s)
+static const unsigned char g_base64_d[] = {
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 62, 64, 64, 64, 63, 52, 53, 54, 55, 56, 57,
+	58, 59, 60, 61, 64, 64, 64, 65, 64, 64, 64, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+	10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 64, 64,
+	64, 64, 64, 64, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+	40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
+	64
+};
+
+static size_t	b64_len_decode(uint8_t *msg, size_t len)
 {
 	size_t	new_len;
-	uint8_t	*tmp;
 
-	tmp = s;
-	while (g_base64_d[*(tmp++)] <= 63);
-	new_len = (tmp - s) - 1;
-	printf("new_len = %zu\n", new_len);
-	return (((new_len + 3) / 4) * 3);
+	new_len = (len / 4) * 3;
+	len -= 2;
+	while (msg[len--] == '=')
+		new_len--;
+	return (new_len + 1);
+}
+
+static void		b64_decode_val(t_base64_decode *n, uint8_t *msg, size_t *i)
+{
+	n->n0 = (msg[*i] == '=') ? 0 & *i + 0 : g_base64_d[msg[*i + 0]];
+	n->n1 = (msg[*i] == '=') ? 0 & *i + 1 : g_base64_d[msg[*i + 1]];
+	n->n2 = (msg[*i] == '=') ? 0 & *i + 2 : g_base64_d[msg[*i + 2]];
+	n->n3 = (msg[*i] == '=') ? 0 & *i + 3 : g_base64_d[msg[*i + 3]];
+	n->tmp = (n->n0 << 18) + (n->n1 << 12) + (n->n2 << 6) + (n->n3);
+	*i += 4;
 }
 
 uint8_t			*base64_decode(uint8_t *msg, size_t len)
 {
-	size_t	len_plain;
+	t_base64_decode	n;
+	size_t			len_plain;
+	uint8_t			*plain_msg;
+	size_t			i;
+	size_t			j;
 
-	(void)len;
-	printf("decode func\n");
-	len_plain = b64_len_decode(msg);
-	printf("len_plain = %zu\n", len_plain);
-	return (msg);
+	i = 0;
+	j = 0;
+	len_plain = b64_len_decode(msg, len);
+	if (!(plain_msg = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
+		return (NULL);
+	while (i < len)
+	{
+		if (ft_isspace(msg[i]) == 1)
+			i++;
+		else
+			b64_decode_val(&n, msg, &i);
+		if (j + 3 < len_plain)
+		{
+			plain_msg[j++] = (n.tmp >> 16) & 0xff;
+			plain_msg[j++] = (n.tmp >> 8) & 0xff;
+			plain_msg[j++] = (n.tmp) & 0xff;
+		}
+	}
+	return (plain_msg);
 }
