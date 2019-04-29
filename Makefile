@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/04/15 13:47:31 by cpieri           ###   ########.fr        #
+#    Updated: 2019/04/29 12:21:12 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC_NAME= 	main.c							\
 			base64/base64_decode.c			\
 			base64/base64_parsing.c			\
 			base64/base64_help_parsing.c	\
+			base64/base64_display.c			\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

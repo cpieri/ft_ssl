@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   display_hash.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:14:10 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 12:30:48 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 12:12:10 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ static void	print_hash(t_hash *f_hash)
 
 void		printing_hash(t_data *data, const char *hash_type, t_flags flags)
 {
+	t_hash	*f_hash;
+
+	f_hash = (t_hash*)data->data_2_print;
 	if (flags.r == 0 && flags.q == 0 && data->fd_name != NULL)
 	{
 		ft_putstr(hash_type);
@@ -51,7 +54,7 @@ void		printing_hash(t_data *data, const char *hash_type, t_flags flags)
 	}
 	else if (flags.p == 1)
 		ft_putstr(data->data);
-	print_hash(data->f_hash);
+	print_hash(f_hash);
 	if (flags.r == 1)
 	{
 		ft_putchar(' ');

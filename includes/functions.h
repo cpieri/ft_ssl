@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 17:14:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 12:14:02 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_lst(t_opt **lst);
 */
 void	hashing(t_parse *parse);
 void	printing_hash(t_data *data, const char *hash_type, t_flags flags);
+void	printing_base64(t_data *data, const char *hash_type, t_flags flags);
 
 /*
 **	Functions for Exit, Clean, Error

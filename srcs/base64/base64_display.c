@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   base64_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 12:19:58 by cpieri           ###   ########.fr       */
+/*   Created: 2019/04/29 12:13:14 by cpieri            #+#    #+#             */
+/*   Updated: 2019/04/29 12:18:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void	hashing(t_parse *parse)
+void	printing_base64(t_data *data, const char *name, t_flags flags)
 {
-	t_opt	*lst;
+	const char	*msg_print;
 
-	lst = parse->lst_opts;
-	while (lst != NULL)
-	{
-		if (parse->is_ciphash == e_hash)
-			lst->data->data_2_print = (t_hash*)parse->func(lst->data->data,
-					lst->data->len_data);
-		else if (parse->is_ciphash == e_cipher)
-			lst->data->data_2_print = parse->func(lst, 0);
-		if (parse->fprint != NULL)
-			parse->fprint(lst->data, parse->name, lst->flags);
-		lst = lst->next;
-	}
+	msg_print = (const char *)data->data_2_print;
+	(void)flags;
+	ft_putstr(name);
+	ft_putstr(": ");
+	ft_putendl(msg_print);
 }
