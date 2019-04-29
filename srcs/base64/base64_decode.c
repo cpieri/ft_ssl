@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 15:36:35 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 19:23:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,60 +31,108 @@ static const unsigned char g_base64_d[] = {
 	64
 };
 
-static size_t	b64_len_decode(uint8_t *msg, size_t len)
+static size_t	b64_decode_len(uint8_t *msg, size_t len)
 {
 	size_t	new_len;
 
 	new_len = (len / 4) * 3;
 	len -= 2;
-	printf("msg[len]: %c\n", msg[len]);
+	// printf("msg[len]: %c\n", msg[len]);
 	while (msg[len--] == '=')
 		new_len--;
-	printf("new_len: %zu\n", new_len);
+	// printf("new_len: %zu\n", new_len);
 	return (new_len + 1);
 }
 
- void		b64_decode_val(t_base64_decode *n, uint8_t *msg, size_t *i)
+uint32_t		b64_decode_val(uint8_t *msg, size_t *i, size_t len)
 {
-	n->n0 = (msg[*i] == '=') ? 0 & *i + 0 : g_base64_d[msg[*i + 0]];
-	n->n1 = (msg[*i] == '=') ? 0 & *i + 1 : g_base64_d[msg[*i + 1]];
-	n->n2 = (msg[*i] == '=') ? 0 & *i + 2 : g_base64_d[msg[*i + 2]];
-	n->n3 = (msg[*i] == '=') ? 0 & *i + 3 : g_base64_d[msg[*i + 3]];
-	n->tmp = (n->n0 << 18) + (n->n1 << 12) + (n->n2 << 6) + (n->n3);
-	*i += 4;
+	size_t		p;
+	uint32_t	tmp;
+	int			l_shift;
+
+	p = 0;
+	l_shift = 18;
+	tmp = 0;
+	while (p < 4 && *i < len)
+	{
+		if (ft_isspace(msg[*i]) == 1)
+			*i += 1;
+		else
+		{
+			tmp += ((msg[*i] == '=') ? 0 & *i : g_base64_d[msg[*i]]) << l_shift;
+			l_shift += (l_shift == 0) ? 18 : -6;
+		}
+		*i += 1;
+		p++;
+	}
+	return (tmp);
 }
 
 uint8_t			*base64_decode(uint8_t *msg, size_t len)
 {
-	t_base64_decode	n;
-	size_t			len_plain;
-	uint8_t			*plain_msg;
-	size_t			i;
-	size_t			j;
-	size_t			p;
-	size_t			l_shift = 18;
+	uint8_t		*plain_msg;
+	size_t		len_plain;
+	size_t		i;
+	size_t		j = 0;
+	uint32_t	tmp;
 
-	i = 0;
-	j = 0;
-	len_plain = b64_len_decode(msg, len);
+	i = -1;
+	len_plain = b64_decode_len(msg, len);
 	if (!(plain_msg = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
 		return (NULL);
-	while (i < len)
+	while (j < len_plain && i < len)
 	{
-		if (ft_isspace(msg[i]) == 1)
-			i++;
-		n.n0 = g_base64_d[msg[i]];
-		n.tmp += (n.n0 << l_shift);
-		p++;
-		if (p == 4 && j + 3 < len_plain)
-		{
-			plain_msg[j++] = (n.tmp >> 16) & 0xff;
-			plain_msg[j++] = (n.tmp >> 8) & 0xff;
-			plain_msg[j++] = (n.tmp) & 0xff;
-			p = 0;
-		}
-		l_shift += (l_shift == 0) ? 18 : -6;
-		i++;
+		tmp = b64_decode_val(msg, &i, len);
 	}
 	return (plain_msg);
 }
+
+// uint8_t			*base64_decode(uint8_t *msg, size_t len)
+// {
+// 	t_base64_decode	n;
+// 	size_t			len_plain;
+// 	uint8_t			*plain_msg;
+// 	size_t			i;
+// 	size_t			j;
+// 	size_t			p = 0;
+// 	size_t			l_shift = 18;
+// 	size_t			r_shift = 16;
+
+// 	i = 0;
+// 	j = 0;
+// 	n = (t_base64_decode){0,0,0,0,0};
+// 	len_plain = b64_len_decode(msg, len);
+// 	if (!(plain_msg = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
+// 		return (NULL);
+// 	while (i < len)
+// 	{
+// 		if (ft_isspace(msg[i]) == 1)
+// 			i++;
+// 		else
+// 		{
+// 			n.tmp += g_base64_d[msg[i]] << l_shift;
+// 			printf("l_shift: %zu\n", l_shift);
+// 			ft_membits(&(n.tmp), 0, sizeof(uint32_t));
+// 			l_shift += (l_shift == 0) ? 18 : -6;
+// 			p++;
+// 			if (p == 4)
+// 			{
+// 				printf("here\n");
+// 				while (j < (len_plain - 1))
+// 				{
+// 					printf("r_shift: %zu\n", r_shift);
+// 					plain_msg[j++] = (n.tmp >> r_shift) & 0xff;
+// 					if (r_shift == 0)
+// 						break ;
+// 					else
+// 						r_shift -= 8;
+// 				}
+// 				r_shift = 16;
+// 				p = 0;
+// 				n.tmp = 0;
+// 			}
+// 			i++;
+// 		}
+// 	}
+// 	return (plain_msg);
+// }
