@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/04/29 12:21:12 by cpieri           ###   ########.fr        #
+#    Updated: 2019/04/29 14:21:49 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,9 @@ SRC_NAME= 	main.c							\
 			usage.c							\
 			parsing.c						\
 			get_data.c						\
+			help.c							\
 			lst_opt.c						\
-			hash/hash.c						\
+			dispatch.c						\
 			hash/hash_parsing.c				\
 			hash/display_hash.c				\
 			hash/sha256/sha256.c			\

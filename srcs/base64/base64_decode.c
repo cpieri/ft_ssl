@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/26 17:26:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 15:36:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ static size_t	b64_len_decode(uint8_t *msg, size_t len)
 
 	new_len = (len / 4) * 3;
 	len -= 2;
+	printf("msg[len]: %c\n", msg[len]);
 	while (msg[len--] == '=')
 		new_len--;
+	printf("new_len: %zu\n", new_len);
 	return (new_len + 1);
 }
 
-static void		b64_decode_val(t_base64_decode *n, uint8_t *msg, size_t *i)
+ void		b64_decode_val(t_base64_decode *n, uint8_t *msg, size_t *i)
 {
 	n->n0 = (msg[*i] == '=') ? 0 & *i + 0 : g_base64_d[msg[*i + 0]];
 	n->n1 = (msg[*i] == '=') ? 0 & *i + 1 : g_base64_d[msg[*i + 1]];
@@ -59,6 +61,8 @@ uint8_t			*base64_decode(uint8_t *msg, size_t len)
 	uint8_t			*plain_msg;
 	size_t			i;
 	size_t			j;
+	size_t			p;
+	size_t			l_shift = 18;
 
 	i = 0;
 	j = 0;
@@ -69,14 +73,18 @@ uint8_t			*base64_decode(uint8_t *msg, size_t len)
 	{
 		if (ft_isspace(msg[i]) == 1)
 			i++;
-		else
-			b64_decode_val(&n, msg, &i);
-		if (j + 3 < len_plain)
+		n.n0 = g_base64_d[msg[i]];
+		n.tmp += (n.n0 << l_shift);
+		p++;
+		if (p == 4 && j + 3 < len_plain)
 		{
 			plain_msg[j++] = (n.tmp >> 16) & 0xff;
 			plain_msg[j++] = (n.tmp >> 8) & 0xff;
 			plain_msg[j++] = (n.tmp) & 0xff;
+			p = 0;
 		}
+		l_shift += (l_shift == 0) ? 18 : -6;
+		i++;
 	}
 	return (plain_msg);
 }

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 12:10:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 14:08:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef struct		s_data
 {
+	const char		*fd_output;
 	const char		*fd_name;
 	char			*data;
 	size_t			len_data;
@@ -40,7 +41,6 @@ typedef struct		s_flags
 
 typedef struct		s_opt
 {
-	const char		*fd_output;
 	t_data			*data;
 	t_flags			flags;
 	struct s_opt	*next;

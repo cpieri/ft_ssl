@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/05 13:58:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 14:16:13 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,41 +28,6 @@ t_data		*get_string(char *s)
 	return (ret);
 }
 
-int			open_fd(const char *file)
-{
-	int		fd;
-	char	*tmp;
-
-	fd = open(file, O_RDONLY);
-	tmp = NULL;
-	if (fd == FAILURE)
-	{
-		print_error(file);
-		return (FAILURE);
-	}
-	if (read(fd, tmp, 0) == FAILURE)
-	{
-		if (close(fd) != 0)
-			exit_error();
-		print_error(file);
-		return (FAILURE);
-	}
-	return (fd);
-}
-
-static int	reopen_fd(const int current_fd, const char *file)
-{
-	int		new_fd;
-
-	if (close(current_fd) != 0)
-		exit_error();
-	if ((new_fd = open(file, O_RDONLY)) == FAILURE)
-	{
-		print_error(file);
-		return (FAILURE);
-	}
-	return (new_fd);
-}
 
 t_data		*get_file(const int fd, const char *fd_name)
 {

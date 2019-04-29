@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 14:21:37 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/29 13:42:50 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	print_lst(t_opt **lst)
 		ft_putstr("data to crypt: ");
 		ft_memput(tmp->data->data, tmp->data->len_data);
 		ft_membits(&tmp->flags.b64_flags, 0, sizeof(uint32_t));
-		if (tmp->fd_output != NULL)
+		if (tmp->data->fd_output != NULL)
 		{
 			ft_putstr("fd to output: ");
-			ft_putendl(tmp->fd_output);
+			ft_putendl(tmp->data->fd_output);
 		}
 		tmp = tmp->next;
 	}
@@ -57,7 +57,7 @@ t_opt	*new_opt(t_flags flags, t_data *data)
 	new->next = NULL;
 	new->data = data;
 	new->flags = flags;
-	new->fd_output = NULL;
+	new->data->fd_output = NULL;
 	return (new);
 }
 
@@ -72,6 +72,6 @@ t_opt	*new_opt_fd(t_flags flags, t_data *data, char *fd)
 	new->next = NULL;
 	new->data = data;
 	new->flags = flags;
-	new->fd_output = (fd != NULL) ? fd : NULL;
+	new->data->fd_output = (fd != NULL) ? fd : NULL;
 	return (new);
 }
