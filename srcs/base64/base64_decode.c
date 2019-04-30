@@ -6,12 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/30 15:58:26 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/30 17:42:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "base64/base64.h"
-#include <stdio.h>
 
 static const unsigned char g_base64_d[] = {
 	64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
@@ -46,7 +45,6 @@ static size_t	b64_decode_len(uint8_t *msg, size_t len)
 	len -= (ft_isspace(msg[len - 1])) ? 2 : 1;
 	while (msg[len--] == '=')
 		new_len--;
-	printf("new_len: %zu\n", new_len);
 	return (new_len);
 }
 
@@ -97,7 +95,8 @@ uint8_t			*base64_decode(uint8_t *msg, size_t len)
 	j = 0;
 	tmp = 0;
 	len_plain = b64_decode_len(msg, len);
-	if (!(msg_d = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
+	if (!(msg_d = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain))
+			|| (len % 4) != 0)
 		return (NULL);
 	while ((j + 3) <= len_plain)
 	{
