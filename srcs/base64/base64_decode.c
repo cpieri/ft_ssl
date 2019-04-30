@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/30 15:47:31 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/30 15:58:26 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static size_t	b64_decode_len(uint8_t *msg, size_t len)
 	len -= (ft_isspace(msg[len - 1])) ? 2 : 1;
 	while (msg[len--] == '=')
 		new_len--;
+	printf("new_len: %zu\n", new_len);
 	return (new_len);
 }
 
@@ -74,15 +75,14 @@ static uint32_t	b64_decode_val(uint8_t *msg, size_t *i)
 	return (tmp);
 }
 
-static void		b64_decode_end(uint8_t *msg_d, uint8_t *msg, int len, int j)
+static void		b64_decode_end(uint8_t *msg_d, uint32_t tmp, int len, int j)
 {
-	msg_d += j;
 	if ((j + 1) < len)
-		*msg_d++ = (g_base64_d[*msg] << 2 | g_base64_d[*(msg + 1)] >> 4);
+		msg_d[j++] = (tmp >> 16) & 0xff;
 	if ((j + 2) < len)
-		*msg_d++ = (g_base64_d[*(msg + 1)] << 4 | g_base64_d[*(msg + 2)] >> 2);
+		msg_d[j++] = (tmp >> 8) & 0xff;
 	if ((j + 3) < len)
-		*msg_d++ = (g_base64_d[*(msg + 2)] << 6 | g_base64_d[*(msg + 3)]);
+		msg_d[j++] = tmp & 0xff;
 }
 
 uint8_t			*base64_decode(uint8_t *msg, size_t len)
@@ -106,6 +106,7 @@ uint8_t			*base64_decode(uint8_t *msg, size_t len)
 		msg_d[j++] = (tmp >> 8) & 0xff;
 		msg_d[j++] = tmp & 0xff;
 	}
-	b64_decode_end(msg_d, msg + i, len_plain, j);
+	tmp = b64_decode_val(msg, &i);
+	b64_decode_end(msg_d, tmp, len_plain, j);
 	return (msg_d);
 }
