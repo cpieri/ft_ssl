@@ -6,11 +6,10 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 14:16:13 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/30 14:28:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "ft_ssl.h"
 
 t_data		*get_string(char *s)
@@ -27,7 +26,6 @@ t_data		*get_string(char *s)
 	s = NULL;
 	return (ret);
 }
-
 
 t_data		*get_file(const int fd, const char *fd_name)
 {

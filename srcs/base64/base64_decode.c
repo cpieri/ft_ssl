@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 19:23:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/04/30 15:47:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,106 +33,79 @@ static const unsigned char g_base64_d[] = {
 
 static size_t	b64_decode_len(uint8_t *msg, size_t len)
 {
+	size_t	i;
+	size_t	soft_len;
 	size_t	new_len;
 
-	new_len = (len / 4) * 3;
-	len -= 2;
-	// printf("msg[len]: %c\n", msg[len]);
+	soft_len = 0;
+	i = -1;
+	while (++i < len)
+		if (!ft_isspace(msg[i]))
+			soft_len++;
+	new_len = (soft_len / 4) * 3;
+	len -= (ft_isspace(msg[len - 1])) ? 2 : 1;
 	while (msg[len--] == '=')
 		new_len--;
-	// printf("new_len: %zu\n", new_len);
-	return (new_len + 1);
+	return (new_len);
 }
 
-uint32_t		b64_decode_val(uint8_t *msg, size_t *i, size_t len)
+static uint32_t	b64_decode_val(uint8_t *msg, size_t *i)
 {
-	size_t		p;
 	uint32_t	tmp;
-	int			l_shift;
+	uint16_t	l_shift;
+	size_t		j;
+	size_t		p;
 
+	j = *i;
 	p = 0;
 	l_shift = 18;
 	tmp = 0;
-	while (p < 4 && *i < len)
+	while (p < 4)
 	{
-		if (ft_isspace(msg[*i]) == 1)
-			*i += 1;
-		else
+		if (!ft_isspace(msg[j]))
 		{
-			tmp += ((msg[*i] == '=') ? 0 & *i : g_base64_d[msg[*i]]) << l_shift;
+			tmp += g_base64_d[msg[j]] << l_shift;
 			l_shift += (l_shift == 0) ? 18 : -6;
+			p++;
 		}
-		*i += 1;
-		p++;
+		j++;
 	}
+	*i = j;
 	return (tmp);
+}
+
+static void		b64_decode_end(uint8_t *msg_d, uint8_t *msg, int len, int j)
+{
+	msg_d += j;
+	if ((j + 1) < len)
+		*msg_d++ = (g_base64_d[*msg] << 2 | g_base64_d[*(msg + 1)] >> 4);
+	if ((j + 2) < len)
+		*msg_d++ = (g_base64_d[*(msg + 1)] << 4 | g_base64_d[*(msg + 2)] >> 2);
+	if ((j + 3) < len)
+		*msg_d++ = (g_base64_d[*(msg + 2)] << 6 | g_base64_d[*(msg + 3)]);
 }
 
 uint8_t			*base64_decode(uint8_t *msg, size_t len)
 {
-	uint8_t		*plain_msg;
+	uint8_t		*msg_d;
+	uint32_t	tmp;
 	size_t		len_plain;
 	size_t		i;
-	size_t		j = 0;
-	uint32_t	tmp;
+	size_t		j;
 
-	i = -1;
+	i = 0;
+	j = 0;
+	tmp = 0;
 	len_plain = b64_decode_len(msg, len);
-	if (!(plain_msg = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
+	if (!(msg_d = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
 		return (NULL);
-	while (j < len_plain && i < len)
+	while ((j + 3) <= len_plain)
 	{
-		tmp = b64_decode_val(msg, &i, len);
+		tmp = b64_decode_val(msg, &i);
+		msg_d[j++] = (tmp >> 16) & 0xff;
+		msg_d[j++] = (tmp >> 8) & 0xff;
+		msg_d[j++] = tmp & 0xff;
 	}
-	return (plain_msg);
+	b64_decode_end(msg_d, msg + i, len_plain, j);
+	return (msg_d);
 }
-
-// uint8_t			*base64_decode(uint8_t *msg, size_t len)
-// {
-// 	t_base64_decode	n;
-// 	size_t			len_plain;
-// 	uint8_t			*plain_msg;
-// 	size_t			i;
-// 	size_t			j;
-// 	size_t			p = 0;
-// 	size_t			l_shift = 18;
-// 	size_t			r_shift = 16;
-
-// 	i = 0;
-// 	j = 0;
-// 	n = (t_base64_decode){0,0,0,0,0};
-// 	len_plain = b64_len_decode(msg, len);
-// 	if (!(plain_msg = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
-// 		return (NULL);
-// 	while (i < len)
-// 	{
-// 		if (ft_isspace(msg[i]) == 1)
-// 			i++;
-// 		else
-// 		{
-// 			n.tmp += g_base64_d[msg[i]] << l_shift;
-// 			printf("l_shift: %zu\n", l_shift);
-// 			ft_membits(&(n.tmp), 0, sizeof(uint32_t));
-// 			l_shift += (l_shift == 0) ? 18 : -6;
-// 			p++;
-// 			if (p == 4)
-// 			{
-// 				printf("here\n");
-// 				while (j < (len_plain - 1))
-// 				{
-// 					printf("r_shift: %zu\n", r_shift);
-// 					plain_msg[j++] = (n.tmp >> r_shift) & 0xff;
-// 					if (r_shift == 0)
-// 						break ;
-// 					else
-// 						r_shift -= 8;
-// 				}
-// 				r_shift = 16;
-// 				p = 0;
-// 				n.tmp = 0;
-// 			}
-// 			i++;
-// 		}
-// 	}
-// 	return (plain_msg);
-// }
