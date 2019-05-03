@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 16:53:29 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 12:21:37 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/03 11:34:47 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include "base64/base64.h"
-#include <stdio.h>
 
 void			*base64(void *opts, size_t len_opts)
 {

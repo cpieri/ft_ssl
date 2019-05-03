@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 13:41:31 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/30 17:42:06 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/03 11:31:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ uint8_t			*base64_decode(uint8_t *msg, size_t len)
 	j = 0;
 	tmp = 0;
 	len_plain = b64_decode_len(msg, len);
-	if (!(msg_d = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain))
-			|| (len % 4) != 0)
+	if (!(msg_d = (uint8_t*)ft_memalloc(sizeof(uint8_t) * len_plain)))
 		return (NULL);
 	while ((j + 3) <= len_plain)
 	{

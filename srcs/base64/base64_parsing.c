@@ -6,15 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:56:03 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/26 11:42:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/03 11:40:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include "base64/base64.h"
-#include <stdio.h>
 
-t_data	*get_b64_opt(char **av, int *now, t_flags *flags, char **output)
+t_data	*get_b64_opt(char **av, int *now, t_opt *t_o, char **output)
 {
 	t_data		*data;
 	size_t		len_now;
@@ -26,13 +25,13 @@ t_data	*get_b64_opt(char **av, int *now, t_flags *flags, char **output)
 	while (++i < len_now)
 	{
 		if (av[*now][i] == 'e' || av[*now][i] == 'd')
-			get_b64_ed(&data, flags,
+			get_b64_ed(&(t_o->data), &(t_o->flags),
 			(av[*now + 1] != NULL ? av[*now + 1] : NULL), av[*now][i]);
 		else if (av[*now][i] == 'i')
-			get_b64_i(&data, flags, av[(*now) + 1], now);
+			get_b64_i(&data, &(t_o->flags), av[(*now) + 1], now);
 		else if (av[*now][i] == 'o')
 		{
-			flags->b64_flags |= e_base64_outputf;
+			t_o->flags.b64_flags |= e_base64_outputf;
 			if (av[(*now) + 1] != NULL)
 				*output = av[(*now) + 1];
 			else
@@ -55,7 +54,7 @@ t_opt	*get_base64_args(const int ac, char **av, int now)
 	{
 		if (av[now][0] == '-')
 		{
-			tmp = get_b64_opt(av, &now, &(t_o.flags), &fd_output);
+			tmp = get_b64_opt(av, &now, &t_o, &fd_output);
 			if (tmp != NULL)
 			{
 				clean_data(&(t_o.data));
