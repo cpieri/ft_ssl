@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:56:03 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/03 11:40:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/03 13:47:46 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ t_data	*get_b64_opt(char **av, int *now, t_opt *t_o, char **output)
 		else if (av[*now][i] == 'o')
 		{
 			t_o->flags.b64_flags |= e_base64_outputf;
-			if (av[(*now) + 1] != NULL)
-				*output = av[(*now) + 1];
-			else
-				*output = NULL;
+			*output = (av[(*now) + 1] != NULL) ? av[(*now) + 1] : NULL;
 			(*now)++;
 		}
 	}
