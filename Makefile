@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/04/29 14:21:49 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/06 12:00:00 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,13 @@ DEPS =		Makefile				\
 			libft/libft.a
 
 SRC_NAME= 	main.c							\
-			clean.c							\
-			usage.c							\
 			parsing.c						\
-			get_data.c						\
-			help.c							\
-			lst_opt.c						\
 			dispatch.c						\
+			tools/clean.c					\
+			tools/usage.c					\
+			tools/get_data.c				\
+			tools/open_fd.c					\
+			tools/lst_opt.c					\
 			hash/hash_parsing.c				\
 			hash/display_hash.c				\
 			hash/sha256/sha256.c			\
