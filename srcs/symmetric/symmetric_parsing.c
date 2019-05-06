@@ -6,32 +6,38 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 14:40:42 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:26:59 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include "symmetric/symmetric.h"
 #include <stdio.h>
-#include <pwd.h>
 #include <unistd.h>
+
+static void		get_sym_opt(char **av, int *now, t_opt *opt)
+{
+	(void)av;
+	(void)now;
+	(void)opt;
+}
 
 static t_opt	*get_sym_args(const int ac, char **av, int now)
 {
 	t_opt		opt;
 	t_sym_key	*k;
-	uint8_t		*pass;
 
-	(void)av, (void)now, (void)ac;
+	(void)av;
+	k = NULL;
 	opt = (t_opt){NULL, {0, 0, 0, 0, 0}, NULL};
-	// while (now < ac)
-	// {
-	pass = get_pass("enter your password: ");
-	printf("pass: %s\n",pass);
-	k = new_key(pass, 0, 0);
-	printf("k->pass: %s\n",k->pass);
-	// 	now++;
-	// }
+	while (now < ac)
+	{
+		if (av[now][0] == '-')
+			get_sym_opt(av, &now, &opt);
+		now++;
+	}
+	if (k == NULL)
+		k = new_key(get_pass("enter your password: "), 0, 0);
 	return (new_opt((t_flags){0,0,0,0,0}, NULL));
 }
 
