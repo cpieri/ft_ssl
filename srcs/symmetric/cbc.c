@@ -1,27 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl.h                                           :+:      :+:    :+:   */
+/*   cbc.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 14:11:01 by cpieri           ###   ########.fr       */
+/*   Created: 2019/05/06 10:09:17 by cpieri            #+#    #+#             */
+/*   Updated: 2019/05/06 12:15:39 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_H
-# define FT_SSL_H
+#include "symmetric/symmetric.h"
 
-# include "../libft/include/libft.h"
-# include "./hash/md5.h"
-# include "./hash/sha256.h"
-# include "./base64/base64.h"
-# include "./symmetric/symmetric.h"
-# include "define.h"
-# include "enum.h"
-# include "structure.h"
-# include "functions.h"
-# include "constant.h"
-
-#endif
+void	*cbc(void *msg, void *key, size_t msg_len, size_t key_len);

@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/05/06 12:03:00 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/06 14:41:35 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,17 +26,18 @@ SRC_PATH=	srcs
 
 OBJ_PATH=	obj
 
-DEPS =		Makefile					\
-			includes/ft_ssl.h			\
-			includes/define.h			\
-			includes/constant.h			\
-			includes/enum.h				\
-			includes/functions.h		\
-			includes/structure.h		\
-			includes/hash/sha256.h		\
-			includes/hash/hash.h		\
-			includes/hash/md5.h			\
-			inlcudes/base64/base64.h	\
+DEPS =		Makefile						\
+			includes/ft_ssl.h				\
+			includes/define.h				\
+			includes/constant.h				\
+			includes/enum.h					\
+			includes/functions.h			\
+			includes/structure.h			\
+			includes/hash/sha256.h			\
+			includes/hash/hash.h			\
+			includes/hash/md5.h				\
+			includes/base64/base64.h		\
+			includes/symmetric/symmetric.h	\
 			libft/libft.a
 
 SRC_NAME= 	main.c							\
@@ -44,6 +45,7 @@ SRC_NAME= 	main.c							\
 			dispatch.c						\
 			tools/clean.c					\
 			tools/usage.c					\
+			tools/error.c					\
 			tools/get_data.c				\
 			tools/open_fd.c					\
 			tools/lst_opt.c					\
@@ -59,6 +61,8 @@ SRC_NAME= 	main.c							\
 			base64/base64_parsing.c			\
 			base64/base64_help_parsing.c	\
 			base64/base64_display.c			\
+			symmetric/sym_key.c				\
+			symmetric/symmetric_parsing.c	\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
@@ -74,7 +78,7 @@ BLUE = \033[34m
 MAGENTA = \033[35m
 CYAN = \033[36m
 
-.PHONY:	all clean fclean re echo norm
+.PHONY:	all clean fclean re echo
 
 all:		LFT $(NAME)
 

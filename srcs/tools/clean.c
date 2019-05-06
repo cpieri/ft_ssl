@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 12:07:14 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/12 10:25:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:15:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@ void	clean_data(t_data **data)
 	{
 		if ((*data)->mall == 1)
 			ft_memdel((void**)&((*data)->data));
-		if ((*data)->f_hash != NULL)
-		{
-			ft_memdel((void**)&((*data)->f_hash->h));
-			ft_memdel((void**)&((*data)->f_hash));
-		}
+		if ((*data)->data_2_print != NULL)
+			ft_memdel((void**)&((*data)->data_2_print));
 		ft_memdel((void**)data);
 	}
 }
@@ -37,8 +34,9 @@ void	clean_prog(t_parse *parse)
 	{
 		if (lst->data->mall == 1)
 			ft_memdel((void**)&(lst->data->data));
-		ft_memdel((void**)&(lst->data->f_hash->h));
-		ft_memdel((void**)&(lst->data->f_hash));
+		if (parse->is_ciphash == e_hash)
+			ft_memdel((void**)&(((t_hash*)(lst->data->data_2_print))->h));
+		ft_memdel((void**)&(lst->data->data_2_print));
 		ft_memdel((void**)&(lst->data));
 		next = lst->next;
 		ft_memdel((void**)&(lst));

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 14:08:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/06 12:31:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct		s_data
 	char			*data;
 	size_t			len_data;
 	int				mall;
-	t_hash			*f_hash;
+	void			*pass;
 	void			*data_2_print;
 }					t_data;
 

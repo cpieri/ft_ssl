@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/29 14:20:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:01:08 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	dispatch(t_parse *parse);
 */
 t_opt	*hash_opts(const int ac, char **av, t_opt *opts, int now);
 t_opt	*base64_opts(const int ac, char **av, t_opt *opts, int now);
+t_opt	*symmetric_opts(const int ac, char **av, t_opt *opts, int now);
 void	get_b64_ed(t_data **data, t_flags *flags, char *fd, char c);
 void	get_b64_i(t_data **data, t_flags *flags, char *fd, int *now);
 void	*base64(void *opts, size_t len_opts);
@@ -61,8 +62,10 @@ void	print_lst(t_opt **lst);
 **	Functions for Exit, Clean, Error
 */
 void	exit_error(void);
+void	exit_msg(const char *msg);
+void	exit_error_msg(const char *msg);
 void	exit_error_free(void **to_free);
-void	print_error(const char *msg_1);
+void	print_error(const char *msg);
 void	print_usage(const int usage_int, const char *command);
 void	clean_prog(t_parse *parse);
 void	clean_data(t_data **data);
