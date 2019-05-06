@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/05/06 12:00:00 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/06 12:03:00 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,17 @@ SRC_PATH=	srcs
 
 OBJ_PATH=	obj
 
-DEPS =		Makefile				\
-			includes/ft_ssl.h		\
-			includes/define.h		\
-			includes/constant.h		\
-			includes/enum.h			\
-			includes/functions.h	\
-			includes/structure.h	\
-			includes/hash/sha256.h	\
-			includes/hash/hash.h	\
-			includes/hash/md5.h		\
+DEPS =		Makefile					\
+			includes/ft_ssl.h			\
+			includes/define.h			\
+			includes/constant.h			\
+			includes/enum.h				\
+			includes/functions.h		\
+			includes/structure.h		\
+			includes/hash/sha256.h		\
+			includes/hash/hash.h		\
+			includes/hash/md5.h			\
+			inlcudes/base64/base64.h	\
 			libft/libft.a
 
 SRC_NAME= 	main.c							\
