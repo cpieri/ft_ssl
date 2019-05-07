@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 16:56:03 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/03 15:01:37 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/07 09:58:44 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_opt	*get_base64_args(const int ac, char **av, int now)
 	char	*fd_output;
 
 	fd_output = NULL;
-	t_o = (t_opt){NULL, {0, 0, 0, 0, 0}, NULL};
+	t_o = (t_opt){NULL, {0, 0, 0, 0, 0, 0}, NULL};
 	while (now < ac)
 	{
 		if (av[now][0] == '-')

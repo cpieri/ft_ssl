@@ -6,11 +6,21 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/30 14:28:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/07 14:10:52 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+
+t_data		*new_data(void)
+{
+	t_data	*ret;
+
+	if (!(ret = (t_data*)malloc(sizeof(t_data))))
+		exit_error();
+	*ret = (t_data){NULL, NULL, NULL, 0, 0, NULL, NULL};
+	return (ret);
+}
 
 t_data		*get_string(char *s)
 {
@@ -19,10 +29,7 @@ t_data		*get_string(char *s)
 	ret = NULL;
 	if (!(ret = (t_data*)malloc(sizeof(t_data))))
 		exit_error();
-	ret->fd_name = s;
-	ret->data = s;
-	ret->len_data = ft_strlen(s);
-	ret->mall = 0;
+	*ret = (t_data){NULL, s, s, ft_strlen(s), 0, NULL, NULL};
 	s = NULL;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 15:01:08 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/07 14:14:10 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		reopen_fd(const int current_fd, const char *file);
 /*
 **	Functions for get File, Data, or String
 */
+t_data	*new_data(void);
 t_data	*get_data(const int fd, const char *fd_name);
 t_data	*get_file(const int fd, const char *fd_name);
 t_data	*get_string(char *s);

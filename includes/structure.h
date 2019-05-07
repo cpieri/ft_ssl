@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 12:31:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/07 09:55:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_flags
 	int				r;
 	int				s;
 	uint32_t		b64_flags;
+	uint64_t		sym_flags;
 }					t_flags;
 
 typedef struct		s_opt

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 14:00:59 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/11 18:16:17 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/07 09:58:41 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_opt	*get_hash_args(char **av, int now)
 
 	tmp = NULL;
 	new = NULL;
-	flags = (t_flags){0, 0, 0, 0, 0};
+	flags = (t_flags){0, 0, 0, 0, 0, 0};
 	if (av[now][0] == '-')
 	{
 		len = ft_strlen(av[now]);
@@ -73,7 +73,7 @@ t_opt			*hash_opts(const int ac, char **av, t_opt *opts, int now)
 	t_opt	*new;
 
 	if (ac < 3)
-		new = new_opt((t_flags){0, 0, 0, 0, 0}, get_data(0, NULL));
+		new = new_opt((t_flags){0, 0, 0, 0, 0, 0}, get_data(0, NULL));
 	else
 		new = get_hash_args(av, now);
 	add_to_end_lst(new, &opts);

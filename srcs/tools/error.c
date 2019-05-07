@@ -6,14 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:35:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 15:09:07 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/07 16:14:37 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include <errno.h>
 
-void		print_error(const char *msg)
+void	print_error(const char *msg)
 {
 	char	*error;
 
@@ -24,7 +24,7 @@ void		print_error(const char *msg)
 	ft_putendl_fd(error, 2);
 }
 
-void		exit_error_free(void **to_free)
+void	exit_error_free(void **to_free)
 {
 	char	*error;
 
@@ -35,7 +35,7 @@ void		exit_error_free(void **to_free)
 	exit(FAILURE);
 }
 
-void		exit_error(void)
+void	exit_error(void)
 {
 	char	*error;
 
