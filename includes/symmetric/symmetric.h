@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:11:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 12:27:35 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:53:49 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ typedef struct	s_sym_opt
 // void	*cbc(void *msg, void *key, size_t msg_len, size_t key_len);
 // void	*ecb(void *msg, void *key, size_t msg_len, size_t key_len);
 
+
 /*
 **	Functions for get options in parsing
 */
+t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now);
 void			get_sym_opt_a(char **av, int *now, t_opt *opt, t_sym_key **k);
 void			get_sym_opt_d(char **av, int *now, t_opt *opt, t_sym_key **k);
 void			get_sym_opt_e(char **av, int *now, t_opt *opt, t_sym_key **k);

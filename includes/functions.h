@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/07 14:14:10 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:56:57 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,6 @@
 */
 t_parse	parsing(const int ac, char **av);
 void	dispatch(t_parse *parse);
-
-/*
-**	Functions for Parsing
-*/
-t_opt	*hash_opts(const int ac, char **av, t_opt *opts, int now);
-t_opt	*base64_opts(const int ac, char **av, t_opt *opts, int now);
-t_opt	*symmetric_opts(const int ac, char **av, t_opt *opts, int now);
-void	get_b64_ed(t_data **data, t_flags *flags, char *fd, char c);
-void	get_b64_i(t_data **data, t_flags *flags, char *fd, int *now);
-void	*base64(void *opts, size_t len_opts);
-
-/*
-**	Functions for Printing
-*/
-void	printing_hash(t_data *data, const char *hash_type, t_flags flags);
-void	printing_base64(t_data *data, const char *hash_type, t_flags flags);
 
 /*
 **	Functions for Open and Close
