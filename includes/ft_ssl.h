@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:40:02 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 14:11:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:45:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@
 # include "enum.h"
 # include "structure.h"
 # include "functions.h"
-# include "constant.h"
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/05/08 10:34:05 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/08 12:44:51 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ OBJ_PATH=	obj
 DEPS =		Makefile						\
 			includes/ft_ssl.h				\
 			includes/define.h				\
-			includes/constant.h				\
 			includes/enum.h					\
 			includes/functions.h			\
 			includes/structure.h			\

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:27:48 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/07 09:55:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:46:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ typedef struct		s_data
 	void			*pass;
 	void			*data_2_print;
 }					t_data;
-
-typedef struct		s_check_flags
-{
-	const char		c;
-	const int		flag;
-}					t_check_flags;
 
 typedef struct		s_flags
 {

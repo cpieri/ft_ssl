@@ -6,12 +6,27 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:06:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 14:42:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:43:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-#include <string.h>
+
+static const char			*g_hash_cmd[] =
+{
+	"md5",
+	"sha256",
+	NULL
+};
+
+static const char			*g_cipher_cmd[] =
+{
+	"base64",
+	"des",
+	"des-ecb",
+	"des-cbc",
+	NULL
+};
 
 static void	invalid_command(const char *command)
 {
