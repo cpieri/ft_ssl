@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 11:00:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:37:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 			get_sym_opt(av, &now, &opt, &k);
 		now++;
 	}
-	ft_membits(&(opt.flags.sym_flags), 0, sizeof(uint64_t));
-	// if (k == NULL)
-	// 	k = new_key(get_pass("enter your password: "), 0, 0, 0);
-	return (new_opt((t_flags){0, 0, 0, 0, 0, 0}, NULL));
+	if (opt.data->data == NULL || k == NULL)
+		get_sym_stdin(&opt, &k);
+	return (new_opt(opt.flags, opt.data));
 }
 
 t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)

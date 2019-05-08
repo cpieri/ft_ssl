@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 11:17:06 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 12:32:23 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,22 @@ void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_sym_key **k)
 	else
 		(*k)->vect = vector;
 	(*now)++;
+}
+
+void	get_sym_stdin(t_opt *opt, t_sym_key **k)
+{
+	const char	*fd_output;
+
+	fd_output = NULL;
+	if (opt->data->fd_output != NULL)
+		fd_output = opt->data->fd_output;
+	if (*k == NULL)
+		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
+	if (opt->data != NULL && opt->data->data == NULL)
+	{
+		clean_data(&(opt->data));
+		opt->data = get_data(0, NULL);
+	}
+	opt->data->fd_output = fd_output;
+	opt->data->pass = &k;
 }
