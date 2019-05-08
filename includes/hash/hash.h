@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 12:58:06 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 13:03:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_padding
 }				t_padding;
 
 t_opt			*hash_opts(const int ac, char **av, t_opt *opts, int now);
-void			printing_hash(t_data *data, const char *hash_type, t_flags flags);
+void			printing_hash(t_data *data, const char *hash_type,
+				t_flags flags);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:11:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 12:53:49 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 13:04:24 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../../libft/include/libft.h"
 # include "../structure.h"
-// # include "./des/des.h"
 
 enum			e_sym_opt
 {
@@ -45,10 +44,6 @@ typedef struct	s_sym_opt
 	void		(*sym_opt_fun)(char **, int *, t_opt *, t_sym_key **);
 }				t_sym_opt;
 
-// void	*cbc(void *msg, void *key, size_t msg_len, size_t key_len);
-// void	*ecb(void *msg, void *key, size_t msg_len, size_t key_len);
-
-
 /*
 **	Functions for get options in parsing
 */
@@ -64,12 +59,12 @@ void			get_sym_opt_p(char **av, int *now, t_opt *opt, t_sym_key **k);
 void			get_sym_opt_v(char **av, int *now, t_opt *opt, t_sym_key **k);
 void			get_sym_stdin(t_opt *opt, t_sym_key **k);
 
-
 /*
 **	Functions for create and del struct symmetric key
 */
 uint8_t			*get_pass(const char *prompt);
-t_sym_key		*new_key(uint8_t *pass, uint64_t salt, uint64_t key, uint64_t vect);
+t_sym_key		*new_key(uint8_t *pass, uint64_t salt, uint64_t key,
+				uint64_t vect);
 void			print_t_key(t_sym_key *to_print);
 void			free_sym_key(t_sym_key **to_free);
 void			free_sym_key(t_sym_key **to_free);

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 11:59:40 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 12:56:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 13:03:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ uint8_t			*base64_decode(uint8_t *msg, size_t len);
 /*
 **	Functions for Print Base64
 */
-void			printing_base64(t_data *data, const char *hash_type, t_flags flags);
+void			printing_base64(t_data *data, const char *hash_type,
+				t_flags flags);
 
 /*
 **	Funtions for Parse opts Base64
