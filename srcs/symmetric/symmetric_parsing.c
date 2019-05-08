@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/07 16:17:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 11:00:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 static const t_sym_opt	g_sym_opt[] =
 {
-	{'e', e_sym_opt_e, NULL},
-	{'d', e_sym_opt_d, NULL},
-	{'a', e_sym_opt_a, NULL},
+	{'a', e_sym_opt_a, get_sym_opt_a},
+	{'d', e_sym_opt_d, get_sym_opt_d},
+	{'e', e_sym_opt_e, get_sym_opt_e},
 	{'i', e_sym_opt_i, get_sym_opt_i},
 	{'o', e_sym_opt_o, get_sym_opt_o},
 	{'k', e_sym_opt_k, get_sym_opt_k},
 	{'s', e_sym_opt_s, get_sym_opt_s},
 	{'p', e_sym_opt_p, get_sym_opt_p},
-	{'v', e_sym_opt_v, NULL},
+	{'v', e_sym_opt_v, get_sym_opt_v},
 	{0, 0, NULL}
 };
 
@@ -64,8 +64,9 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 			get_sym_opt(av, &now, &opt, &k);
 		now++;
 	}
-	if (k == NULL)
-		k = new_key(get_pass("enter your password: "), 0, 0, 0);
+	ft_membits(&(opt.flags.sym_flags), 0, sizeof(uint64_t));
+	// if (k == NULL)
+	// 	k = new_key(get_pass("enter your password: "), 0, 0, 0);
 	return (new_opt((t_flags){0, 0, 0, 0, 0, 0}, NULL));
 }
 

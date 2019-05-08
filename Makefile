@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/05/07 11:27:35 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/08 10:34:05 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,31 +40,32 @@ DEPS =		Makefile						\
 			includes/symmetric/symmetric.h	\
 			libft/libft.a
 
-SRC_NAME= 	main.c								\
-			parsing.c							\
-			dispatch.c							\
-			tools/clean.c						\
-			tools/usage.c						\
-			tools/error.c						\
-			tools/get_data.c					\
-			tools/open_fd.c						\
-			tools/lst_opt.c						\
-			hash/hash_parsing.c					\
-			hash/display_hash.c					\
-			hash/sha256/sha256.c				\
-			hash/sha256/sha256_utils.c			\
-			hash/md5/md5_utils.c				\
-			hash/md5/md5.c						\
-			base64/base64.c						\
-			base64/base64_encode.c				\
-			base64/base64_decode.c				\
-			base64/base64_parsing.c				\
-			base64/base64_help_parsing.c		\
-			base64/base64_display.c				\
-			symmetric/sym_key.c					\
-			symmetric/symmetric_usage.c			\
-			symmetric/symmetric_parsing.c		\
-			symmetric/symmetric_parsing_pt_f.c	\
+SRC_NAME= 	main.c									\
+			parsing.c								\
+			dispatch.c								\
+			tools/clean.c							\
+			tools/usage.c							\
+			tools/error.c							\
+			tools/get_data.c						\
+			tools/open_fd.c							\
+			tools/lst_opt.c							\
+			hash/hash_parsing.c						\
+			hash/display_hash.c						\
+			hash/sha256/sha256.c					\
+			hash/sha256/sha256_utils.c				\
+			hash/md5/md5_utils.c					\
+			hash/md5/md5.c							\
+			base64/base64.c							\
+			base64/base64_encode.c					\
+			base64/base64_decode.c					\
+			base64/base64_parsing.c					\
+			base64/base64_help_parsing.c			\
+			base64/base64_display.c					\
+			symmetric/sym_key.c						\
+			symmetric/symmetric_usage.c				\
+			symmetric/symmetric_parsing.c			\
+			symmetric/symmetric_parsing_pt_f.c		\
+			symmetric/symmetric_parsing_pt_f_2.c	\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
