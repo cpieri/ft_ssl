@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/04/11 19:13:41 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/08 11:19:28 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,6 +110,7 @@ SRCS = 		ft_atoi.c					\
 			get_next_line.c				\
 			ft_abort.c					\
 			ftb_hex2int.c				\
+			hex2uint64t.c				\
 			ftb_free_multiarray.c		\
 			ftb_find_closest_offset.c	\
 			ftb_abs.c					\

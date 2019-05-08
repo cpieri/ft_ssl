@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 09:34:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 11:03:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 11:22:27 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_sym_key **k)
 
 	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
 		sym_usage(av[*now]);
-	key = hex2int(av[*now + 1]);
+	key = hex2uint64t(av[*now + 1]);
 	opt->flags.sym_flags |= e_sym_opt_k;
 	if ((opt->flags.sym_flags & e_sym_opt_s) == e_sym_opt_s)
 		opt->flags.sym_flags ^= e_sym_opt_s;
@@ -91,7 +91,7 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_sym_key **k)
 		sym_usage(av[*now]);
 	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k)
 	{
-		salt = hex2int(av[*now + 1]);
+		salt = hex2uint64t(av[*now + 1]);
 		opt->flags.sym_flags |= e_sym_opt_s;
 		if (*k == NULL)
 			*k = new_key(NULL, salt, 0, 0);

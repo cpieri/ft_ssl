@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/07 10:32:50 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 11:17:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int					ft_sqrt(int n);
 int					ftb_abs(int n);
 int					ftb_pow(int n, int pow);
 int					*find_closest_offset(int x, int y, int tx, int ty);
+uint64_t			hex2uint64t(char *hex);
 int					hex2int(char *hex);
 int					ftb_rand(unsigned int min,
 		unsigned int max, unsigned int seed);

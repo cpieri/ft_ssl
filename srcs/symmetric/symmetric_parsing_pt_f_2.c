@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 11:03:36 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/08 11:17:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_sym_key **k)
 
 	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
 		sym_usage(av[*now]);
-	vector = hex2int(av[*now + 1]);
+	vector = hex2uint64t(av[*now + 1]);
 	opt->flags.sym_flags |= e_sym_opt_v;
 	if (*k == NULL)
 		*k = new_key(NULL, 0, 0, vector);
