@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 12:37:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/14 11:52:29 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 			get_sym_opt(av, &now, &opt, &k);
 		now++;
 	}
-	if (opt.data->data == NULL || k == NULL)
+	if (opt.data == NULL || k == NULL)
 		get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }
