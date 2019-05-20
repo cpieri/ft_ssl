@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/14 11:52:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 12:27:44 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static const t_sym_opt	g_sym_opt[] =
 	{0, 0, NULL}
 };
 
-static void		get_sym_opt(char **av, int *now, t_opt *opt, t_sym_key **k)
+static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	size_t		len_now;
 	size_t		i;
@@ -53,7 +53,7 @@ static void		get_sym_opt(char **av, int *now, t_opt *opt, t_sym_key **k)
 static t_opt	*get_sym_args(const int ac, char **av, int now)
 {
 	t_opt		opt;
-	t_sym_key	*k;
+	t_pbkdf		*k;
 
 	(void)av;
 	k = NULL;
@@ -64,8 +64,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 			get_sym_opt(av, &now, &opt, &k);
 		now++;
 	}
-	if (opt.data == NULL || k == NULL)
-		get_sym_stdin(&opt, &k);
+	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }
 
@@ -75,5 +74,6 @@ t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)
 
 	new = get_sym_args(ac, av, now);
 	add_to_end_lst(new, &opts);
+	print_lst(&opts);
 	return (opts);
 }

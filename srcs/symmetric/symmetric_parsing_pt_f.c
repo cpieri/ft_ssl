@@ -6,14 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 09:34:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 11:22:27 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 12:17:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
 
-void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	char		*fd;
 	const char	*fd_output;
@@ -34,7 +34,7 @@ void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_sym_key **k)
 	(*now)++;
 }
 
-void	get_sym_opt_o(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_o(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	char	*fd_output;
 
@@ -48,7 +48,7 @@ void	get_sym_opt_o(char **av, int *now, t_opt *opt, t_sym_key **k)
 	(*now)++;
 }
 
-void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	uint64_t	key;
 
@@ -65,25 +65,24 @@ void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_sym_key **k)
 	(*now)++;
 }
 
-void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	char	*pass;
 
 	if ((pass = av[*now + 1]) == NULL || pass[0] == '-')
 		sym_usage(av[*now]);
-	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k
-	&& ft_strncmp(pass, "pass:", 5) == 0 && ft_strlen(pass) >= 6)
+	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k)
 	{
 		opt->flags.sym_flags |= e_sym_opt_p;
 		if (*k == NULL)
-			*k = new_key((uint8_t*)(pass + 5), 0, 0, 0);
+			*k = new_key((uint8_t*)pass, 0, 0, 0);
 		else
-			(*k)->pass = (uint8_t*)(pass + 5);
+			(*k)->pass = (uint8_t*)pass;
 		(*now)++;
 	}
 }
 
-void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	uint64_t	salt;
 
@@ -96,7 +95,10 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_sym_key **k)
 		if (*k == NULL)
 			*k = new_key(NULL, salt, 0, 0);
 		else
+		{
 			(*k)->salt = salt;
+			regen_key(k);
+		}
 		(*now)++;
 	}
 }

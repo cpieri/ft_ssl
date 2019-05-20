@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 11:17:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 11:09:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_puthexa(int nb);
+void				ft_put64hexa(uint64_t nb);
+void				ft_put32hexa(uint32_t nb);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putbits(unsigned char octet);

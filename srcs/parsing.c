@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:29:57 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/08 13:01:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 08:05:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static const t_parse		g_all_cmd[] =
 	{"md5", "MD5", e_hash, md5, hash_opts, printing_hash, NULL},
 	{"sha256", "SHA256", e_hash, sha256, hash_opts, printing_hash, NULL},
 	{"base64", "base64", e_cipher, base64, base64_opts, printing_base64, NULL},
-	{"des", "des", e_cipher, NULL, symmetric_opts, NULL, NULL},
+	{"des", "des", e_cipher, des, symmetric_opts, NULL, NULL},
 	{NULL, NULL, 0, NULL, NULL, NULL, NULL},
 };
 

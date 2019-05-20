@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:05:16 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 15:14:27 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 12:22:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		print_usage(1, NULL);
 	parse = parsing(ac, av);
-	dispatch(&parse);
-	clean_prog(&parse);
+	// dispatch(&parse);
+	// clean_prog(&parse);
 	return (0);
 }

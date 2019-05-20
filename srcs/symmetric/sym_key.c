@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 13:53:56 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/07 16:15:52 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 11:02:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,41 +33,27 @@ uint8_t		*get_pass(const char *prompt)
 	return ((uint8_t*)pass);
 }
 
-t_sym_key	*new_key(uint8_t *pass, uint64_t salt, uint64_t key, uint64_t vect)
+void		print_pbkdf(t_pbkdf *k)
 {
-	t_sym_key	*new;
-
-	if (!(new = (t_sym_key*)malloc(sizeof(t_sym_key))))
-		return (NULL);
-	new->pass = pass;
-	new->salt = salt;
-	new->key = key;
-	new->vect = vect;
-	return (new);
-}
-
-void		print_t_key(t_sym_key *k)
-{
+	if (k == NULL)
+	{
+		ft_putendl("k is null");
+		return ;
+	}
 	ft_putstr("pass:	");
 	ft_putendl((char*)k->pass);
 	ft_putstr("salt:	");
-	ft_membits(&(k->salt), 0, sizeof(uint64_t));
-	ft_putstr("salt hexa:	");
-	ft_puthexa(k->salt);
+	ft_put64hexa(k->salt);
 	ft_putchar('\n');
 	ft_putstr("key:	");
-	ft_membits(&(k->key), 0, sizeof(uint64_t));
-	ft_putstr("key hexa:	");
-	ft_puthexa(k->key);
+	ft_put64hexa(k->key);
 	ft_putchar('\n');
 	ft_putstr("vect:	");
-	ft_membits(&(k->vect), 0, sizeof(uint64_t));
-	ft_putstr("vect hexa:	");
-	ft_puthexa(k->vect);
+	ft_put64hexa(k->vect);
 	ft_putchar('\n');
 }
 
-void		free_sym_key(t_sym_key **to_free)
+void		free_pbkdf(t_pbkdf **to_free)
 {
 	ft_memdel((void**)&((*to_free)->pass));
 	ft_memdel((void**)&((*to_free)->salt));
@@ -75,11 +61,11 @@ void		free_sym_key(t_sym_key **to_free)
 	ft_memdel((void**)(to_free));
 }
 
-void		free_vsym_key(void **to_free)
+void		free_vpbkdf(void **to_free)
 {
-	t_sym_key	**to_del;
+	t_pbkdf	**to_del;
 
-	to_del = (t_sym_key**)to_free;
+	to_del = (t_pbkdf**)to_free;
 	ft_memdel((void**)&((*to_del)->pass));
 	ft_memdel((void**)&((*to_del)->salt));
 	ft_memdel((void**)&((*to_del)->key));

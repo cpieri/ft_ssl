@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/05/08 11:19:28 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/20 11:10:45 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRCS = 		ft_atoi.c					\
 			ft_putendl_fd.c				\
 			ft_putnbr.c					\
 			ft_puthexa.c				\
+			ft_put64hexa.c				\
+			ft_put32hexa.c				\
 			ft_putnbr_fd.c				\
 			ft_putstr.c					\
 			ft_putstr_fd.c				\

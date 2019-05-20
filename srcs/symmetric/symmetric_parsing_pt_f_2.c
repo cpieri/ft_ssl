@@ -6,14 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/14 11:47:49 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 10:32:56 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
 
-void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	(void)av;
 	(void)now;
@@ -21,7 +21,7 @@ void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_sym_key **k)
 	opt->flags.sym_flags |= e_sym_opt_a;
 }
 
-void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	(void)k;
 	(void)now;
@@ -31,7 +31,7 @@ void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_sym_key **k)
 	opt->flags.sym_flags |= e_sym_opt_d;
 }
 
-void	get_sym_opt_e(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_e(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	(void)k;
 	(void)now;
@@ -40,7 +40,7 @@ void	get_sym_opt_e(char **av, int *now, t_opt *opt, t_sym_key **k)
 		opt->flags.sym_flags |= e_sym_opt_e;
 }
 
-void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_sym_key **k)
+void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
 	uint64_t	vector;
 
@@ -55,7 +55,7 @@ void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_sym_key **k)
 	(*now)++;
 }
 
-void	get_sym_stdin(t_opt *opt, t_sym_key **k)
+void	get_sym_stdin(t_opt *opt, t_pbkdf **k)
 {
 	const char	*fd_output;
 
@@ -72,5 +72,5 @@ void	get_sym_stdin(t_opt *opt, t_sym_key **k)
 		opt->data = get_data(0, NULL);
 	}
 	opt->data->fd_output = fd_output;
-	opt->data->pass = &k;
+	opt->data->pass = *k;
 }

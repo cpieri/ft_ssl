@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/05/08 12:44:51 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/20 10:34:50 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ DEPS =		Makefile						\
 			includes/hash/md5.h				\
 			includes/base64/base64.h		\
 			includes/symmetric/symmetric.h	\
+			includes/symmetric/des/des.h	\
 			libft/libft.a
 
 SRC_NAME= 	main.c									\
@@ -61,10 +62,12 @@ SRC_NAME= 	main.c									\
 			base64/base64_help_parsing.c			\
 			base64/base64_display.c					\
 			symmetric/sym_key.c						\
+			symmetric/pbkdf.c						\
 			symmetric/symmetric_usage.c				\
 			symmetric/symmetric_parsing.c			\
 			symmetric/symmetric_parsing_pt_f.c		\
 			symmetric/symmetric_parsing_pt_f_2.c	\
+			symmetric/des/des.c						\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
