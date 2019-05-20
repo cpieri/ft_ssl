@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:10:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 12:30:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/20 21:36:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ uint64_t	gen_key(uint8_t *pass, uint64_t salt)
 	uint8_t		*tmp_pass;
 	t_hash		*shasum256_pass;
 	size_t		len_pass;
+	// int			iter = 1000;
 	int			ismalloc;
 
 	new_key = 0;
