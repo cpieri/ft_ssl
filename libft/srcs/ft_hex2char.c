@@ -6,36 +6,86 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 21:21:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 21:43:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/21 09:30:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	put_32hexa(char **s, size_t now, size_t len_s, uint32_t hex)
+static long		calc_nb_len(uint32_t hex)
 {
-	if (hex > 15)
-		put_32hexa(s, (now + 1), len_s, (hex / 16));
-	hex %= 16;
-	if (now < len_s)
+	long	len;
+
+	len = 0;
+	if (hex < 16)
+		++len;
+	while (hex /= 16)
+		++len;
+	++len;
+	return (len);
+}
+
+// static void	put_32hexa(char **s, long len_s, uint32_t hex)
+// {
+// 	if (hex > 15)
+// 		put_32hexa(s, (len_s - 1), (hex / 16));
+// 	hex %= 16;
+// 	if (len_s >= 0)
+// 	{
+// 		if (hex < 10)
+// 			(*s)[len_s] = hex % 10 + '0';
+// 		else
+// 			(*s)[len_s] = hex + 'a' - 10;
+// 	}
+// }
+
+void	swap_s(char **s, long len)
+{
+	long	i;
+	char	tmp;
+
+	i = 0;
+	while (i < len)
 	{
-		if (hex < 10)
-			(*s)[now] = hex % 10 + '0';
+		tmp = (*s)[i];
+		(*s)[i] = (*s)[len];
+		(*s)[len] = tmp;
+		i++;
+		len--;
+	}
+}
+
+static void	put_32hexa(char **s, long len_s, uint32_t hex)
+{
+	uint32_t	nb;
+	long		i;
+
+	nb = 0;
+	i = 0;
+	while (i <= len_s)
+	{
+		nb = hex % 16;
+		if (nb < 10)
+			(*s)[i] = (nb) % 10 + '0';
 		else
-			(*s)[now] = hex + 'a' - 10;
+			(*s)[i] = (nb) + 'a' - 10;
+		hex /= 16;
+		i++;
 	}
 }
 
 char	*ft_hex2char(uint32_t hex, size_t nb_bytes)
 {
 	char	*s;
-	int		now;
+	long	len;
 
-	if (!(s = (char*)ft_memalloc(sizeof(char) * (nb_bytes / 8))))
+	(void)nb_bytes;
+	len = calc_nb_len(hex);
+	if (!(s = (char*)ft_memalloc(sizeof(char) * (len))))
 		return (NULL);
-	now = 0;
 	if (hex < 16)
-		s[now] = '0';
-	put_32hexa(&s, now, (nb_bytes / 8), hex);
+		s[0] = '0';
+	put_32hexa(&s, len - 1, hex);
+	// swap_s(&s, len - 1);
 	return (s);
 }
