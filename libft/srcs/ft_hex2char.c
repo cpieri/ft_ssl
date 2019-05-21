@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 21:21:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/21 09:30:45 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/21 18:54:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,40 +25,11 @@ static long		calc_nb_len(uint32_t hex)
 	return (len);
 }
 
-// static void	put_32hexa(char **s, long len_s, uint32_t hex)
-// {
-// 	if (hex > 15)
-// 		put_32hexa(s, (len_s - 1), (hex / 16));
-// 	hex %= 16;
-// 	if (len_s >= 0)
-// 	{
-// 		if (hex < 10)
-// 			(*s)[len_s] = hex % 10 + '0';
-// 		else
-// 			(*s)[len_s] = hex + 'a' - 10;
-// 	}
-// }
-
-void	swap_s(char **s, long len)
-{
-	long	i;
-	char	tmp;
-
-	i = 0;
-	while (i < len)
-	{
-		tmp = (*s)[i];
-		(*s)[i] = (*s)[len];
-		(*s)[len] = tmp;
-		i++;
-		len--;
-	}
-}
-
 static void	put_32hexa(char **s, long len_s, uint32_t hex)
 {
 	uint32_t	nb;
 	long		i;
+	char		tmp;
 
 	nb = 0;
 	i = 0;
@@ -69,6 +40,12 @@ static void	put_32hexa(char **s, long len_s, uint32_t hex)
 			(*s)[i] = (nb) % 10 + '0';
 		else
 			(*s)[i] = (nb) + 'a' - 10;
+		if ((i % 2) != 0)
+		{
+			tmp = (*s)[i];
+			(*s)[i] = (*s)[i - 1];
+			(*s)[i - 1] = tmp;
+		}
 		hex /= 16;
 		i++;
 	}
@@ -86,6 +63,5 @@ char	*ft_hex2char(uint32_t hex, size_t nb_bytes)
 	if (hex < 16)
 		s[0] = '0';
 	put_32hexa(&s, len - 1, hex);
-	// swap_s(&s, len - 1);
 	return (s);
 }
