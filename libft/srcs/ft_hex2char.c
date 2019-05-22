@@ -6,24 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 21:21:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 09:46:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 10:36:33 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static long		calc_nb_len(uint32_t hex)
-{
-	long	len;
-
-	len = 0;
-	if (hex < 16)
-		++len;
-	while (hex /= 16)
-		++len;
-	++len;
-	return (len);
-}
 
 static void	conv_32hexa(char **s, long len_s, uint32_t hex)
 {
@@ -33,7 +20,7 @@ static void	conv_32hexa(char **s, long len_s, uint32_t hex)
 
 	nb = 0;
 	i = 0;
-	while (i <= len_s)
+	while (i < len_s)
 	{
 		nb = hex % 16;
 		if (nb < 10)
@@ -54,13 +41,11 @@ static void	conv_32hexa(char **s, long len_s, uint32_t hex)
 char	*ft_hex2char(uint32_t hex)
 {
 	char	*s;
-	long	len;
 
-	len = calc_nb_len(hex);
-	if (!(s = (char*)ft_memalloc(sizeof(char) * (len + 1))))
+	if (!(s = (char*)ft_memalloc(sizeof(char) * (8 + 1))))
 		return (NULL);
 	if (hex < 16)
 		s[0] = '0';
-	conv_32hexa(&s, len - 1, hex);
+	conv_32hexa(&s, 8, hex);
 	return (s);
 }
