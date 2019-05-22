@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 13:01:28 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 09:42:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 10:52:46 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	dispatch(t_parse *parse)
 	while (lst != NULL)
 	{
 		if (parse->is_ciphash == e_hash)
-			lst->data->data_2_print = parse->func(lst->data->data,
+			lst->data->data_2_print = (t_hash*)parse->func(lst->data->data,
 					lst->data->len_data);
 		else if (parse->is_ciphash == e_cipher)
 			lst->data->data_2_print = parse->func(lst, 0);

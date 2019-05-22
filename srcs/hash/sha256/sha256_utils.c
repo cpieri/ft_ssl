@@ -6,16 +6,15 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:40:50 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 09:25:33 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 10:54:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash/sha256.h"
 
-char	*set_hash2sha256(t_sha256 *e)
+t_hash	*set_hash2sha256(t_sha256 *e)
 {
 	t_hash	*ret;
-	char	*sum;
 
 	ft_memdel((void**)&(e->p.msg8));
 	if (!(ret = (t_hash*)malloc(sizeof(t_hash))))
@@ -31,7 +30,5 @@ char	*set_hash2sha256(t_sha256 *e)
 	ret->h[5] = swap_uint32t(e->h5);
 	ret->h[6] = swap_uint32t(e->h6);
 	ret->h[7] = swap_uint32t(e->h7);
-	sum = hex2sum(ret->h, ret->nb_word);
-	ft_memdel((void**)&ret);
-	return (sum);
+	return (ret);
 }

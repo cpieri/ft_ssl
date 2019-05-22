@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:47:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 09:25:56 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 11:11:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		padding_sha256(t_padding *p, void *data, size_t len)
 	p->new_len += p->nb_bits + 64 + 1;
 	p->new_len /= 8;
 	if (!(p->msg8 = (uint8_t*)ft_memalloc(sizeof(uint8_t) * p->new_len)))
-		ft_abort("malloc failed");
+		ft_abort("ft_ssl: sha256: malloc failed");
 	ft_memcpy(p->msg8, data, len);
 	p->msg8[len] |= 1 << 7;
 	while (++i < 8)
@@ -122,7 +122,7 @@ static void		calc_sha256(t_sha256 *t)
 
 void			*sha256(void *data, size_t len_data)
 {
-	char		*sum;
+	t_hash		*sum;
 	t_sha256	t;
 
 	t = (t_sha256){.h0 = SHA256_H0, .h1 = SHA256_H1, .h2 = SHA256_H2,

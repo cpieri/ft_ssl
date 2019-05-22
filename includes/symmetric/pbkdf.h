@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:11:40 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 12:29:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 10:50:10 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../../libft/include/libft.h"
 # include "../hash/sha256.h"
+# include "../hash/md5.h"
 # include "../functions.h"
 # include "../structure.h"
 

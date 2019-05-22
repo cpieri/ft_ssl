@@ -6,11 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 09:38:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 11:37:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash/md5.h"
+#include <stdio.h>
 
 static const uint32_t	g_r_md5[64] = {
 	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 5, 9, 14, 20,
@@ -43,8 +44,9 @@ static void		padding_md5(t_padding *p, char *data, size_t len)
 	p->new_len = (448 - (p->nb_bits + 1)) % 512;
 	p->new_len += p->nb_bits + 64 + 1;
 	p->new_len /= 8;
+	printf("Debug: md5 new len: %zu\n", p->new_len);
 	if (!(p->msg8 = (uint8_t*)ft_memalloc(sizeof(uint8_t) * p->new_len)))
-		ft_abort("malloc failed");
+		ft_abort("ft_ssl: md5: malloc failed");
 	ft_memcpy(p->msg8, data, len);
 	p->msg8[len] |= 1 << 7;
 	ft_memcpy(p->msg8 + p->new_len - 8, &p->nb_bits, 8);
@@ -83,7 +85,7 @@ static void		calc_sum(t_md5 *e)
 void			*md5(void *data, size_t len_data)
 {
 	t_md5		e;
-	char		*sum;
+	t_hash		*sum;
 
 	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
 	padding_md5(&(e.p), data, len_data);
