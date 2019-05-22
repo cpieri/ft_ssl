@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 10:47:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/26 11:34:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 09:25:56 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static void		calc_sha256(t_sha256 *t)
 
 void			*sha256(void *data, size_t len_data)
 {
-	t_hash		*f_hash;
+	char		*sum;
 	t_sha256	t;
 
 	t = (t_sha256){.h0 = SHA256_H0, .h1 = SHA256_H1, .h2 = SHA256_H2,
@@ -144,6 +144,6 @@ void			*sha256(void *data, size_t len_data)
 		ft_memdel((void**)&(t.w));
 		t.p.offest += 64;
 	}
-	f_hash = set_hash2sha256(&t);
-	return (f_hash);
+	sum = set_hash2sha256(&t);
+	return (sum);
 }

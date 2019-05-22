@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/05/20 10:34:50 by cpieri           ###   ########.fr        #
+#    Updated: 2019/05/22 09:27:54 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC_NAME= 	main.c									\
 			tools/lst_opt.c							\
 			hash/hash_parsing.c						\
 			hash/display_hash.c						\
+			hash/hash_tools.c						\
 			hash/sha256/sha256.c					\
 			hash/sha256/sha256_utils.c				\
 			hash/md5/md5_utils.c					\

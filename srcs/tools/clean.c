@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 12:07:14 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/06 15:15:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 09:32:00 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	clean_prog(t_parse *parse)
 	{
 		if (lst->data->mall == 1)
 			ft_memdel((void**)&(lst->data->data));
-		if (parse->is_ciphash == e_hash)
-			ft_memdel((void**)&(((t_hash*)(lst->data->data_2_print))->h));
 		ft_memdel((void**)&(lst->data->data_2_print));
 		ft_memdel((void**)&(lst->data));
 		next = lst->next;

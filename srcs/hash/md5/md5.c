@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/04/26 11:34:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 09:38:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void		calc_sum(t_md5 *e)
 void			*md5(void *data, size_t len_data)
 {
 	t_md5		e;
-	t_hash		*f_hash;
+	char		*sum;
 
 	e = (t_md5){.h0 = MD5_H0, .h1 = MD5_H1, .h2 = MD5_H2, .h3 = MD5_H3};
 	padding_md5(&(e.p), data, len_data);
@@ -101,6 +101,6 @@ void			*md5(void *data, size_t len_data)
 		e.h3 += e.d;
 		e.p.offest += 64;
 	}
-	f_hash = set_hash2md5(&e);
-	return (f_hash);
+	sum = set_hash2md5(&e);
+	return (sum);
 }

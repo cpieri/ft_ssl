@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 21:35:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/05/22 09:15:09 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef	struct		s_list
 /*
 **	Functions for Strings
 */
-char				*ft_hex2char(uint32_t hex, size_t nb_bytes);
+char				*ft_hex2char(uint32_t hex);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strchr(const char *s, int c);
