@@ -6,38 +6,66 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 10:32:56 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/09 14:14:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
 
-void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
-	(void)av;
-	(void)now;
-	(void)k;
-	opt->flags.sym_flags |= e_sym_opt_a;
+	uint64_t	key;
+
+	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
+		sym_usage(av[*now]);
+	key = hex2uint64t(av[*now + 1]);
+	opt->flags.sym_flags |= e_sym_opt_k;
+	if ((opt->flags.sym_flags & e_sym_opt_s) == e_sym_opt_s)
+		opt->flags.sym_flags ^= e_sym_opt_s;
+	if (*k == NULL)
+		*k = new_key(NULL, 0, key, 0);
+	else
+		(*k)->key = key;
+	(*now)++;
 }
 
-void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
-	(void)k;
-	(void)now;
-	(void)av;
-	if ((opt->flags.sym_flags & e_sym_opt_e) == e_sym_opt_e)
-		opt->flags.sym_flags ^= e_sym_opt_e;
-	opt->flags.sym_flags |= e_sym_opt_d;
+	char	*pass;
+
+	if ((pass = av[*now + 1]) == NULL || pass[0] == '-')
+		sym_usage(av[*now]);
+	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k)
+	{
+		opt->flags.sym_flags |= e_sym_opt_p;
+		if (*k == NULL)
+			*k = new_key((uint8_t*)pass, 0, 0, 0);
+		else
+			(*k)->pass = (uint8_t*)pass;
+		(*now)++;
+	}
 }
 
-void	get_sym_opt_e(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
-	(void)k;
-	(void)now;
-	(void)av;
-	if ((opt->flags.sym_flags & e_sym_opt_d) != e_sym_opt_d)
-		opt->flags.sym_flags |= e_sym_opt_e;
+	uint64_t	salt;
+
+	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
+		sym_usage(av[*now]);
+	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k)
+	{
+		salt = hex2uint64t(av[*now + 1]);
+		opt->flags.sym_flags |= e_sym_opt_s;
+		if (*k == NULL)
+			*k = new_key(NULL, salt, 0, 0);
+		else
+		{
+			(*k)->salt = salt;
+			regen_key(k);
+		}
+		(*now)++;
+	}
 }
 
 void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_pbkdf **k)
