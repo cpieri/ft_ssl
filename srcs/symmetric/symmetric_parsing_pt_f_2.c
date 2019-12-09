@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/09 14:14:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/09 14:59:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
 		if (*k == NULL)
 			*k = new_key(NULL, salt, 0, 0);
 		else
-		{
 			(*k)->salt = salt;
-			regen_key(k);
-		}
 		(*now)++;
 	}
 }
@@ -92,8 +89,6 @@ void	get_sym_stdin(t_opt *opt, t_pbkdf **k)
 		opt->data = new_data();
 	if (opt->data->fd_output != NULL)
 		fd_output = opt->data->fd_output;
-	if (*k == NULL)
-		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
 	if (opt->data != NULL && opt->data->data == NULL)
 	{
 		clean_data(&(opt->data));

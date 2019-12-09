@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 12:27:44 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/09 14:51:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ static const t_sym_opt	g_sym_opt[] =
 	{'v', e_sym_opt_v, get_sym_opt_v},
 	{0, 0, NULL}
 };
+
+static void		check_pbkdf2(t_pbkdf **k)
+{
+	if (*k != NULL)
+	{
+		if ((*k)->key != 0)
+		{
+			if ((*k)->vect == 0)
+				exit_msg("iv undefined");
+		}
+		else if ((*k)->pass == NULL)
+		{
+			(*k)->pass = get_pass("enter your password: ");
+			if ((*k)->salt == 0)
+				(*k)->salt = get_random();
+		}
+	}
+	else
+		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
+}
 
 static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
@@ -55,7 +75,6 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 	t_opt		opt;
 	t_pbkdf		*k;
 
-	(void)av;
 	k = NULL;
 	opt = (t_opt){NULL, {0, 0, 0, 0, 0, 0}, NULL};
 	while (now < ac)
@@ -64,6 +83,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 			get_sym_opt(av, &now, &opt, &k);
 		now++;
 	}
+	check_pbkdf2(&k);
 	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:10:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 13:51:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/09 14:29:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_pbkdf		*new_key(uint8_t *pass, uint64_t salt, uint64_t key, uint64_t vect)
 		return (NULL);
 	new->pass = pass;
 	new->salt = (salt > 0) ? salt : get_random();
-	new->key = (key > 0) ? key : gen_key(new->pass, new->salt);
+	new->key = (key > 0) ? key : 0;
 	new->vect = vect;
 	return (new);
 }
