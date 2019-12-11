@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/09 14:51:25 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/11 12:45:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static const t_sym_opt	g_sym_opt[] =
 
 static void		check_pbkdf2(t_pbkdf **k)
 {
+	uint64_t dk;
+
 	if (*k != NULL)
 	{
 		if ((*k)->key != 0)
@@ -47,6 +49,7 @@ static void		check_pbkdf2(t_pbkdf **k)
 	}
 	else
 		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
+	dk = ft_pbkdf2(HMAC_SHA256, (*k)->pass, (*k)->salt, 1000, sizeof(uint64_t));
 }
 
 static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 09:34:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/09 14:14:01 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/11 12:45:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_pbkdf **k)
 		clean_data(&(opt->data));
 	}
 	opt->data = get_data(open_fd(fd), fd);
+	ft_putstr((char*)opt->data);
 	opt->data->fd_output = fd_output;
 	(*now)++;
 }

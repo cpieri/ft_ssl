@@ -6,12 +6,36 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:10:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/09 14:29:35 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/11 12:41:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/pbkdf.h"
 #include <stdio.h>
+
+static const t_prf	g_prf[3] = {
+	{HMAC_MD5, NULL},
+	{HMAC_SHA256, hmac_sha256},
+	{0, NULL}
+};
+
+uint64_t	ft_pbkdf2(enum e_prf prf, uint8_t *pass, uint64_t salt, uint32_t c, uint64_t dk_len)
+{
+	uint64_t	dk;
+	void		(*f)(uint8_t *, uint64_t, uint32_t);
+
+	f = NULL;
+	dk = 0;
+	(void)dk_len;
+	while (g_prf->prf != 0)
+	{
+		if (g_prf->prf == prf)
+			f = g_prf->f;
+	}
+	if (f != NULL)
+		f(pass, salt, c);
+	return (dk);
+}
 
 uint64_t	gen_key(uint8_t *pass, uint64_t salt)
 {
