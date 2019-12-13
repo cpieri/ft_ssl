@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:10:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/11 12:41:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/12 14:18:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,18 @@ static const t_prf	g_prf[3] = {
 uint64_t	ft_pbkdf2(enum e_prf prf, uint8_t *pass, uint64_t salt, uint32_t c, uint64_t dk_len)
 {
 	uint64_t	dk;
+	int			i;
 	void		(*f)(uint8_t *, uint64_t, uint32_t);
 
 	f = NULL;
 	dk = 0;
+	i = 0;
 	(void)dk_len;
-	while (g_prf->prf != 0)
+	while (g_prf[i].prf != 0)
 	{
-		if (g_prf->prf == prf)
-			f = g_prf->f;
+		if (g_prf[i].prf == prf)
+			f = g_prf[i].f;
+		i++;
 	}
 	if (f != NULL)
 		f(pass, salt, c);

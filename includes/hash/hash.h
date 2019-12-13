@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 11:41:09 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 09:27:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/12 14:37:23 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_padding
 
 t_opt			*hash_opts(const int ac, char **av, t_opt *opts, int now);
 char			*hex2sum(uint32_t *h, size_t nb_h);
+char			*one_sum(uint32_t *h, size_t nb_h);
 void			printing_hash(t_data *data, const char *hash_type,
 				t_flags flags);
 
