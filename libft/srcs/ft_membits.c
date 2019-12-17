@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_membits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 18:08:47 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/13 16:22:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/17 11:12:29 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_membits(void *s, size_t len, size_t size)
 
 	data = (unsigned char*)s;
 	i = 0;
-	while (i <= len)
+	while (i < (len * size))
 	{
 		y = 0;
 		while (y < size)

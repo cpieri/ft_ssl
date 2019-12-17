@@ -6,26 +6,20 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 09:12:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/12 14:46:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/17 11:16:02 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash/hash.h"
+#include <stdio.h>
 
 char	*one_sum(uint32_t *h, size_t nb_h)
 {
 	char	*sum;
-	size_t	i;
 
-	i = 0;
-	if (!(sum = (char*)ft_memalloc(sizeof(char) * ((nb_h * 8) + 1))))
+	if (!(sum = (char*)ft_memalloc(nb_h * sizeof(uint32_t))))
 		return (NULL);
-	while (++i < nb_h)
-	{
-		sum = ft_memcpy(sum, &h[i], sizeof(uint32_t));
-		ft_putstr("hash: "), ft_membits(h, nb_h, sizeof(uint32_t));
-		ft_membits(sum, ((sizeof(char) * (nb_h * 8)) + 1), sizeof(char));
-	}
+	sum = ft_memdup(h, (nb_h * sizeof(uint32_t)));
 	return (sum);
 }
 
