@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/12 14:13:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/23 15:56:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		check_pbkdf2(t_pbkdf **k)
 	}
 	else
 		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
-	dk = ft_pbkdf2(HMAC_SHA256, (*k)->pass, (*k)->salt, 1000, sizeof(uint64_t));
+	dk = ft_pbkdf2((*k)->pass, (*k)->salt);
 }
 
 static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)
@@ -87,6 +87,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 		now++;
 	}
 	check_pbkdf2(&k);
+	// print_pbkdf(k);
 	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }
@@ -97,6 +98,6 @@ t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)
 
 	new = get_sym_args(ac, av, now);
 	add_to_end_lst(new, &opts);
-	print_lst(&opts);
+	// print_lst(&opts);
 	return (opts);
 }
