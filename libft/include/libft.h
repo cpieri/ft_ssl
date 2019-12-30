@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/17 10:08:06 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/30 09:36:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ double				ftb_clamp(double toclamp, double min, double max);
 /*
 **	Functions for Bitwise
 */
+uint32_t			left_shift(uint32_t x, uint32_t nb);
 uint32_t			left_rotate(uint32_t x, uint32_t nb);
 uint32_t			right_rotate(uint32_t x, uint32_t nb);
 uint32_t			swap_uint32t(uint32_t nb);

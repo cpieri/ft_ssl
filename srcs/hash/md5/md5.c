@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 15:18:34 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 11:37:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/30 08:36:27 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void		padding_md5(t_padding *p, char *data, size_t len)
 	p->new_len = (448 - (p->nb_bits + 1)) % 512;
 	p->new_len += p->nb_bits + 64 + 1;
 	p->new_len /= 8;
-	printf("Debug: md5 new len: %zu\n", p->new_len);
 	if (!(p->msg8 = (uint8_t*)ft_memalloc(sizeof(uint8_t) * p->new_len)))
 		ft_abort("ft_ssl: md5: malloc failed");
 	ft_memcpy(p->msg8, data, len);
@@ -64,13 +63,13 @@ static void		calc_sum(t_md5 *e)
 	while (i < 64)
 	{
 		if (i >= 0 && i <= 15)
-			tool = func_f(e->b, e->c, e->d, i);
+			tool = func_md5_f(e->b, e->c, e->d, i);
 		else if (i >= 16 && i <= 31)
-			tool = func_g(e->b, e->c, e->d, i);
+			tool = func_md5_g(e->b, e->c, e->d, i);
 		else if (i >= 32 && i <= 47)
-			tool = func_h(e->b, e->c, e->d, i);
+			tool = func_md5_h(e->b, e->c, e->d, i);
 		else if (i >= 48 && i <= 63)
-			tool = func_i(e->b, e->c, e->d, i);
+			tool = func_md5_i(e->b, e->c, e->d, i);
 		tmp = e->d;
 		e->d = e->c;
 		e->c = e->b;

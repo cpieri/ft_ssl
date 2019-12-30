@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/12/11 12:37:26 by cpieri           ###   ########.fr        #
+#    Updated: 2019/12/30 08:54:04 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ DEPS =		Makefile						\
 			includes/hash/sha256.h			\
 			includes/hash/hash.h			\
 			includes/hash/md5.h				\
+			includes/hash/sha1.h			\
 			includes/base64/base64.h		\
 			includes/symmetric/symmetric.h	\
 			includes/symmetric/des/des.h	\
@@ -57,6 +58,8 @@ SRC_NAME= 	main.c									\
 			hash/sha256/sha256_utils.c				\
 			hash/md5/md5_utils.c					\
 			hash/md5/md5.c							\
+			hash/sha1/sha1.c						\
+			hash/sha1/sha1_utils.c					\
 			base64/base64.c							\
 			base64/base64_encode.c					\
 			base64/base64_decode.c					\

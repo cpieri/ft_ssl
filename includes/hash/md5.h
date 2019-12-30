@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:16:22 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/22 10:56:42 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/30 08:36:13 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef struct	s_md5
 	uint32_t	*w;
 }				t_md5;
 
-t_md5_utils		func_f(uint32_t b, uint32_t c, uint32_t d, int i);
-t_md5_utils		func_g(uint32_t b, uint32_t c, uint32_t d, int i);
-t_md5_utils		func_h(uint32_t b, uint32_t c, uint32_t d, int i);
-t_md5_utils		func_i(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils		func_md5_f(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils		func_md5_g(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils		func_md5_h(uint32_t b, uint32_t c, uint32_t d, int i);
+t_md5_utils		func_md5_i(uint32_t b, uint32_t c, uint32_t d, int i);
 t_hash			*set_hash2md5(t_md5 *e);
 void			*md5(void *data, size_t len_data);
 
