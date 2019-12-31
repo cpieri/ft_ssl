@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 08:42:25 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/31 07:58:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/31 08:08:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,5 @@ t_hash			*set_hash2sha1(t_sha1 *e)
 	ret->h[2] = swap_uint32t(e->h2);
 	ret->h[3] = swap_uint32t(e->h3);
 	ret->h[4] = swap_uint32t(e->h4);
-	// ret->h[1] = left_shift(e->h1, 1);
-	// ret->h[2] = left_shift(e->h2, 2);
-	// ret->h[3] = left_shift(e->h3, 3);
-	// ret->h[4] = left_shift(e->h4, 4);
 	return (ret);
 }
