@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 09:12:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/31 11:29:31 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/06 08:43:59 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*hex2sum(uint32_t *h, size_t nb_h)
 		return (NULL);
 	while (++i < nb_h)
 	{
-		if ((tmp = ft_hex2char(h[i])) == NULL)
+		if ((tmp = ft_hex32_to_char(h[i])) == NULL)
 			break ;
 		ft_strncpy((sum + ft_strlen(sum)), tmp, ft_strlen(tmp));
 		ft_memdel((void**)&tmp);

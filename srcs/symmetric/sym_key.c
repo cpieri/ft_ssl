@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 13:53:56 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 11:02:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/07 15:31:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ uint8_t		*get_pass(const char *prompt)
 
 void		print_pbkdf(t_pbkdf *k)
 {
+	char	*key;
+
 	if (k == NULL)
 	{
 		ft_putendl("k is null");
@@ -43,11 +45,11 @@ void		print_pbkdf(t_pbkdf *k)
 	ft_putstr("pass:	");
 	ft_putendl((char*)k->pass);
 	ft_putstr("salt:	");
-	ft_put64hexa(k->salt);
+	ft_put64hexa(swap_uint64t(((uint64_t*)k->salt)[0]));
 	ft_putchar('\n');
 	ft_putstr("key:	");
-	ft_put64hexa(k->key);
-	ft_putchar('\n');
+	key = hex2sum(k->key, k->dk_len / 4);
+	ft_putendl(key);
 	ft_putstr("vect:	");
 	ft_put64hexa(k->vect);
 	ft_putchar('\n');

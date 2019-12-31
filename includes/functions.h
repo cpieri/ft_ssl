@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 12:44:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 10:38:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/06 09:02:50 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_data		*new_data(void);
 t_data		*get_data(const int fd, const char *fd_name);
 t_data		*get_file(const int fd, const char *fd_name);
 t_data		*get_string(char *s);
-uint64_t	get_random(void);
+void		*get_random(void);
 
 /*
 **	Functions for Lst_opt

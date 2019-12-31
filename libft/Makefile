@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/12/30 09:39:19 by cpieri           ###   ########.fr        #
+#    Updated: 2020/01/06 12:49:31 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ DEPS =		Makefile					\
 SRCS = 		ft_atoi.c					\
  			ft_bzero.c					\
 			ft_ishexa_color.c			\
+			ft_ishexa.c			\
 			ft_isspace.c				\
   			ft_isalnum.c				\
 	 		ft_isalpha.c				\
@@ -64,7 +65,8 @@ SRCS = 		ft_atoi.c					\
 			ft_putnbr_fd.c				\
 			ft_putstr.c					\
 			ft_putstr_fd.c				\
-			ft_hex2char.c				\
+			ft_hex64_to_char.c			\
+			ft_hex32_to_char.c			\
 			ft_strcat.c					\
 			ft_strchr.c					\
 			ft_strclr.c					\
@@ -126,6 +128,7 @@ SRCS = 		ft_atoi.c					\
 			ft_left_rotate.c			\
 			ft_right_rotate.c			\
 			ft_swap_uint32t.c			\
+			ft_swap_uint64t.c			\
 			ft_putbits.c
 
 OBJS	=	$(SRCS:.c=.o)

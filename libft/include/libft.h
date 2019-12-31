@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/30 09:36:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/06 12:53:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef	struct		s_list
 /*
 **	Functions for Strings
 */
-char				*ft_hex2char(uint32_t hex);
+char				*ft_hex32_to_char(uint32_t hex);
+char				*ft_hex64_to_char(uint64_t hex);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strchr(const char *s, int c);
@@ -94,6 +95,7 @@ int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_isspace(char c);
 int					ft_ishexa_color(char *s);
+int					ft_ishexa(char *s);
 
 /*
 **	Functions for Linked List
@@ -155,5 +157,6 @@ uint32_t			left_shift(uint32_t x, uint32_t nb);
 uint32_t			left_rotate(uint32_t x, uint32_t nb);
 uint32_t			right_rotate(uint32_t x, uint32_t nb);
 uint32_t			swap_uint32t(uint32_t nb);
+uint64_t			swap_uint64t(uint64_t nb);
 
 #endif

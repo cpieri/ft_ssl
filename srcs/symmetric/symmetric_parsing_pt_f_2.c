@@ -6,12 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/09 14:59:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/07 15:14:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
+#include <stdio.h>
 
 void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
@@ -26,7 +27,7 @@ void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	if (*k == NULL)
 		*k = new_key(NULL, 0, key, 0);
 	else
-		(*k)->key = key;
+		(*k)->key = &key;
 	(*now)++;
 }
 
@@ -43,24 +44,36 @@ void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k)
 			*k = new_key((uint8_t*)pass, 0, 0, 0);
 		else
 			(*k)->pass = (uint8_t*)pass;
+		(*k)->pass_len = ft_strlen(pass);
 		(*now)++;
 	}
 }
 
 void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
 {
-	uint64_t	salt;
+	unsigned char	*salt;
+	size_t			len;
+	uint64_t		nb;
 
-	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
+	len = 0;
+	nb = 0;
+	if ((salt = (unsigned char*)av[*now + 1]) == NULL || av[*now + 1][0] == '-')
 		sym_usage(av[*now]);
 	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k)
 	{
-		salt = hex2uint64t(av[*now + 1]);
+		if (ft_ishexa((char*)salt) == 1)
+		{
+			nb = swap_uint64t(hex2uint64t((char*)salt));
+			salt = ft_memdup(&nb, sizeof(uint64_t));
+			len = sizeof(uint64_t);
+		}
+		len = ft_strlen((char*)salt);
 		opt->flags.sym_flags |= e_sym_opt_s;
 		if (*k == NULL)
 			*k = new_key(NULL, salt, 0, 0);
 		else
 			(*k)->salt = salt;
+		(*k)->salt_len = len;
 		(*now)++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/23 15:56:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/07 15:15:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static const t_sym_opt	g_sym_opt[] =
 
 static void		check_pbkdf2(t_pbkdf **k)
 {
-	uint64_t dk;
-
 	if (*k != NULL)
 	{
 		if ((*k)->key != 0)
@@ -43,13 +41,17 @@ static void		check_pbkdf2(t_pbkdf **k)
 		else if ((*k)->pass == NULL)
 		{
 			(*k)->pass = get_pass("enter your password: ");
-			if ((*k)->salt == 0)
+			(*k)->pass_len = ft_strlen((*k)->pass);
+			if ((*k)->salt == NULL)
+			{
 				(*k)->salt = get_random();
+				(*k)->salt_len = ft_strlen((char*)(*k)->salt);
+			}
 		}
 	}
 	else
 		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
-	dk = ft_pbkdf2((*k)->pass, (*k)->salt);
+	pbkdf2(*k, 10000, 32, HMAC_SHA256);
 }
 
 static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)
@@ -87,7 +89,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 		now++;
 	}
 	check_pbkdf2(&k);
-	// print_pbkdf(k);
+	print_pbkdf(k);
 	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }

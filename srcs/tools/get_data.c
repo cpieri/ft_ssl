@@ -6,11 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 12:03:54 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 12:26:59 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/07 15:31:42 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+#include <stdio.h>
 
 t_data		*new_data(void)
 {
@@ -89,16 +90,19 @@ t_data		*get_data(const int fd, const char *fd_name)
 	return (ret);
 }
 
-uint64_t	get_random(void)
+void		*get_random(void)
 {
-	uint64_t	random_value;
-	int			dev_random_fd;
-	int			nb_read;
+	unsigned char	*ret;
+	uint64_t		random_value;
+	int				dev_random_fd;
+	int				nb_read;
 
 	random_value = FAILURE;
 	dev_random_fd = open_fd("/dev/random");
 	nb_read = read(dev_random_fd, &random_value, sizeof(uint64_t));
+	random_value = swap_uint64t(random_value);
+	ret = ft_memdup(&random_value, sizeof(uint64_t));
 	if (nb_read == FAILURE)
 		print_error("get_random");
-	return (random_value);
+	return (ret);
 }

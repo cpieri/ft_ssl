@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap_uint32t.c                                  :+:      :+:    :+:   */
+/*   ft_swap_uint64t.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:42:06 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/06 08:46:42 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/06 08:55:43 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-uint32_t	swap_uint32t(uint32_t nb)
+uint64_t	swap_uint64t(uint64_t nb)
 {
-	return ((nb >> 24 & 0xff) | (nb >> 8 & 0xff00) | (nb << 8 & 0xff0000)
-			| (nb << 24 & 0xff000000));
+	nb = (nb & 0x00000000FFFFFFFF) << 32 | (nb & 0xFFFFFFFF00000000) >> 32;
+	nb = (nb & 0x0000FFFF0000FFFF) << 16 | (nb & 0xFFFF0000FFFF0000) >> 16;
+	nb = (nb & 0x00FF00FF00FF00FF) << 8  | (nb & 0xFF00FF00FF00FF00) >> 8;
+	return (nb);
 }
