@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:11:40 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/23 15:51:00 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/31 08:50:05 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 # define PBKDF_H
 
 # include "../../libft/include/libft.h"
-# include "../hash/sha256.h"
-# include "../hash/md5.h"
+# include "../hash/hmac.h"
 # include "../functions.h"
 # include "../structure.h"
 
 enum			e_prf
 {
 	HMAC_MD5 = 0x000000001,
-	HMAC_SHA256 = 0x000000010
+	HMAC_SHA1 = 0x000000010,
+	HMAC_SHA256 = 0x000000100
 };
 
 typedef struct	s_prf
 {
 	enum e_prf	prf;
-	void		*(*f)(uint8_t *, uint64_t, uint32_t);
+	void		*(*f)(void *, size_t, void *, size_t);
 }				t_prf;
 
 typedef struct	s_pbkdf

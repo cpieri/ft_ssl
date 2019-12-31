@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 09:12:05 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/17 11:16:02 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/31 11:29:31 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ char	*one_sum(uint32_t *h, size_t nb_h)
 {
 	char	*sum;
 
-	if (!(sum = (char*)ft_memalloc(nb_h * sizeof(uint32_t))))
+	if (!(sum = (char*)ft_memdup(h, (nb_h * sizeof(uint32_t)))))
 		return (NULL);
-	sum = ft_memdup(h, (nb_h * sizeof(uint32_t)));
 	return (sum);
 }
 

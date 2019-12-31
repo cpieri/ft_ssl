@@ -6,12 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 08:42:25 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/31 08:08:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/31 08:14:54 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash/sha1.h"
-#include <stdio.h>
 
 t_sha1_utils	func_sha1_f(uint32_t b, uint32_t c, uint32_t d)
 {

@@ -6,12 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 08:04:36 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/31 07:58:25 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/31 08:14:52 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash/sha1.h"
-#include <stdio.h>
 
 static void		padding_sha1(t_padding *p, char *data, size_t len)
 {

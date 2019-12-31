@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 13:15:42 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/23 15:50:48 by cpieri           ###   ########.fr       */
+/*   Updated: 2019/12/31 08:47:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct	s_sha256
 }				t_sha256;
 
 void			*sha256(void *data, size_t len_data);
-void			*hmac_sha256(uint8_t *pass, uint64_t salt, uint32_t c);
 t_hash			*set_hash2sha256(t_sha256 *e);
 
 #endif
