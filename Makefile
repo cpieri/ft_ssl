@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/12/31 14:37:46 by cpieri           ###   ########.fr        #
+#    Updated: 2020/01/09 13:06:49 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_NAME= 	main.c									\
 			tools/usage.c							\
 			tools/error.c							\
 			tools/get_data.c						\
+			tools/get_data_1.c						\
 			tools/open_fd.c							\
 			tools/lst_opt.c							\
 			hash/hash_parsing.c						\
@@ -73,7 +74,6 @@ SRC_NAME= 	main.c									\
 			base64/base64_display.c					\
 			pbkdf2/pbkdf2.c							\
 			pbkdf2/pbkdf2_utils.c					\
-			symmetric/sym_key.c						\
 			symmetric/symmetric_usage.c				\
 			symmetric/symmetric_parsing.c			\
 			symmetric/symmetric_parsing_pt_f.c		\
