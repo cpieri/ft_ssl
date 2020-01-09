@@ -6,12 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 13:29:35 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/07 15:21:37 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/09 13:16:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pbkdf2/pbkdf.h"
-#include <stdio.h>
 #include <math.h>
 
 static const t_prf	g_prf[4] = {
