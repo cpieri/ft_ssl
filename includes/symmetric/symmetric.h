@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:11:43 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/31 14:36:27 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/03 09:52:47 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SYMMETRIC_H
 
 # include "./des/des.h"
-# include "../pbkdf2/pbkdf.h"
+# include "../evp/pbkdf.h"
 
 enum			e_sym_opt
 {

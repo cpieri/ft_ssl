@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:11:40 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/06 10:33:25 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/03 09:27:47 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ typedef struct	s_pbkdf
 	uint64_t	vect;
 }				t_pbkdf;
 
+
+/*
+**	EVP Functions utils
+*/
+t_prf			evp_get_prf(enum e_prf name);
+
 /*
 **	Functions for create and del struct symmetric key
 */
@@ -54,6 +60,8 @@ void			free_pbkdf(t_pbkdf **to_free);
 void			free_vpbkdf(void **to_free);
 uint64_t		gen_key(uint8_t *pass, uint64_t salt);
 void			*pbkdf2(t_pbkdf *k, uint32_t c, size_t dk_len, enum e_prf func);
+void			*evp_bytes2key(t_pbkdf *k, uint32_t c, size_t dk_len,
+			enum e_prf func);
 void			regen_key(t_pbkdf **k);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/12/31 14:37:46 by cpieri           ###   ########.fr        #
+#    Updated: 2020/02/03 09:17:51 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ DEPS =		Makefile						\
 			includes/hash/sha1.h			\
 			includes/hash/hmac.h			\
 			includes/base64/base64.h		\
-			includes/pbkdf2/pbkdf.h		\
+			includes/evp/pbkdf.h			\
 			includes/symmetric/symmetric.h	\
 			includes/symmetric/des/des.h	\
 			libft/libft.a
@@ -71,8 +71,9 @@ SRC_NAME= 	main.c									\
 			base64/base64_parsing.c					\
 			base64/base64_help_parsing.c			\
 			base64/base64_display.c					\
-			pbkdf2/pbkdf2.c							\
-			pbkdf2/pbkdf2_utils.c					\
+			evp/pbkdf2.c							\
+			evp/pbkdf2_utils.c						\
+			evp/evp_bytes2key.c						\
 			symmetric/sym_key.c						\
 			symmetric/symmetric_usage.c				\
 			symmetric/symmetric_parsing.c			\

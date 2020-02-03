@@ -6,11 +6,33 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 13:31:54 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/06 10:57:10 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/03 09:28:07 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pbkdf2/pbkdf.h"
+#include "evp/pbkdf.h"
+
+static const t_prf	g_prf[4] = {
+	{HMAC_MD5, hmac_md5, 16},
+	{HMAC_SHA1, hmac_sha1, 20},
+	{HMAC_SHA256, hmac_sha256, 32},
+	{0, NULL, 0}
+};
+
+t_prf		evp_get_prf(enum e_prf name)
+{
+	t_prf	ret;
+	size_t	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (g_prf[i].prf == name)
+			ret = g_prf[i];
+		i++;
+	}
+	return (ret);
+}
 
 t_pbkdf		*new_key(uint8_t *pass, void *salt, uint64_t key, uint64_t vect)
 {
