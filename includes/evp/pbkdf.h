@@ -52,8 +52,8 @@ t_prf			evp_get_prf(enum e_prf name);
 /*
 **	Functions for create and del struct symmetric key
 */
-uint8_t			*get_pass(const char *prompt);
-t_pbkdf			*new_key(uint8_t *pass, void *salt, uint64_t key,
+void			*pbkdf2(t_pbkdf *k, uint32_t c, size_t dk_len, enum e_prf func);
+t_pbkdf			*new_t_pbkdf(uint8_t *pass, void *salt, uint64_t key,
 			uint64_t vect);
 void			print_pbkdf(t_pbkdf *to_print);
 void			free_pbkdf(t_pbkdf **to_free);

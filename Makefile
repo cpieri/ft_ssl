@@ -50,6 +50,7 @@ SRC_NAME= 	main.c									\
 			tools/usage.c							\
 			tools/error.c							\
 			tools/get_data.c						\
+			tools/get_data_1.c						\
 			tools/open_fd.c							\
 			tools/lst_opt.c							\
 			hash/hash_parsing.c						\
