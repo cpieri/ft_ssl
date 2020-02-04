@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:13:54 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 09:56:20 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 12:06:51 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../structure.h"
 # include "../functions.h"
 # include "../hash/hash.h"
+# include <math.h>
 
 typedef struct	s_evp
 {

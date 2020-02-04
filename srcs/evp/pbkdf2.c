@@ -6,12 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 13:29:35 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 09:58:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 12:06:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "evp/pbkdf.h"
-#include <math.h>
 
 static void		*first_i(t_evp *k, size_t y, t_prf prf)
 {
