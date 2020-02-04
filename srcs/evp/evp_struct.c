@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   evp_utils.c                                        :+:      :+:    :+:   */
+/*   evp_struct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 09:23:01 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 10:00:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 14:44:37 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "evp/evp.h"
 
-t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, uint64_t vect)
+t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, void *vect)
 {
 	t_evp	*new;
 
@@ -30,6 +30,7 @@ t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, uint64_t vect)
 void		print_evp(t_evp *k)
 {
 	char	*key;
+	char	*vect;
 
 	if (k == NULL)
 	{
@@ -45,8 +46,10 @@ void		print_evp(t_evp *k)
 	key = hex2sum(k->key, k->dk_len / 4);
 	ft_putendl(key);
 	ft_putstr("vect:	");
-	ft_put64hexa(k->vect);
-	ft_putchar('\n');
+	vect = hex2sum(k->vect, k->iv_len / 4);
+	ft_putendl(key);
+	// ft_memdel((void**)&key);
+	// ft_memdel((void**)&vect);
 }
 
 void		free_evp(t_evp **to_free)

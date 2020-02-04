@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 09:58:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 14:41:55 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,26 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_evp **k)
 
 void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_evp **k)
 {
-	uint64_t	vector;
+	unsigned char	*vect;
+	size_t			len;
+	uint64_t		vector;
 
-	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
+	len = 0;
+	vector = 0;
+	if ((vect = (unsigned char*)av[*now + 1]) == NULL || av[*now + 1][0] == '-')
 		sym_usage(av[*now]);
-	vector = hex2uint64t(av[*now + 1]);
+	if (ft_ishexa((char*)vect) == 1)
+	{
+		vector = hex2uint64t((char*)vect);
+		vect = ft_memdup(&vector, sizeof(uint64_t));
+		len = sizeof(uint64_t);
+	}
 	opt->flags.sym_flags |= e_sym_opt_v;
 	if (*k == NULL)
-		*k = new_t_evp(NULL, 0, 0, vector);
+		*k = new_t_evp(NULL, 0, 0, vect);
 	else
-		(*k)->vect = vector;
+		(*k)->vect = vect;
+	(*k)->iv_len = len;
 	(*now)++;
 }
 

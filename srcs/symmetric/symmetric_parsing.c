@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 13:08:47 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 14:37:21 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ static void		check_pbkdf2(t_evp **k)
 		}
 	}
 	else
+	{
 		*k = new_t_evp(get_pass("enter your password: "), 0, 0, 0);
-	pbkdf2(*k, 1, 32, HMAC_SHA256);
+		evp_bytes2key(*k, 1, 8 + sizeof(uint64_t), EVP_MD5);
+	}
 }
 
 static void		get_sym_opt(char **av, int *now, t_opt *opt, t_evp **k)
@@ -101,5 +103,6 @@ t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)
 	new = get_sym_args(ac, av, now);
 	add_to_end_lst(new, &opts);
 	// print_lst(&opts);
+	while (1);
 	return (opts);
 }
