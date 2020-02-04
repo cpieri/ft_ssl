@@ -6,15 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/09 13:05:59 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:58:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
-#include <stdio.h>
 
-void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	uint64_t	key;
 
@@ -25,13 +24,13 @@ void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	if ((opt->flags.sym_flags & e_sym_opt_s) == e_sym_opt_s)
 		opt->flags.sym_flags ^= e_sym_opt_s;
 	if (*k == NULL)
-		*k = new_t_pbkdf(NULL, 0, key, 0);
+		*k = new_t_evp(NULL, 0, key, 0);
 	else
 		(*k)->key = &key;
 	(*now)++;
 }
 
-void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	char	*pass;
 
@@ -41,7 +40,7 @@ void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	{
 		opt->flags.sym_flags |= e_sym_opt_p;
 		if (*k == NULL)
-			*k = new_t_pbkdf((uint8_t*)pass, 0, 0, 0);
+			*k = new_t_evp((uint8_t*)pass, 0, 0, 0);
 		else
 			(*k)->pass = (uint8_t*)pass;
 		(*k)->pass_len = ft_strlen(pass);
@@ -49,7 +48,7 @@ void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	}
 }
 
-void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	unsigned char	*salt;
 	size_t			len;
@@ -70,7 +69,7 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
 		len = ft_strlen((char*)salt);
 		opt->flags.sym_flags |= e_sym_opt_s;
 		if (*k == NULL)
-			*k = new_t_pbkdf(NULL, salt, 0, 0);
+			*k = new_t_evp(NULL, salt, 0, 0);
 		else
 			(*k)->salt = salt;
 		(*k)->salt_len = len;
@@ -78,7 +77,7 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	}
 }
 
-void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	uint64_t	vector;
 
@@ -87,13 +86,13 @@ void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	vector = hex2uint64t(av[*now + 1]);
 	opt->flags.sym_flags |= e_sym_opt_v;
 	if (*k == NULL)
-		*k = new_t_pbkdf(NULL, 0, 0, vector);
+		*k = new_t_evp(NULL, 0, 0, vector);
 	else
 		(*k)->vect = vector;
 	(*now)++;
 }
 
-void	get_sym_stdin(t_opt *opt, t_pbkdf **k)
+void	get_sym_stdin(t_opt *opt, t_evp **k)
 {
 	const char	*fd_output;
 

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pbkdf2_utils.c                                     :+:      :+:    :+:   */
+/*   evp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/31 13:31:54 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/09 12:52:23 by cpieri           ###   ########.fr       */
+/*   Created: 2020/02/04 09:23:01 by cpieri            #+#    #+#             */
+/*   Updated: 2020/02/04 10:00:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pbkdf2/pbkdf.h"
+#include "evp/evp.h"
 
-t_pbkdf		*new_t_pbkdf(uint8_t *pass, void *salt, uint64_t key, uint64_t vect)
+t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, uint64_t vect)
 {
-	t_pbkdf	*new;
+	t_evp	*new;
 
-	if (!(new = (t_pbkdf*)malloc(sizeof(t_pbkdf))))
+	if (!(new = (t_evp*)malloc(sizeof(t_evp))))
 		return (NULL);
 	new->pass = pass;
 	new->pass_len = ft_strlen((char*)new->pass);
@@ -27,7 +27,7 @@ t_pbkdf		*new_t_pbkdf(uint8_t *pass, void *salt, uint64_t key, uint64_t vect)
 	return (new);
 }
 
-void		print_pbkdf(t_pbkdf *k)
+void		print_evp(t_evp *k)
 {
 	char	*key;
 
@@ -49,7 +49,7 @@ void		print_pbkdf(t_pbkdf *k)
 	ft_putchar('\n');
 }
 
-void		free_pbkdf(t_pbkdf **to_free)
+void		free_evp(t_evp **to_free)
 {
 	ft_memdel((void**)&((*to_free)->pass));
 	ft_memdel((void**)&((*to_free)->salt));
@@ -57,11 +57,11 @@ void		free_pbkdf(t_pbkdf **to_free)
 	ft_memdel((void**)(to_free));
 }
 
-void		free_vpbkdf(void **to_free)
+void		free_vevp(void **to_free)
 {
-	t_pbkdf	**to_del;
+	t_evp	**to_del;
 
-	to_del = (t_pbkdf**)to_free;
+	to_del = (t_evp**)to_free;
 	ft_memdel((void**)&((*to_del)->pass));
 	ft_memdel((void**)&((*to_del)->salt));
 	ft_memdel((void**)&((*to_del)->key));

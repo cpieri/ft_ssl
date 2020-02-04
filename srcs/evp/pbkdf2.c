@@ -6,30 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 13:29:35 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/03 09:27:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:58:21 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "evp/pbkdf.h"
 #include <math.h>
 
-static void		pbkdf2_xor_dgst(void const *dgst1, void const *dgst2, size_t nb)
-{
-	char	*dgst1_cpy;
-	char	*dgst2_cpy;
-	size_t	i;
-
-	i = 0;
-	dgst1_cpy = (char*)dgst1;
-	dgst2_cpy = (char*)dgst2;
-	while (i < nb)
-	{
-		dgst1_cpy[i] ^= dgst2_cpy[i];
-		i++;
-	}
-}
-
-static void		*first_i(t_pbkdf *k, size_t y, t_prf prf)
+static void		*first_i(t_evp *k, size_t y, t_prf prf)
 {
 	void	*buff;
 	void	*ret;
@@ -43,7 +27,7 @@ static void		*first_i(t_pbkdf *k, size_t y, t_prf prf)
 	return (ret);
 }
 
-static void		*pbkdf2_f(t_pbkdf *k, uint32_t c, t_prf prf, size_t y)
+static void		*pbkdf2_f(t_evp *k, uint32_t c, t_prf prf, size_t y)
 {
 	size_t	i;
 	char	*ret;
@@ -70,7 +54,7 @@ static void		*pbkdf2_f(t_pbkdf *k, uint32_t c, t_prf prf, size_t y)
 	return (ret);
 }
 
-void			*pbkdf2(t_pbkdf *k, uint32_t c, size_t dk_len, enum e_prf func)
+void			*pbkdf2(t_evp *k, uint32_t c, size_t dk_len, enum e_prf func)
 {
 	size_t		i;
 	size_t		l;
@@ -79,7 +63,7 @@ void			*pbkdf2(t_pbkdf *k, uint32_t c, size_t dk_len, enum e_prf func)
 	t_prf		prf;
 
 	i = 1;
-	prf = evp_get_prf(func);
+	prf = pbkdf2_get_prf(func);
 	l = ceil((double)(dk_len / prf.nb_word)) + 1;
 	if (!(ret = (char*)ft_memalloc(sizeof(char) * (dk_len + 1))))
 		return (NULL);

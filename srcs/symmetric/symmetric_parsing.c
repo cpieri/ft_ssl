@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/03 11:15:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 11:51:47 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static const t_sym_opt	g_sym_opt[] =
 	{0, 0, NULL}
 };
 
-static void		check_pbkdf2(t_pbkdf **k)
+static void		check_pbkdf2(t_evp **k)
 {
 	if (*k != NULL)
 	{
@@ -50,11 +50,13 @@ static void		check_pbkdf2(t_pbkdf **k)
 		}
 	}
 	else
-		*k = new_key(get_pass("enter your password: "), 0, 0, 0);
-	evp_bytes2key(*k, 1000, 8, HMAC_SHA256);
+		*k = new_t_evp(get_pass("enter your password: "), 0, 0, 0);
+	// evp_bytes2key(*k, 1, 8, EVP_MD5);
+	// evp_bytes2key(*k, 9, 8, EVP_MD5);
+	evp_bytes2key(*k, 10, 8, EVP_MD5);
 }
 
-static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)
+static void		get_sym_opt(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	size_t		len_now;
 	size_t		i;
@@ -78,7 +80,7 @@ static void		get_sym_opt(char **av, int *now, t_opt *opt, t_pbkdf **k)
 static t_opt	*get_sym_args(const int ac, char **av, int now)
 {
 	t_opt		opt;
-	t_pbkdf		*k;
+	t_evp		*k;
 
 	k = NULL;
 	opt = (t_opt){NULL, {0, 0, 0, 0, 0, 0}, NULL};
@@ -89,7 +91,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 		now++;
 	}
 	check_pbkdf2(&k);
-	print_pbkdf(k);
+	print_evp(k);
 	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }

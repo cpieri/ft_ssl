@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:11:43 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/03 09:52:47 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 10:25:57 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "./des/des.h"
 # include "../evp/pbkdf.h"
+# include "../evp/evp_bytes2key.h"
 
 enum			e_sym_opt
 {
@@ -33,23 +34,23 @@ typedef struct	s_sym_opt
 {
 	char		opt;
 	uint64_t	flag;
-	void		(*sym_opt_fun)(char **, int *, t_opt *, t_pbkdf **);
+	void		(*sym_opt_fun)(char **, int *, t_opt *, t_evp **);
 }				t_sym_opt;
 
 /*
 **	Functions for get options in parsing
 */
 t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now);
-void			get_sym_opt_a(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_d(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_e(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_i(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_o(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_k(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_s(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_p(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_opt_v(char **av, int *now, t_opt *opt, t_pbkdf **k);
-void			get_sym_stdin(t_opt *opt, t_pbkdf **k);
+void			get_sym_opt_a(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_d(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_e(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_i(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_o(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_k(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_s(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_p(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_opt_v(char **av, int *now, t_opt *opt, t_evp **k);
+void			get_sym_stdin(t_opt *opt, t_evp **k);
 
 /*
 **	Usage

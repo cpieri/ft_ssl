@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2020/02/03 09:17:51 by cpieri           ###   ########.fr        #
+#    Updated: 2020/02/04 10:12:31 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,8 +74,9 @@ SRC_NAME= 	main.c									\
 			base64/base64_display.c					\
 			evp/pbkdf2.c							\
 			evp/pbkdf2_utils.c						\
+			evp/evp_struct.c						\
 			evp/evp_bytes2key.c						\
-			symmetric/sym_key.c						\
+			evp/evp_b2k_utils.c						\
 			symmetric/symmetric_usage.c				\
 			symmetric/symmetric_parsing.c			\
 			symmetric/symmetric_parsing_pt_f.c		\

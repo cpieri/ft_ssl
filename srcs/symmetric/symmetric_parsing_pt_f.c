@@ -6,14 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 09:34:06 by cpieri            #+#    #+#             */
-/*   Updated: 2019/12/11 12:45:22 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:58:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
 
-void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	char		*fd;
 	const char	*fd_output;
@@ -35,7 +35,7 @@ void	get_sym_opt_i(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	(*now)++;
 }
 
-void	get_sym_opt_o(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_o(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	char	*fd_output;
 
@@ -49,7 +49,7 @@ void	get_sym_opt_o(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	(*now)++;
 }
 
-void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	(void)av;
 	(void)now;
@@ -57,7 +57,7 @@ void	get_sym_opt_a(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	opt->flags.sym_flags |= e_sym_opt_a;
 }
 
-void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	(void)k;
 	(void)now;
@@ -67,7 +67,7 @@ void	get_sym_opt_d(char **av, int *now, t_opt *opt, t_pbkdf **k)
 	opt->flags.sym_flags |= e_sym_opt_d;
 }
 
-void	get_sym_opt_e(char **av, int *now, t_opt *opt, t_pbkdf **k)
+void	get_sym_opt_e(char **av, int *now, t_opt *opt, t_evp **k)
 {
 	(void)k;
 	(void)now;

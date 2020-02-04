@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 17:29:55 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 12:15:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:58:54 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_lst(t_opt **lst)
 		ft_putstr("data to crypt: ");
 		ft_memput(tmp->data->data, tmp->data->len_data);
 		ft_membits(&tmp->flags.sym_flags, 0, sizeof(uint64_t));
-		print_pbkdf((t_pbkdf*)(tmp->data->pass));
+		print_evp((t_evp*)(tmp->data->pass));
 		if (tmp->data->fd_output != NULL)
 		{
 			ft_putstr("fd to output: ");
