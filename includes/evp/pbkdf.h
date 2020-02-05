@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 10:11:40 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:38:20 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/05 10:11:59 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ typedef struct	s_prf
 
 t_prf			pbkdf2_get_prf(enum e_prf name);
 void			pbkdf2_xor_dgst(void const *dgst1, void const *dgst2, size_t nb);
-void			*pbkdf2(t_evp *k, uint32_t c, size_t dk_len, enum e_prf func);
+void			*pbkdf2(t_evp *k, uint32_t c, size_t dk_len, int func);
 
 #endif

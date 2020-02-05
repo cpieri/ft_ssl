@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:11:43 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 10:25:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/05 10:11:54 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct	s_sym_opt
 	uint64_t	flag;
 	void		(*sym_opt_fun)(char **, int *, t_opt *, t_evp **);
 }				t_sym_opt;
+
+typedef struct	s_evp_f
+{
+	void		*(*f)(t_evp*, uint32_t, size_t, int);
+	uint		key_len;
+	uint		iv_len;
+	uint		c;
+	uint		prf;
+}				t_evp_f;
 
 /*
 **	Functions for get options in parsing

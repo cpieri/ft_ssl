@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 10:03:30 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:38:46 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/05 10:12:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ typedef struct			s_evp_hash
 
 t_evp_hash				evp_get_hashf(enum e_hash_f name);
 void					*evp_bytes2key(t_evp *k, uint32_t c, size_t dk_len,
-			enum e_hash_f func);
+			int func);
 
 #endif

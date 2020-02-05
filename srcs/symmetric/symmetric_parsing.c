@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:37:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/05 10:13:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,21 @@ static const t_sym_opt	g_sym_opt[] =
 	{0, 0, NULL}
 };
 
-static void		check_pbkdf2(t_evp **k)
+static const t_evp_f	g_evp_f[] =
 {
+	{evp_bytes2key, 8, 8, 1, EVP_MD5},
+	{pbkdf2, 8, 8, 10000, HMAC_SHA256},
+	{NULL, 0, 0, 0, 0,}
+};
+
+static void		check_pbkdf2(t_evp **k, uint do_pbkdf2)
+{
+	t_evp_f		evp_f;
+
+	evp_f = (do_pbkdf2 == 1) ? g_evp_f[1] : g_evp_f[0];
 	if (*k != NULL)
 	{
-		if ((*k)->key != 0)
-		{
-			if ((*k)->vect == 0)
-				exit_msg("iv undefined");
-		}
-		else if ((*k)->pass == NULL)
+		if ((*k)->pass == NULL)
 		{
 			(*k)->pass = get_pass("enter your password: ");
 			(*k)->pass_len = ft_strlen((*k)->pass);
@@ -48,11 +53,18 @@ static void		check_pbkdf2(t_evp **k)
 				(*k)->salt_len = ft_strlen((char*)(*k)->salt);
 			}
 		}
+		if ((*k)->key != 0)
+		{
+			if ((*k)->vect == 0)
+				exit_msg("iv undefined");
+		}
+		else
+			evp_f.f(*k, evp_f.c, evp_f.key_len + evp_f.iv_len, evp_f.prf);
 	}
 	else
 	{
 		*k = new_t_evp(get_pass("enter your password: "), 0, 0, 0);
-		evp_bytes2key(*k, 1, 8 + sizeof(uint64_t), EVP_MD5);
+		evp_f.f(*k, evp_f.c, evp_f.key_len + evp_f.iv_len, evp_f.prf);
 	}
 }
 
@@ -80,17 +92,21 @@ static void		get_sym_opt(char **av, int *now, t_opt *opt, t_evp **k)
 static t_opt	*get_sym_args(const int ac, char **av, int now)
 {
 	t_opt		opt;
+	uint		do_pbkdf2;
 	t_evp		*k;
 
 	k = NULL;
+	do_pbkdf2 = 0;
 	opt = (t_opt){NULL, {0, 0, 0, 0, 0, 0}, NULL};
 	while (now < ac)
 	{
-		if (av[now][0] == '-')
+		if (ft_strcmp(av[now], "-pbkdf2") == 0)
+			do_pbkdf2 = 1;
+		else if (av[now][0] == '-')
 			get_sym_opt(av, &now, &opt, &k);
 		now++;
 	}
-	check_pbkdf2(&k);
+	check_pbkdf2(&k, do_pbkdf2);
 	print_evp(k);
 	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
@@ -103,6 +119,6 @@ t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)
 	new = get_sym_args(ac, av, now);
 	add_to_end_lst(new, &opts);
 	// print_lst(&opts);
-	while (1);
+	// while (1);
 	return (opts);
 }

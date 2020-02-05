@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:10:42 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:38:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/05 10:12:10 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static void		*evp_loop(t_evp *k, size_t i, char *key, t_evp_hash hash_f)
 	return (ret);
 }
 
-void			*evp_bytes2key(t_evp *k, uint32_t c, size_t dk_len,
-		enum e_hash_f func)
+void			*evp_bytes2key(t_evp *k, uint32_t c, size_t dk_len, int func)
 {
 	size_t		i;
 	size_t		l;

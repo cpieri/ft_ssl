@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 09:23:01 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:44:37 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/02/05 08:56:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, void *vect)
 void		print_evp(t_evp *k)
 {
 	char	*key;
-	char	*vect;
+	// char	*vect;
 
 	if (k == NULL)
 	{
@@ -46,10 +46,8 @@ void		print_evp(t_evp *k)
 	key = hex2sum(k->key, k->dk_len / 4);
 	ft_putendl(key);
 	ft_putstr("vect:	");
-	vect = hex2sum(k->vect, k->iv_len / 4);
+	// vect = hex2sum(k->vect, k->iv_len / 4);
 	ft_putendl(key);
-	// ft_memdel((void**)&key);
-	// ft_memdel((void**)&vect);
 }
 
 void		free_evp(t_evp **to_free)
