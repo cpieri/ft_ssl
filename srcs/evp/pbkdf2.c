@@ -6,10 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 13:29:35 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/05 10:11:52 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/17 13:46:08 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "symmetric/symmetric.h"
 #include "evp/pbkdf.h"
 
 static void		*first_i(t_evp *k, size_t y, t_prf prf)
@@ -53,7 +54,7 @@ static void		*pbkdf2_f(t_evp *k, uint32_t c, t_prf prf, size_t y)
 	return (ret);
 }
 
-void			*pbkdf2(t_evp *k, uint32_t c, size_t dk_len, int func)
+void			*pbkdf2(t_evp *k, uint32_t c, t_evp_size full_size, int func)
 {
 	size_t		i;
 	size_t		l;
@@ -63,18 +64,18 @@ void			*pbkdf2(t_evp *k, uint32_t c, size_t dk_len, int func)
 
 	i = 1;
 	prf = pbkdf2_get_prf(func);
-	l = ceil((double)(dk_len / prf.nb_word)) + 1;
-	if (!(ret = (char*)ft_memalloc(sizeof(char) * (dk_len + 1))))
+	l = ceil((double)(full_size.dk_len / prf.nb_word)) + 1;
+	if (!(ret = (char*)ft_memalloc(sizeof(char) * (full_size.dk_len + 1))))
 		return (NULL);
 	while (i <= l)
 	{
 		tmp = pbkdf2_f(k, c, prf, i);
 		ft_memcpy(ret + ((i - 1) * prf.nb_word), tmp,
-				(i == l) ? dk_len % prf.nb_word : prf.nb_word);
+				(i == l) ? full_size.dk_len % prf.nb_word : prf.nb_word);
 		ft_memdel(&tmp);
 		i++;
 	}
 	k->key = ret;
-	k->dk_len = dk_len;
+	k->dk_len = full_size.key_len;
 	return (ret);
 }

@@ -39,9 +39,8 @@ typedef struct	s_sym_opt
 
 typedef struct	s_evp_f
 {
-	void		*(*f)(t_evp*, uint32_t, size_t, int);
-	uint		key_len;
-	uint		iv_len;
+	void		*(*f)(t_evp*, uint32_t, t_evp_size, int);
+	t_evp_size	full_size;
 	uint		c;
 	uint		prf;
 }				t_evp_f;

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/05 10:13:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/17 14:06:09 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static const t_sym_opt	g_sym_opt[] =
 
 static const t_evp_f	g_evp_f[] =
 {
-	{evp_bytes2key, 8, 8, 1, EVP_MD5},
-	{pbkdf2, 8, 8, 10000, HMAC_SHA256},
-	{NULL, 0, 0, 0, 0,}
+	{evp_bytes2key, {8, 8, 32}, 1, EVP_MD5},
+	{pbkdf2, {8, 8, 16}, 10000, HMAC_SHA256},
+	{NULL, {0, 0, 0}, 0, 0}
 };
 
 static void		check_pbkdf2(t_evp **k, uint do_pbkdf2)
@@ -59,12 +59,12 @@ static void		check_pbkdf2(t_evp **k, uint do_pbkdf2)
 				exit_msg("iv undefined");
 		}
 		else
-			evp_f.f(*k, evp_f.c, evp_f.key_len + evp_f.iv_len, evp_f.prf);
+			evp_f.f(*k, evp_f.c, evp_f.full_size, evp_f.prf);
 	}
 	else
 	{
 		*k = new_t_evp(get_pass("enter your password: "), 0, 0, 0);
-		evp_f.f(*k, evp_f.c, evp_f.key_len + evp_f.iv_len, evp_f.prf);
+		evp_f.f(*k, evp_f.c, evp_f.full_size, evp_f.prf);
 	}
 }
 

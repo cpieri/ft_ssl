@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:13:54 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:40:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/17 14:07:44 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct	s_evp
 	size_t		dk_len;
 	size_t		iv_len;
 }				t_evp;
+
+typedef struct	s_evp_size
+{
+	size_t		key_len;
+	size_t		iv_len;
+	size_t		dk_len;
+}				t_evp_size;
 
 t_evp			*new_t_evp(uint8_t *pass, void *salt, uint64_t key, void *vect);
 void			print_evp(t_evp *to_print);
