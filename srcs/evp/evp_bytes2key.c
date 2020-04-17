@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:10:42 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/17 14:06:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/17 15:45:56 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void			*evp_bytes2key(t_evp *k, uint32_t c, t_evp_size full_size, int func)
 		i++;
 	}
 	k->key = ret;
+	k->vect = ft_memdup(ret + full_size.key_len, full_size.iv_len);
+	k->iv_len = full_size.iv_len;
 	k->dk_len = full_size.key_len;
 	return (ret);
 }
