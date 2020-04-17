@@ -6,12 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 14:41:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/17 15:29:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
+#include <stdio.h>
 
 void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_evp **k)
 {
@@ -50,29 +51,27 @@ void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_evp **k)
 
 void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_evp **k)
 {
-	unsigned char	*salt;
-	size_t			len;
-	uint64_t		nb;
+	char		*salt;
+	uint64_t	nb;
 
-	len = 0;
 	nb = 0;
-	if ((salt = (unsigned char*)av[*now + 1]) == NULL || av[*now + 1][0] == '-')
+	if ((salt = av[*now + 1]) == NULL || av[*now + 1][0] == '-')
 		sym_usage(av[*now]);
 	if ((opt->flags.sym_flags & e_sym_opt_k) != e_sym_opt_k)
 	{
-		if (ft_ishexa((char*)salt) == 1)
+		if (ft_ishexa(salt) == 1)
 		{
-			nb = swap_uint64t(hex2uint64t((char*)salt));
+			nb = swap_uint64t(hex2uint64t(salt));
 			salt = ft_memdup(&nb, sizeof(uint64_t));
-			len = sizeof(uint64_t);
 		}
-		len = ft_strlen((char*)salt);
+		else
+			exit_msg("ft_ssl: invalid hex salt value");
 		opt->flags.sym_flags |= e_sym_opt_s;
 		if (*k == NULL)
 			*k = new_t_evp(NULL, salt, 0, 0);
 		else
 			(*k)->salt = salt;
-		(*k)->salt_len = len;
+		(*k)->salt_len = 8;
 		(*now)++;
 	}
 }
