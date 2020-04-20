@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:05:16 by cpieri            #+#    #+#             */
-/*   Updated: 2019/03/20 19:52:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/01/02 11:00:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		print_usage(1, NULL);
 	parse = parsing(ac, av);
-	hashing(&parse);
-	clean_prog(&parse);
+	dispatch(&parse);
+	// clean_prog(&parse);
 	return (0);
 }

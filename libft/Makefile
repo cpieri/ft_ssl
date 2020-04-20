@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2019/04/11 11:16:46 by cpieri           ###   ########.fr        #
+#    Updated: 2020/01/06 12:49:31 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ DEPS =		Makefile					\
 SRCS = 		ft_atoi.c					\
  			ft_bzero.c					\
 			ft_ishexa_color.c			\
+			ft_ishexa.c			\
 			ft_isspace.c				\
   			ft_isalnum.c				\
 	 		ft_isalpha.c				\
@@ -42,6 +43,7 @@ SRCS = 		ft_atoi.c					\
 			ft_isdigit.c 				\
 			ft_isprint.c				\
 			ft_itoa.c					\
+			ft_memput.c					\
 			ft_memalloc.c				\
 	 		ft_memccpy.c				\
 	  		ft_memchr.c					\
@@ -58,9 +60,13 @@ SRCS = 		ft_atoi.c					\
 			ft_putendl_fd.c				\
 			ft_putnbr.c					\
 			ft_puthexa.c				\
+			ft_put64hexa.c				\
+			ft_put32hexa.c				\
 			ft_putnbr_fd.c				\
 			ft_putstr.c					\
 			ft_putstr_fd.c				\
+			ft_hex64_to_char.c			\
+			ft_hex32_to_char.c			\
 			ft_strcat.c					\
 			ft_strchr.c					\
 			ft_strclr.c					\
@@ -109,6 +115,7 @@ SRCS = 		ft_atoi.c					\
 			get_next_line.c				\
 			ft_abort.c					\
 			ftb_hex2int.c				\
+			hex2uint64t.c				\
 			ftb_free_multiarray.c		\
 			ftb_find_closest_offset.c	\
 			ftb_abs.c					\
@@ -117,9 +124,11 @@ SRCS = 		ft_atoi.c					\
 			ft_atol.c					\
 			ft_strbits.c				\
 			ft_membits.c				\
+			ft_left_shift.c				\
 			ft_left_rotate.c			\
 			ft_right_rotate.c			\
 			ft_swap_uint32t.c			\
+			ft_swap_uint64t.c			\
 			ft_putbits.c
 
 OBJS	=	$(SRCS:.c=.o)

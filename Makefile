@@ -6,10 +6,9 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2019/04/11 16:35:38 by cpieri           ###   ########.fr        #
+#    Updated: 2020/02/04 10:12:31 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME	=	ft_ssl
 
@@ -27,31 +26,62 @@ SRC_PATH=	srcs
 
 OBJ_PATH=	obj
 
-DEPS =		Makefile				\
-			includes/ft_ssl.h		\
-			includes/define.h		\
-			includes/constant.h		\
-			includes/enum.h			\
-			includes/functions.h	\
-			includes/structure.h	\
-			includes/hash/sha256.h	\
-			includes/hash/hash.h	\
-			includes/hash/md5.h		\
+DEPS =		Makefile						\
+			includes/ft_ssl.h				\
+			includes/define.h				\
+			includes/enum.h					\
+			includes/functions.h			\
+			includes/structure.h			\
+			includes/hash/sha256.h			\
+			includes/hash/hash.h			\
+			includes/hash/md5.h				\
+			includes/hash/sha1.h			\
+			includes/hash/hmac.h			\
+			includes/base64/base64.h		\
+			includes/evp/pbkdf.h			\
+			includes/symmetric/symmetric.h	\
+			includes/symmetric/des/des.h	\
 			libft/libft.a
 
-SRC_NAME= 	main.c						\
-			clean.c						\
-			usage.c						\
-			parsing.c					\
-			get_data.c					\
-			lst_opt.c					\
-			hash/hash.c					\
-			hash/hash_parsing.c			\
-			hash/display_hash.c			\
-			hash/sha256/sha256.c		\
-			hash/sha256/sha256_utils.c	\
-			hash/md5/md5_utils.c		\
-			hash/md5/md5.c				\
+SRC_NAME= 	main.c									\
+			parsing.c								\
+			dispatch.c								\
+			tools/clean.c							\
+			tools/usage.c							\
+			tools/error.c							\
+			tools/get_data.c						\
+			tools/get_data_1.c						\
+			tools/open_fd.c							\
+			tools/lst_opt.c							\
+			hash/hash_parsing.c						\
+			hash/display_hash.c						\
+			hash/hash_tools.c						\
+			hash/sha256/sha256.c					\
+			hash/sha256/sha256_utils.c				\
+			hash/md5/md5_utils.c					\
+			hash/md5/md5.c							\
+			hash/sha1/sha1.c						\
+			hash/sha1/sha1_utils.c					\
+			hash/hmac/hmac_utils.c					\
+			hash/hmac/hmac_md5.c					\
+			hash/hmac/hmac_sha1.c					\
+			hash/hmac/hmac_sha256.c					\
+			base64/base64.c							\
+			base64/base64_encode.c					\
+			base64/base64_decode.c					\
+			base64/base64_parsing.c					\
+			base64/base64_help_parsing.c			\
+			base64/base64_display.c					\
+			evp/pbkdf2.c							\
+			evp/pbkdf2_utils.c						\
+			evp/evp_struct.c						\
+			evp/evp_bytes2key.c						\
+			evp/evp_b2k_utils.c						\
+			symmetric/symmetric_usage.c				\
+			symmetric/symmetric_parsing.c			\
+			symmetric/symmetric_parsing_pt_f.c		\
+			symmetric/symmetric_parsing_pt_f_2.c	\
+			symmetric/des/des.c						\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
@@ -67,7 +97,7 @@ BLUE = \033[34m
 MAGENTA = \033[35m
 CYAN = \033[36m
 
-.PHONY:	all clean fclean re echo norm
+.PHONY:	all clean fclean re echo
 
 all:		LFT $(NAME)
 
