@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 09:23:01 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/20 10:43:04 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:56:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void		print_evp(t_evp *k)
 	ft_putstr("key:	");
 	key = hex2sum(k->key, k->dk_len / 4);
 	ft_putendl(key);
+	ft_memdel((void**)&key);
 	ft_putstr("vect:	");
 	vect = hex2sum(k->vect, k->iv_len / 4);
 	ft_putendl(vect);
+	ft_memdel((void**)&vect);
 }
 
 void		free_evp(t_evp **to_free)

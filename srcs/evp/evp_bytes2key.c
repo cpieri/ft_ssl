@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:10:42 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/20 10:25:47 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:59:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "evp/evp_bytes2key.h"
-#include <stdio.h>
 
 static void		*evp_loop(t_evp *k, size_t i, char *key, t_evp_hash hash_f)
 {

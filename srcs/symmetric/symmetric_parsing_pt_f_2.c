@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/20 10:44:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:58:16 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
-#include <stdio.h>
 
 void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_evp **k)
 {

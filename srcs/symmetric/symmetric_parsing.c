@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/20 10:34:02 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:54:09 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static t_opt	*get_sym_args(const int ac, char **av, int now)
 		now++;
 	}
 	check_pbkdf2(&k, do_pbkdf2);
-	print_evp(k);
+	// print_evp(k);
 	get_sym_stdin(&opt, &k);
 	return (new_opt(opt.flags, opt.data));
 }
@@ -114,7 +114,7 @@ t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)
 
 	new = get_sym_args(ac, av, now);
 	add_to_end_lst(new, &opts);
-	// print_lst(&opts);
-	// while (1);
+	print_lst(&opts);
+	while (1);
 	return (opts);
 }

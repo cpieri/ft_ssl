@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 12:29:58 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/03 10:46:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:58:36 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash/hmac.h"
 #include "hash/md5.h"
-#include <stdio.h>
 
 static void	*hmac_md5_digest(void *c1, void *c2, size_t l_c1, size_t l_c2)
 {
