@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:05:42 by cpieri            #+#    #+#             */
-/*   Updated: 2019/05/20 08:09:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 11:15:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 void	*des(void *opt, size_t len_opt)
 {
 	(void)len_opt;
+	// Code
 	return (opt);
 }
