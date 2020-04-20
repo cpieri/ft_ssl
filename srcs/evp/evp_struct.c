@@ -6,13 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 09:23:01 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/17 15:44:16 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:43:04 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "evp/evp.h"
 
-t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, void *vect)
+t_evp		*new_t_evp(uint8_t *pass, void *salt, void *key, void *vect)
 {
 	t_evp	*new;
 
@@ -22,7 +22,7 @@ t_evp		*new_t_evp(uint8_t *pass, void *salt, uint64_t key, void *vect)
 	new->pass_len = ft_strlen((char*)new->pass);
 	new->salt = (salt != NULL) ? salt : get_random();
 	new->salt_len = ft_strlen((char*)new->salt);
-	new->key = (key != 0x00) ? &key : 0x00;
+	new->key = key;
 	new->vect = vect;
 	return (new);
 }

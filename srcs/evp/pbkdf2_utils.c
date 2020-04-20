@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 13:31:54 by cpieri            #+#    #+#             */
-/*   Updated: 2020/02/04 09:49:43 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:30:49 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_prf		pbkdf2_get_prf(enum e_prf name)
 	return (ret);
 }
 
-void		pbkdf2_xor_dgst(void const *dgst1, void const *dgst2, size_t nb)
+void		pbkdf2_xor_dgst(void const *dgst1, void const *dgst2, size_t n)
 {
 	char	*dgst1_cpy;
 	char	*dgst2_cpy;
@@ -43,7 +43,7 @@ void		pbkdf2_xor_dgst(void const *dgst1, void const *dgst2, size_t nb)
 	i = 0;
 	dgst1_cpy = (char*)dgst1;
 	dgst2_cpy = (char*)dgst2;
-	while (i < nb)
+	while (i < n)
 	{
 		dgst1_cpy[i] ^= dgst2_cpy[i];
 		i++;

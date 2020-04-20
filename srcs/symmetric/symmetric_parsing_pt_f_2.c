@@ -6,30 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 10:21:15 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/17 15:29:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:44:40 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
 #include <stdio.h>
-
-void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_evp **k)
-{
-	uint64_t	key;
-
-	if (av[*now + 1] == NULL || av[*now + 1][0] == '-')
-		sym_usage(av[*now]);
-	key = hex2uint64t(av[*now + 1]);
-	opt->flags.sym_flags |= e_sym_opt_k;
-	if ((opt->flags.sym_flags & e_sym_opt_s) == e_sym_opt_s)
-		opt->flags.sym_flags ^= e_sym_opt_s;
-	if (*k == NULL)
-		*k = new_t_evp(NULL, 0, key, 0);
-	else
-		(*k)->key = &key;
-	(*now)++;
-}
 
 void	get_sym_opt_p(char **av, int *now, t_opt *opt, t_evp **k)
 {
@@ -76,28 +59,48 @@ void	get_sym_opt_s(char **av, int *now, t_opt *opt, t_evp **k)
 	}
 }
 
+void	get_sym_opt_k(char **av, int *now, t_opt *opt, t_evp **k)
+{
+	uint64_t	key_uint;
+	char		*key;
+
+	if ((key = av[*now + 1]) == NULL || av[*now + 1][0] == '-')
+		sym_usage(av[*now]);
+	if (ft_ishexa(key) == 1)
+	{
+		key_uint = swap_uint64t(hex2uint64t(key));
+		key = ft_memdup(&key_uint, sizeof(uint64_t));
+	}
+	opt->flags.sym_flags |= e_sym_opt_k;
+	if ((opt->flags.sym_flags & e_sym_opt_s) == e_sym_opt_s)
+		opt->flags.sym_flags ^= e_sym_opt_s;
+	if (*k == NULL)
+		*k = new_t_evp(NULL, 0, key, 0);
+	else
+		(*k)->key = key;
+	(*k)->dk_len = 8;
+	(*now)++;
+}
+
 void	get_sym_opt_v(char **av, int *now, t_opt *opt, t_evp **k)
 {
-	unsigned char	*vect;
-	size_t			len;
-	uint64_t		vector;
+	char		*vect;
+	uint64_t	vector;
 
-	len = 0;
 	vector = 0;
-	if ((vect = (unsigned char*)av[*now + 1]) == NULL || av[*now + 1][0] == '-')
+	if ((vect = av[*now + 1]) == NULL || av[*now + 1][0] == '-')
 		sym_usage(av[*now]);
-	if (ft_ishexa((char*)vect) == 1)
+	if (ft_ishexa(vect) == 1)
 	{
-		vector = hex2uint64t((char*)vect);
+		vector = swap_uint64t(hex2uint64t(vect));
 		vect = ft_memdup(&vector, sizeof(uint64_t));
-		len = sizeof(uint64_t);
 	}
 	opt->flags.sym_flags |= e_sym_opt_v;
 	if (*k == NULL)
 		*k = new_t_evp(NULL, 0, 0, vect);
 	else
 		(*k)->vect = vect;
-	(*k)->iv_len = len;
+	(*k)->iv_len = 8;
 	(*now)++;
 }
 

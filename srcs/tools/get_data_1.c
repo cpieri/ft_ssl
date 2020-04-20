@@ -6,11 +6,10 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 12:54:47 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/09 12:57:52 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:24:39 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "symmetric/symmetric.h"
 #include "ft_ssl.h"
 
 uint8_t		*get_pass(const char *prompt)

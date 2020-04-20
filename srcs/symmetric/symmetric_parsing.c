@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/17 14:06:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 10:34:02 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 #include "symmetric/symmetric.h"
-#include <stdio.h>
 #include <unistd.h>
 
 static const t_sym_opt	g_sym_opt[] =
@@ -53,12 +52,9 @@ static void		check_pbkdf2(t_evp **k, uint do_pbkdf2)
 				(*k)->salt_len = ft_strlen((char*)(*k)->salt);
 			}
 		}
-		if ((*k)->key != 0)
-		{
-			if ((*k)->vect == 0)
-				exit_msg("iv undefined");
-		}
-		else
+		if ((*k)->key != 0 && (*k)->vect == 0)
+			exit_msg("iv undefined");
+		else if ((*k)->key == 0 && (*k)->vect == 0)
 			evp_f.f(*k, evp_f.c, evp_f.full_size, evp_f.prf);
 	}
 	else
