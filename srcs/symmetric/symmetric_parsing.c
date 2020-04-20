@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:04:37 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/20 10:54:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/20 11:12:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_opt			*symmetric_opts(const int ac, char **av, t_opt *opts, int now)
 
 	new = get_sym_args(ac, av, now);
 	add_to_end_lst(new, &opts);
-	print_lst(&opts);
-	while (1);
+	// print_lst(&opts);
+	// while (1);
 	return (opts);
 }
