@@ -6,14 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:05:42 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/27 13:23:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/27 17:16:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/des/des.h"
 #include "symmetric/symmetric.h"
 
-static const uint8_t	g_permute_tab[64] = {
+static const uint8_t	g_des_ip[64] = {
 	58, 50, 42, 34, 26, 18, 10, 2,
 	60, 52, 44, 36, 28, 20, 12, 4,
 	62, 54, 46, 38, 30, 22, 14, 6,
@@ -32,16 +32,12 @@ static uint8_t	*permute_block(uint8_t *block, size_t len_block)
 	i = 0;
 	if (!(result = (uint8_t*)ft_memalloc(sizeof(uint8_t) * 8)))
 		return (NULL);
-	ft_membits(block, len_block, sizeof(uint8_t));
 	while (i < 64)
 	{
-		result[(i  / 8) % 8] <<= 1;
-		if (block[(i  / 8) % 8] & (1 << g_permute_tab[i]))
-			result[(i  / 8) % 8] |= (uint8_t)1;
+		if ((block[(g_des_ip[i] - 1) / 8] >> (7 - ((g_des_ip[i] - 1) % 8))) & 1)
+			result[i  / 8] |= (1 << (7 - (i % 8)));
 		i++;
 	}
-	ft_membits(result, len_block, sizeof(uint8_t));
-	// tmp |= block & (1 << g_permute_tab[i]);
 	return (result);
 }
 
@@ -49,6 +45,7 @@ void			*des(void *opt, size_t len_opt)
 {
 	t_opt	*opt_cpy;
 	char	*data;
+	char	*block_permuted;
 	size_t	len_data;
 	size_t	offest;
 	// t_evp	*evp_data;
@@ -60,7 +57,7 @@ void			*des(void *opt, size_t len_opt)
 	len_data = opt_cpy->data->len_data;
 	while (offest < len_data)
 	{
-		permute_block((uint8_t*)(data + offest), 64);
+		block_permuted = permute_block((uint8_t*)(data + offest), 8);
 		offest += 8;
 	}
 	// evp_data = opt_cpy->data->pass;

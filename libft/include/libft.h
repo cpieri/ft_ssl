@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by cpieri            #+#    #+#             */
-/*   Updated: 2020/01/06 12:53:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/04/27 14:18:20 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void				ft_bzero(void *s, size_t n);
 void				ft_memdel(void **ap);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				ft_membits(void *s, size_t len, size_t size);
+void				ft_membit_pos(void *s, size_t len, size_t size);
 void				ft_memput(void *s, size_t len);
 
 /*
