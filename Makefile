@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2020/04/24 15:10:25 by cpieri           ###   ########.fr        #
+#    Updated: 2020/04/29 11:50:04 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ SRC_NAME= 	main.c									\
 			symmetric/symmetric_parsing_pt_f.c		\
 			symmetric/symmetric_parsing_pt_f_2.c	\
 			symmetric/des/des.c						\
+			symmetric/des/des_tools.c				\
 			symmetric/tools/des_key_schedule.c		\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
