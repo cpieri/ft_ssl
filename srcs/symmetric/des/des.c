@@ -6,12 +6,14 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:05:42 by cpieri            #+#    #+#             */
-/*   Updated: 2020/04/29 13:48:52 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/05/04 12:28:03 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/des/des.h"
 #include "symmetric/symmetric.h"
+
+
 
 static const int	g_des_ip[64] = {
 	58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4, 62, 54, 46,
@@ -40,19 +42,17 @@ static void		des_cycle(uint8_t *block, size_t len_block)
 
 void			*des(void *opt, size_t len_opt)
 {
-	t_opt	*opt_cpy;
-	char	*data;
-	uint8_t	*block_permuted;
-	size_t	len_data;
-	size_t	offest;
+	t_data		*data;
+	t_des_key	keys;
+	uint8_t		*block_permuted;
+	size_t		offest;
 	// t_evp	*evp_data;
 
 	(void)len_opt;
 	offest = 0;
-	opt_cpy = opt;
-	data = opt_cpy->data->data;
-	len_data = opt_cpy->data->len_data;
-	while (offest < len_data)
+	data = ((t_opt*)opt)->data;
+	keys = des_key_schedule(((t_evp*)data->pass)->key, ((t_evp*)data->pass)->dk_len);
+	while (offest < data->len_data)
 	{
 		block_permuted = des_permute((uint8_t*)(data + offest), g_des_ip, 64);
 		des_cycle(block_permuted, 8);
