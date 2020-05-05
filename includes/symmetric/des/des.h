@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:13:19 by cpieri            #+#    #+#             */
-/*   Updated: 2020/05/04 12:22:26 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/05/05 12:10:40 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_des_key
 
 void		*des(void *opt, size_t len_opt);
 uint8_t		*des_permute(uint8_t *to_perm, const int *arr, size_t new_len);
-t_des_key	des_key_schedule(void *key, size_t key_len);
+t_des_key	des_key_schedule(void *key, size_t key_len, int i);
+uint32_t	*des_key_schedule_32(void *key, size_t key_len, int i);
 
 #endif

@@ -6,14 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 10:05:42 by cpieri            #+#    #+#             */
-/*   Updated: 2020/05/04 12:28:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2020/05/05 12:22:48 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "symmetric/des/des.h"
 #include "symmetric/symmetric.h"
-
-
 
 static const int	g_des_ip[64] = {
 	58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4, 62, 54, 46,
@@ -28,22 +26,29 @@ static const int	g_des_cycle[48] = {
 	29, 28, 29, 30, 31, 32, 1
 };
 
-static void		des_cycle(uint8_t *block, size_t len_block)
+static void		des_cycle(uint8_t *block, size_t len_block, void *key, int dk_l)
 {
 	uint32_t	part_1;
 	uint32_t	part_2;
+	uint32_t	*key_32;
+	int			i;
 	uint8_t		*permute;
 
 	(void)(len_block);
+	i = 0;
 	part_1 = ((uint32_t*)block)[0];
 	part_2 = ((uint32_t*)block)[1];
-	permute = des_permute(((uint8_t*)(&part_2)), g_des_cycle, 48);
+	while (i < 16)
+	{
+		permute = des_permute(((uint8_t*)(&part_2)), g_des_cycle, 48);
+		key_32 = des_key_schedule_32(key, dk_l, i);
+		i++;
+	}
 }
 
 void			*des(void *opt, size_t len_opt)
 {
 	t_data		*data;
-	t_des_key	keys;
 	uint8_t		*block_permuted;
 	size_t		offest;
 	// t_evp	*evp_data;
@@ -51,15 +56,11 @@ void			*des(void *opt, size_t len_opt)
 	(void)len_opt;
 	offest = 0;
 	data = ((t_opt*)opt)->data;
-	keys = des_key_schedule(((t_evp*)data->pass)->key, ((t_evp*)data->pass)->dk_len);
 	while (offest < data->len_data)
 	{
 		block_permuted = des_permute((uint8_t*)(data + offest), g_des_ip, 64);
-		des_cycle(block_permuted, 8);
+		des_cycle(block_permuted, 8, ((t_evp*)data->pass)->key, ((t_evp*)data->pass)->dk_len);
 		offest += 8;
 	}
-	// evp_data = opt_cpy->data->pass;
-	// des_key_schedule(evp_data->key, evp_data->dk_len);
-	// Code
 	return (opt);
 }
