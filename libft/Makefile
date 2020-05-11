@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2020/01/06 12:49:31 by cpieri           ###   ########.fr        #
+#    Updated: 2020/04/27 14:19:05 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ SRCS = 		ft_atoi.c					\
 			ft_atol.c					\
 			ft_strbits.c				\
 			ft_membits.c				\
+			ft_membit_pos.c				\
 			ft_left_shift.c				\
 			ft_left_rotate.c			\
 			ft_right_rotate.c			\
